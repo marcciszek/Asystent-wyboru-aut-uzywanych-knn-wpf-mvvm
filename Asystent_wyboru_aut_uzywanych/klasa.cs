@@ -7,6 +7,8 @@ public class Class1
 {
 	public Class1()
 	{
+
+		private int tescik;
 		//
 		// TODO: Add constructor logic here
 		//
