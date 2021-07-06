@@ -24,7 +24,7 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
         #endregion
 
         #region metody
-        public string ToInsert()
+        public string Insert_To_Database()
         {
             return $"('{Price}', '{Power}', '{Mileage}', '{Age}')";
         }

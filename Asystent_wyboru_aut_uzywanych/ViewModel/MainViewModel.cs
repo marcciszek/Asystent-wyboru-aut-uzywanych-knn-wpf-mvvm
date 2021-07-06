@@ -12,14 +12,14 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
 
     class MainViewModel : ViewModelBase
     {
-        #region Konstruktory i definicje
-        public addCarsViewModel addVM { get; set; }
-        private Model model = new Model();
-        private AddCarsModel addModel = new AddCarsModel();
-
+        #region Definicje
+        public CarsViewModel carsVM { get; set; }
+        private CarsModel carModel = new CarsModel();
+        #endregion
+        #region Konstruktory
         public MainViewModel()
         {
-            addVM = new addCarsViewModel(model, addModel);
+            carsVM = new CarsViewModel(carModel);
         }
         #endregion
     }

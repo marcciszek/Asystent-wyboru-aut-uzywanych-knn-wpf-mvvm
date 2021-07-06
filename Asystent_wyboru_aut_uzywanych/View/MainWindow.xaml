@@ -20,52 +20,52 @@
         <StackPanel Grid.Column="0">
             <DockPanel Margin="10" LastChildFill="True">
                 <TextBlock Text="Cena"  FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="price" Text="{Binding addVM.Price}"/>
+                <TextBox x:Name="price" Text="{Binding carsVM.Price}"/>
             </DockPanel>
             <DockPanel Margin="10" LastChildFill="True">
                 <TextBlock Text="Moc silnika:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="power" Text="{Binding addVM.Power}"/>
+                <TextBox x:Name="power" Text="{Binding carsVM.Power}"/>
             </DockPanel>
             <DockPanel Margin="10" LastChildFill="True">
                 <TextBlock Text="Przebieg:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="mileage" Text="{Binding addVM.Mileage}"/>
+                <TextBox x:Name="mileage" Text="{Binding carsVM.Mileage}"/>
             </DockPanel>
             <DockPanel Margin="10" LastChildFill="True">
                 <TextBlock Text="Wiek auta:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="age" Text="{Binding addVM.Age}"/>
+                <TextBox x:Name="age" Text="{Binding carsVM.Age}"/>
             </DockPanel>
         </StackPanel>
         <StackPanel Grid.Column="2">
             <DockPanel Margin="10" LastChildFill="True">
                 <TextBlock Text="Typ nadwozia:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="vehicle_type"/>
+                <TextBox x:Name="vehicle_type" Text="{Binding carsVM.Vehicle_type}"/>
             </DockPanel>
             <DockPanel Margin="10" LastChildFill="True">
                 <TextBlock Text="Typ skrzyni biegów:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="gearbox_type"/>
+                <TextBox x:Name="gearbox_type" Text="{Binding carsVM.Gearbox_type}"/>
             </DockPanel>
             <DockPanel Margin="10" LastChildFill="True">
                 <TextBlock Text="Typ paliwa:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="fuel_type"/>
+                <TextBox x:Name="fuel_type" Text="{Binding carsVM.Fuel_type}"/>
             </DockPanel>
             <DockPanel Margin="10" LastChildFill="True">
                 <TextBlock Text="Marka:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="brand"/>
+                <TextBox x:Name="brand" Text="{Binding carsVM.Brand}"/>
             </DockPanel>
             <DockPanel Margin="10" LastChildFill="True">
                 <TextBlock Text="Model:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="model"/>
+                <TextBox x:Name="model" Text="{Binding carsVM.Model}"/>
             </DockPanel>
             <DockPanel Margin="10" LastChildFill="True">
                 <TextBlock Text="Uszkodzony:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="damage"/>
+                <TextBox x:Name="damage" Text="{Binding carsVM.Damage}"/>
             </DockPanel>
         </StackPanel>
         <StackPanel Grid.Column="1">
             <Button Content="Dodaj auto do bazy"
                     Margin="10, 100"
                     FontSize="15"
-                    Command="{Binding addVM.Add_car}"/>
+                    Command="{Binding carsVM.Add_car}"/>
         </StackPanel>
     </Grid>
 </Window>
