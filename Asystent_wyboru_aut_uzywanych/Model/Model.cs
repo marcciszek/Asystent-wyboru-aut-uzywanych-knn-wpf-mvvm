@@ -5,15 +5,10 @@ using System.Text;
 namespace Asystent_wyboru_aut_uzywanych.Model
 {
     using DAL.Repozytoria;
+    using DAL.Encje;
+    using System.Windows;
     class Model
     {
-        #region konstruktory
 
-        #endregion
-        public bool Dodawanie_auta()
-        {
-            RepozytoriumAuta.DodajAuto();
-            return true;
-        }
     }
 }

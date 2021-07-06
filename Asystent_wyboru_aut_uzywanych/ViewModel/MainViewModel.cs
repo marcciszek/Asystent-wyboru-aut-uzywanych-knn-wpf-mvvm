@@ -10,26 +10,17 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
     using BaseClass;
     using Asystent_wyboru_aut_uzywanych.Model;
 
-    class MainViewModel : INotifyPropertyChanged
+    class MainViewModel : ViewModelBase
     {
-        public event PropertyChangedEventHandler PropertyChanged;
+        #region Konstruktory i definicje
+        public addCarsViewModel addVM { get; set; }
+        private Model model = new Model();
+        private AddCarsModel addModel = new AddCarsModel();
 
-        private ICommand dodaj;
-
-        public ICommand Dodaj
+        public MainViewModel()
         {
-            get
-            {
-                return dodaj ?? (dodaj = new RelayCommand(
-                                                      p => model.Dodawanie_auta(),
-                                                      p => 1 < 10 ? true : false
-                                                 )
-                                  );
-            }
+            addVM = new addCarsViewModel(model, addModel);
         }
-
-        #region Konstruktor
-        Model model = new Model();
         #endregion
     }
 }
