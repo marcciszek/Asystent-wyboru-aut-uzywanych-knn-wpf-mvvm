@@ -154,6 +154,8 @@
         <TextBox x:Name="TextBoxPrice"
                  Grid.Column="2"
                  Grid.Row="4"
+                 PreviewTextInput="NumberValidationTextBox"
+                 PreviewKeyDown="SpacePreventTextBox"
                  Text="{Binding Price,
                                 UpdateSourceTrigger=PropertyChanged,
                                 RelativeSource={RelativeSource Mode=FindAncestor,
@@ -165,6 +167,8 @@
         <TextBox x:Name="TextBoxPower"
                  Grid.Column="3"
                  Grid.Row="4"
+                 PreviewTextInput="NumberValidationTextBox"
+                 PreviewKeyDown="SpacePreventTextBox"
                  Text="{Binding Power,
                                 UpdateSourceTrigger=PropertyChanged,
                                 RelativeSource={RelativeSource Mode=FindAncestor,
@@ -176,6 +180,8 @@
         <TextBox x:Name="TextBoxMileage"
                  Grid.Column="2"
                  Grid.Row="6"
+                 PreviewTextInput="NumberValidationTextBox"
+                 PreviewKeyDown="SpacePreventTextBox"
                  Text="{Binding Mileage,
                                 UpdateSourceTrigger=PropertyChanged,
                                 RelativeSource={RelativeSource Mode=FindAncestor,
@@ -187,6 +193,8 @@
         <TextBox x:Name="TextBoxCarYear"
                  Grid.Column="3"
                  Grid.Row="6"
+                 PreviewTextInput="NumberValidationTextBox"
+                 PreviewKeyDown="SpacePreventTextBox"
                  Text="{Binding CarYear,
                                 UpdateSourceTrigger=PropertyChanged,
                                 RelativeSource={RelativeSource Mode=FindAncestor,

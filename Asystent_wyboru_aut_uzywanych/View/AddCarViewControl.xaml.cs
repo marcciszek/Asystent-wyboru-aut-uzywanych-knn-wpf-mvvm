@@ -19,6 +19,8 @@ namespace Asystent_wyboru_aut_uzywanych.View
         {
             InitializeComponent();
         }
+
+        #region DependencyProperty 
         //=========================================================================
         public string Brand
         {
@@ -212,5 +214,17 @@ namespace Asystent_wyboru_aut_uzywanych.View
                 typeof(string),
                 typeof(AddCarViewControl));
         //=========================================================================
+        #endregion
+
+        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
+        {
+            System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("[^0-9]+");
+            e.Handled = regex.IsMatch(e.Text);
+        }
+        private void SpacePreventTextBox(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
     }
 }
