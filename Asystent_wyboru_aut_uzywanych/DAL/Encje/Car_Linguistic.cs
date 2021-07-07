@@ -33,6 +33,10 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
         {
             return $"('{this.vehicle_type}', '{this.gearbox_type}', '{this.model}', '{this.fuel_type}', '{this.brand}', '{this.damage}')";
         }
+        public string Select_In_Database()
+        {
+            return $"body_type LIKE '{vehicle_type}' AND gearbox_type LIKE '{gearbox_type}' AND model LIKE '{model}' AND brand LIKE '{brand}' AND fuel_type LIKE '{fuel_type}' AND repaired LIKE '{damage}'";
+        }
         #endregion
     }
 }

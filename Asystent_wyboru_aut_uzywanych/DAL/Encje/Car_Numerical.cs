@@ -28,6 +28,10 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
         {
             return $"('{Price}', '{Power}', '{Mileage}', '{Age}')";
         }
+        public string Select_In_Database()
+        {
+            return $"price LIKE '{Price}' AND power LIKE '{Power}' AND mileage LIKE '{Mileage}' AND age LIKE '{Age}'";
+        }
         #endregion
     }
 }
