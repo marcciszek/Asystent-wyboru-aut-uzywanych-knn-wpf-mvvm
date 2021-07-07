@@ -62,82 +62,135 @@
                    Grid.Row="0"/>
         <ComboBox x:Name="ComboBoxBrand"
                   Grid.Column="1"
-                  Grid.Row="1"/>
-                  <!--ItemsSource=""
-                  SelectedItem=""/>-->
-
+                  Grid.Row="1"
+                  ItemsSource="{Binding AvailableBrands,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                  SelectedItem="{Binding Brand,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
         <TextBlock Text="MODEL"
                    Grid.Column="2"
                    Grid.Row="0"/>
         <ComboBox x:Name="ComboBoxModel"
                   Grid.Column="2"
-                  Grid.Row="1"/>
-        <!--ItemsSource=""
-                  SelectedItem=""/>-->
-
+                  Grid.Row="1"
+                  ItemsSource="{Binding AvailableModels,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                  SelectedItem="{Binding Model,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
         <TextBlock Text="TYP NADWOZIA"
                    Grid.Column="0"
                    Grid.Row="3"/>
         <ComboBox x:Name="ComboBoxType"
                   Grid.Column="0"
-                  Grid.Row="4"/>
-        <!--ItemsSource=""
-                  SelectedItem=""/>-->
-
+                  Grid.Row="4"
+                  ItemsSource="{Binding AvailableTypes,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                  SelectedItem="{Binding Type,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
         <TextBlock Text="SKRZYNIA"
                    Grid.Column="1"
                    Grid.Row="3"/>
         <ComboBox x:Name="ComboBoxGear"
                   Grid.Column="1"
-                  Grid.Row="4"/>
-        <!--ItemsSource=""
-                  SelectedItem=""/>-->
-
+                  Grid.Row="4"
+                  ItemsSource="{Binding AvailableGears,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                  SelectedItem="{Binding Gear,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
         <TextBlock Text="PALIWO"
                    Grid.Column="0"
                    Grid.Row="5"/>
         <ComboBox x:Name="ComboBoxFuel"
                   Grid.Column="0"
-                  Grid.Row="6"/>
-        <!--ItemsSource=""
-                  SelectedItem=""/>-->
-
+                  Grid.Row="6"
+                  ItemsSource="{Binding AvailableFuels,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                  SelectedItem="{Binding Fuel,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
         <TextBlock Text="USZKODZONY"
                    Grid.Column="1"
                    Grid.Row="5"/>
         <ComboBox x:Name="ComboBoxDamaged"
                   Grid.Column="1"
-                  Grid.Row="6"/>
-        <!--ItemsSource=""
-                  SelectedItem=""/>-->
+                  Grid.Row="6"
+                  ItemsSource="{Binding AvailableDamages,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                  SelectedItem="{Binding Damage,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
 
         <TextBlock Text="CENA"
                    Grid.Column="2"
                    Grid.Row="3"/>
         <TextBox x:Name="TextBoxPrice"
                  Grid.Column="2"
-                 Grid.Row="4"/>
+                 Grid.Row="4"
+                 Text="{Binding Price,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
 
         <TextBlock Text="MOC"
                    Grid.Column="3"
                    Grid.Row="3"/>
         <TextBox x:Name="TextBoxPower"
                  Grid.Column="3"
-                 Grid.Row="4"/>
+                 Grid.Row="4"
+                 Text="{Binding Power,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
 
         <TextBlock Text="PRZEBIEG"
                    Grid.Column="2"
                    Grid.Row="5"/>
         <TextBox x:Name="TextBoxMileage"
                  Grid.Column="2"
-                 Grid.Row="6"/>
+                 Grid.Row="6"
+                 Text="{Binding Mileage,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
 
         <TextBlock Text="ROK PRODUKCJI"
                    Grid.Column="3"
                    Grid.Row="5"/>
         <TextBox x:Name="TextBoxCarYear"
                  Grid.Column="3"
-                 Grid.Row="6"/>
+                 Grid.Row="6"
+                 Text="{Binding CarYear,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
 
         <Button x:Name="ButtonAddCar"
                 Content="DODAJ"
