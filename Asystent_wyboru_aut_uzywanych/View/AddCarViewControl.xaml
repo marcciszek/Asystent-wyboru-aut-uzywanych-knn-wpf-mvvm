@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="Asystent_wyboru_aut_uzywanych.View.AddCarViewControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Asystent_wyboru_aut_uzywanych.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+
+    <UserControl.Resources>
+        
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="AliceBlue"/>
+        </Style>
+        
+        <Style TargetType="TextBlock">
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="VerticalAlignment" Value="Bottom"/>
+        </Style>
+        
+        <Style TargetType="ComboBox">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+            <ColumnDefinition Width="1*"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="3*"/>
+        </Grid.RowDefinitions>
+
+        <TextBlock Text="MARKA"
+                   Grid.Column="1"
+                   Grid.Row="0"/>
+        <ComboBox x:Name="ComboBoxBrand"
+                  Grid.Column="1"
+                  Grid.Row="1"/>
+                  <!--ItemsSource=""
+                  SelectedItem=""/>-->
+
+        <TextBlock Text="MODEL"
+                   Grid.Column="2"
+                   Grid.Row="0"/>
+        <ComboBox x:Name="ComboBoxModel"
+                  Grid.Column="2"
+                  Grid.Row="1"/>
+        <!--ItemsSource=""
+                  SelectedItem=""/>-->
+
+        <TextBlock Text="TYP NADWOZIA"
+                   Grid.Column="0"
+                   Grid.Row="3"/>
+        <ComboBox x:Name="ComboBoxType"
+                  Grid.Column="0"
+                  Grid.Row="4"/>
+        <!--ItemsSource=""
+                  SelectedItem=""/>-->
+
+        <TextBlock Text="SKRZYNIA"
+                   Grid.Column="1"
+                   Grid.Row="3"/>
+        <ComboBox x:Name="ComboBoxGear"
+                  Grid.Column="1"
+                  Grid.Row="4"/>
+        <!--ItemsSource=""
+                  SelectedItem=""/>-->
+
+        <TextBlock Text="PALIWO"
+                   Grid.Column="0"
+                   Grid.Row="5"/>
+        <ComboBox x:Name="ComboBoxFuel"
+                  Grid.Column="0"
+                  Grid.Row="6"/>
+        <!--ItemsSource=""
+                  SelectedItem=""/>-->
+
+        <TextBlock Text="USZKODZONY"
+                   Grid.Column="1"
+                   Grid.Row="5"/>
+        <ComboBox x:Name="ComboBoxDamaged"
+                  Grid.Column="1"
+                  Grid.Row="6"/>
+        <!--ItemsSource=""
+                  SelectedItem=""/>-->
+
+        <TextBlock Text="CENA"
+                   Grid.Column="2"
+                   Grid.Row="3"/>
+        <TextBox x:Name="TextBoxPrice"
+                 Grid.Column="2"
+                 Grid.Row="4"/>
+
+        <TextBlock Text="MOC"
+                   Grid.Column="3"
+                   Grid.Row="3"/>
+        <TextBox x:Name="TextBoxPower"
+                 Grid.Column="3"
+                 Grid.Row="4"/>
+
+        <TextBlock Text="PRZEBIEG"
+                   Grid.Column="2"
+                   Grid.Row="5"/>
+        <TextBox x:Name="TextBoxMileage"
+                 Grid.Column="2"
+                 Grid.Row="6"/>
+
+        <TextBlock Text="ROK PRODUKCJI"
+                   Grid.Column="3"
+                   Grid.Row="5"/>
+        <TextBox x:Name="TextBoxCarYear"
+                 Grid.Column="3"
+                 Grid.Row="6"/>
+
+        <Button x:Name="ButtonAddCar"
+                Content="DODAJ"
+                Grid.Column="1"
+                Grid.Row="12"/>
+
+        <Button x:Name="ButtonClear"
+                Content="WYCZYŚĆ"
+                Grid.Column="2"
+                Grid.Row="12"/>
+
+    </Grid>
+</UserControl>
