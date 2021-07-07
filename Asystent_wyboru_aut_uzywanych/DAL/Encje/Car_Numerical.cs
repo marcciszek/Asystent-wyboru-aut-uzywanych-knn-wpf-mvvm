@@ -24,9 +24,13 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
         #endregion
 
         #region metody
-        public string ToInsert()
+        public string Insert_To_Database()
         {
             return $"('{Price}', '{Power}', '{Mileage}', '{Age}')";
+        }
+        public string Select_In_Database()
+        {
+            return $"price LIKE '{Price}' AND power LIKE '{Power}' AND mileage LIKE '{Mileage}' AND age LIKE '{Age}'";
         }
         #endregion
     }

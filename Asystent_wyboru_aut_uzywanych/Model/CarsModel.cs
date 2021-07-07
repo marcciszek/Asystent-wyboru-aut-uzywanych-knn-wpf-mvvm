@@ -7,12 +7,13 @@ namespace Asystent_wyboru_aut_uzywanych.Model
 {
     using DAL.Repozytoria;
     using DAL.Encje;
-    class AddCarsModel
+    class CarsModel
     {
-        public bool Dodawanie_auta(Car_Numerical car)
+        public bool Add_car(Car_Numerical car_num, Car_Linguistic car_lin)
         {
-            RepozytoriumAuta.DodajAuto(car);
-            return true;
+            bool stan;
+            stan = CarsRepository.Add_car(car_num, car_lin);
+            return stan;
         }
     }
 }
