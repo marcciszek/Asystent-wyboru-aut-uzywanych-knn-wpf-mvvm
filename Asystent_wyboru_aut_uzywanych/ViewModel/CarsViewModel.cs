@@ -10,6 +10,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
     using DAL.Repozytoria;
     using DAL.Encje;
     using ViewModel.BaseClass;
+    using System.Collections.ObjectModel;
 
     class CarsViewModel : ViewModelBase
     {
@@ -215,6 +216,101 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             Brand = "";
             Model = "";
             Damage = "";
+        }
+        public string[] Damages
+        {
+            get
+            {
+                return carModel.damage;
+            }
+        }
+        public string[] Fuels
+        {
+            get
+            {
+                return carModel.fuel_type;
+            }
+        }
+        public string[] Gears
+        {
+            get
+            {
+                return carModel.gearbox_type;
+            }
+        }
+        public string[] Types
+        {
+            get
+            {
+                return carModel.vehicle_type;
+            }
+        }
+        public string[] Brands
+        {
+            get
+            {
+                return carModel.brands;
+            }
+        }
+        private string selected_brand;
+        public string Selected_Brand
+        {
+            get
+            {
+                return selected_brand;
+            }
+            set
+            {
+                selected_brand = value;
+                MessageBox.Show("elo");
+                Update_models_list(selected_brand);
+                onPropertyChanged(nameof(Selected_Brand));
+            }
+        }
+        private ObservableCollection<string> models = new ObservableCollection<string>();
+        public ObservableCollection<string> Models
+        {
+            get
+            {
+                return models;
+            }
+            set
+            {
+                onPropertyChanged(nameof(Models));
+            }
+        }
+        private void Update_models_list(string brand)
+        {
+
+            models.Clear();
+            switch (brand)
+            {
+                case "Ford":
+                    foreach (var item in carModel.models_ford)
+                    {
+                        models.Add(item.ToString());
+                    }
+                    break;
+                case "BMW":
+                    foreach (var item in carModel.models_bmw)
+                    {
+                        models.Add(item.ToString());
+                    }
+                    break;
+                case "Audi":
+                    foreach (var item in carModel.models_audi)
+                    {
+                        models.Add(item.ToString());
+                    }
+                    break;
+                case "Citroen":
+                    foreach (var item in carModel.models_citroen)
+                    {
+                        models.Add(item.ToString());
+                    }
+                    break;
+            }
+
         }
         #endregion
     }

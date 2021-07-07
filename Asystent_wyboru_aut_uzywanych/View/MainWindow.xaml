@@ -5,67 +5,108 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Asystent_wyboru_aut_uzywanych"
         xmlns:vm ="clr-namespace:Asystent_wyboru_aut_uzywanych.ViewModel"
+        xmlns:view="clr-namespace:Asystent_wyboru_aut_uzywanych.View"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
 
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
     </Window.Resources>
-    <Grid DataContext="{StaticResource mainVM}">
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="5*"/>
-            <ColumnDefinition Width="2.5*"/>
-            <ColumnDefinition Width="5*"/>
-        </Grid.ColumnDefinitions>
-        <StackPanel Grid.Column="0">
-            <DockPanel Margin="10" LastChildFill="True">
-                <TextBlock Text="Cena"  FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="price" Text="{Binding carsVM.Price}"/>
-            </DockPanel>
-            <DockPanel Margin="10" LastChildFill="True">
-                <TextBlock Text="Moc silnika:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="power" Text="{Binding carsVM.Power}"/>
-            </DockPanel>
-            <DockPanel Margin="10" LastChildFill="True">
-                <TextBlock Text="Przebieg:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="mileage" Text="{Binding carsVM.Mileage}"/>
-            </DockPanel>
-            <DockPanel Margin="10" LastChildFill="True">
-                <TextBlock Text="Wiek auta:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="age" Text="{Binding carsVM.Age}"/>
-            </DockPanel>
-        </StackPanel>
-        <StackPanel Grid.Column="2">
-            <DockPanel Margin="10" LastChildFill="True">
-                <TextBlock Text="Typ nadwozia:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="vehicle_type" Text="{Binding carsVM.Vehicle_type}"/>
-            </DockPanel>
-            <DockPanel Margin="10" LastChildFill="True">
-                <TextBlock Text="Typ skrzyni biegów:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="gearbox_type" Text="{Binding carsVM.Gearbox_type}"/>
-            </DockPanel>
-            <DockPanel Margin="10" LastChildFill="True">
-                <TextBlock Text="Typ paliwa:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="fuel_type" Text="{Binding carsVM.Fuel_type}"/>
-            </DockPanel>
-            <DockPanel Margin="10" LastChildFill="True">
-                <TextBlock Text="Marka:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="brand" Text="{Binding carsVM.Brand}"/>
-            </DockPanel>
-            <DockPanel Margin="10" LastChildFill="True">
-                <TextBlock Text="Model:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="model" Text="{Binding carsVM.Model}"/>
-            </DockPanel>
-            <DockPanel Margin="10" LastChildFill="True">
-                <TextBlock Text="Uszkodzony:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
-                <TextBox x:Name="damage" Text="{Binding carsVM.Damage}"/>
-            </DockPanel>
-        </StackPanel>
-        <StackPanel Grid.Column="1">
-            <Button Content="Dodaj auto do bazy"
+    <Grid DataContext="{DynamicResource mainVM}">
+        <TabControl>
+            <TabItem x:Name="testowy" Header="Test">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="5*"/>
+                        <ColumnDefinition Width="2.5*"/>
+                        <ColumnDefinition Width="5*"/>
+                    </Grid.ColumnDefinitions>
+                    <StackPanel Grid.Column="0">
+                        <DockPanel Margin="10" LastChildFill="True">
+                            <TextBlock Text="Cena"  FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
+                            <TextBox x:Name="price" Text="{Binding carsVM.Price}" PreviewTextInput="NumberValidationTextBox" PreviewKeyDown="TextBox_PreviewKeyDown"/>
+                        </DockPanel>
+                        <DockPanel Margin="10" LastChildFill="True">
+                            <TextBlock Text="Moc silnika:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
+                            <TextBox x:Name="power" Text="{Binding carsVM.Power}" PreviewTextInput="NumberValidationTextBox"/>
+                        </DockPanel>
+                        <DockPanel Margin="10" LastChildFill="True">
+                            <TextBlock Text="Przebieg:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
+                            <TextBox x:Name="mileage" Text="{Binding carsVM.Mileage}" PreviewTextInput="NumberValidationTextBox"/>
+                        </DockPanel>
+                        <DockPanel Margin="10" LastChildFill="True">
+                            <TextBlock Text="Wiek auta:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
+                            <TextBox x:Name="age" Text="{Binding carsVM.Age}" PreviewTextInput="NumberValidationTextBox"/>
+                        </DockPanel>
+
+                        <DockPanel Margin="10" LastChildFill="True">
+                            <TextBlock Text="Marka:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
+                            <ComboBox VerticalAlignment="Center"
+                          x:Name="brands_combo_box"
+                          FontSize="12"
+                          HorizontalAlignment="Stretch"
+                          ItemsSource="{Binding Path=carsVM.Brands}"
+                          SelectedItem="{Binding Path=carsVM.Selected_Brand, Mode=TwoWay}"
+                />
+                        </DockPanel>
+                        <DockPanel Margin="10" LastChildFill="True">
+                            <TextBlock Text="Marka:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
+                            <ComboBox VerticalAlignment="Center"
+                          x:Name="models_combo_box"
+                          FontSize="12"
+                          HorizontalAlignment="Stretch"
+                          ItemsSource="{Binding Path=carsVM.Models}"
+                />
+                        </DockPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="2">
+                        <DockPanel Margin="10" LastChildFill="True">
+                            <TextBlock Text="Typ nadwozia:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
+                            <TextBox x:Name="vehicle_type" Text="{Binding carsVM.Vehicle_type}"/>
+                        </DockPanel>
+                        <DockPanel Margin="10" LastChildFill="True">
+                            <TextBlock Text="Typ skrzyni biegów:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
+                            <TextBox x:Name="gearbox_type" Text="{Binding carsVM.Gearbox_type}"/>
+                        </DockPanel>
+                        <DockPanel Margin="10" LastChildFill="True">
+                            <TextBlock Text="Typ paliwa:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
+                            <TextBox x:Name="fuel_type" Text="{Binding carsVM.Fuel_type}"/>
+                        </DockPanel>
+                        <DockPanel Margin="10" LastChildFill="True">
+                            <TextBlock Text="Marka:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
+                            <TextBox x:Name="brand" Text="{Binding carsVM.Brand}"/>
+                        </DockPanel>
+                        <DockPanel Margin="10" LastChildFill="True">
+                            <TextBlock Text="Model:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
+                            <TextBox x:Name="model" Text="{Binding carsVM.Model}"/>
+                        </DockPanel>
+                        <DockPanel Margin="10" LastChildFill="True">
+                            <TextBlock Text="Uszkodzony:" FontSize="15" VerticalAlignment="Center" Margin="10" MinWidth="125px"/>
+                            <TextBox x:Name="damage" Text="{Binding carsVM.Damage}"/>
+                        </DockPanel>
+                    </StackPanel>
+                    <StackPanel Grid.Column="1">
+                        <Button Content="Dodaj auto do bazy"
                     Margin="10, 100"
                     FontSize="15"
                     Command="{Binding carsVM.Add_car}"/>
-        </StackPanel>
+                    </StackPanel>
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="Add_car_control" Header="Dodaj Auto">
+                <view:AddCarViewControl x:Name="Add_control"
+                                        Price="{Binding carsVM.Price}"
+                                        Power="{Binding carsVM.Power}"
+                                        Mileage="{Binding carsVM.Mileage}"
+                                        CarYear="{Binding carsVM.Age}"
+                                        AvailableBrands="{Binding carsVM.Brands}"
+                                        AvailableDamages="{Binding carsVM.Damages}"
+                                        AvailableFuels="{Binding carsVM.Fuels}"
+                                        AvailableGears="{Binding carsVM.Gears}"
+                                        AvailableModels="{Binding carsVM.Models}"
+                                        AvailableTypes="{Binding carsVM.Types}"
+                                        Brand="{Binding carsVM.Selected_Brand}"/>
+            </TabItem>
+        </TabControl>
     </Grid>
 </Window>

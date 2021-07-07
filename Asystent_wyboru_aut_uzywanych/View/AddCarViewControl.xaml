@@ -68,7 +68,7 @@
                                 RelativeSource={RelativeSource 
                                 Mode=FindAncestor,
                                 AncestorType={x:Type UserControl}}}"
-                  SelectedItem="{Binding Brand,
+                  SelectedItem="{Binding Brand, Mode=TwoWay,
                                 UpdateSourceTrigger=PropertyChanged,
                                 RelativeSource={RelativeSource Mode=FindAncestor,
                                 AncestorType={x:Type UserControl}}}"/>
