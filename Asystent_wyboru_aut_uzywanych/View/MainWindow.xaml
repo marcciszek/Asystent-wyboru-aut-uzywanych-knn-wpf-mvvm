@@ -95,17 +95,22 @@
             </TabItem>
             <TabItem x:Name="Add_car_control" Header="Dodaj Auto">
                 <view:AddCarViewControl x:Name="Add_control"
-                                        Price="{Binding carsVM.Price}"
-                                        Power="{Binding carsVM.Power}"
-                                        Mileage="{Binding carsVM.Mileage}"
-                                        CarYear="{Binding carsVM.Age}"
+                                        Price="{Binding carsVM.Price, Mode=TwoWay}"
+                                        Power="{Binding carsVM.Power, Mode=TwoWay}"
+                                        Mileage="{Binding carsVM.Mileage, Mode=TwoWay}"
+                                        CarYear="{Binding carsVM.Age, Mode=TwoWay}"
                                         AvailableBrands="{Binding carsVM.Brands}"
                                         AvailableDamages="{Binding carsVM.Damages}"
                                         AvailableFuels="{Binding carsVM.Fuels}"
                                         AvailableGears="{Binding carsVM.Gears}"
-                                        AvailableModels="{Binding carsVM.Models}"
+                                        AvailableModels="{Binding carsVM.Models, Mode=TwoWay}"
                                         AvailableTypes="{Binding carsVM.Types}"
-                                        Brand="{Binding carsVM.Selected_Brand}"/>
+                                        Brand="{Binding carsVM.Selected_Brand, Mode=TwoWay}"
+                                        Model="{Binding carsVM.Selected_Model, Mode=TwoWay}"
+                                        Type="{Binding carsVM.Selected_Type, Mode=TwoWay}"
+                                        Gear="{Binding carsVM.Selected_Gear, Mode=TwoWay}"
+                                        Fuel="{Binding carsVM.Selected_Fuel, Mode=TwoWay}"
+                                        Damage="{Binding carsVM.Selected_Damage, Mode=TwoWay}"/>
             </TabItem>
         </TabControl>
     </Grid>

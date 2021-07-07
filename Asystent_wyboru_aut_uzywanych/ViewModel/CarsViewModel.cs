@@ -80,6 +80,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             }
         }
         #endregion
+        //Usunac parametry lingwistyczne
         #region parametry publiczne lingwistycznie
         private string vehicle_type;
         public string Vehicle_type
@@ -160,7 +161,142 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             }
         }
         #endregion
+        //===========================
+        #region parametry usercontrol
+        #region Elementy W Listach
+        public string[] Damages
+        {
+            get
+            {
+                return carModel.damage;
+            }
+        }
+        public string[] Fuels
+        {
+            get
+            {
+                return carModel.fuel_type;
+            }
+        }
+        public string[] Gears
+        {
+            get
+            {
+                return carModel.gearbox_type;
+            }
+        }
+        public string[] Types
+        {
+            get
+            {
+                return carModel.vehicle_type;
+            }
+        }
+        public string[] Brands
+        {
+            get
+            {
+                return carModel.brands;
+            }
+        }
+        #endregion
+        #region Wybrane elementy
+        private string selected_brand;
+        public string Selected_Brand
+        {
+            get
+            {
+                return selected_brand;
+            }
+            set
+            {
+                selected_brand = value;
+                Update_models_list(selected_brand);
+                onPropertyChanged(nameof(Selected_Brand));
+            }
+        }
+        private string selected_model;
+        public string Selected_Model
+        {
+            get
+            {
+                return selected_model;
+            }
+            set
+            {
+                selected_model = value;
+                onPropertyChanged(nameof(Selected_Model));
+            }
+        }
+        private string selected_type;
+        public string Selected_Type
+        {
+            get
+            {
+                return selected_type;
+            }
+            set
+            {
+                selected_type = value;
+                onPropertyChanged(nameof(Selected_Type));
+            }
+        }
+        private string selected_gear;
+        public string Selected_Gear
+        {
+            get
+            {
+                return selected_gear;
+            }
+            set
+            {
+                selected_gear = value;
+                onPropertyChanged(nameof(Selected_Gear));
+            }
+        }
+        private string selected_fuel;
+        public string Selected_Fuel
+        {
+            get
+            {
+                return selected_fuel;
+            }
+            set
+            {
+                selected_fuel = value;
+                onPropertyChanged(nameof(Selected_Fuel));
+            }
+        }
+        private string selected_damage;
+        public string Selected_Damage
+        {
+            get
+            {
+                return selected_damage;
+            }
+            set
+            {
+                selected_damage = value;
+                onPropertyChanged(nameof(Selected_Damage));
+            }
+        }
+        #endregion
+        private ObservableCollection<string> models = new ObservableCollection<string>();
+        public ObservableCollection<string> Models
+        {
+            get
+            {
+                return models;
+            }
+            set
+            {
+                onPropertyChanged(nameof(Models));
+            }
+        }
+        #endregion
         #region Metody
+
+        //Usunac stara metode dodajaca auta do bazy
         private ICommand add_car = null;
 
         public ICommand Add_car
@@ -204,85 +340,35 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 return add_car;
             }
         }
+        //================================
         private void Clear_Form()
         {
+            
             Price = "";
             Power = "";
             Mileage = "";
             Age = "";
+            //Wyczyscic z starych parametrow
             Vehicle_type = "";
             Gearbox_type = "";
             Fuel_type = "";
             Brand = "";
             Model = "";
             Damage = "";
-        }
-        public string[] Damages
-        {
-            get
-            {
-                return carModel.damage;
-            }
-        }
-        public string[] Fuels
-        {
-            get
-            {
-                return carModel.fuel_type;
-            }
-        }
-        public string[] Gears
-        {
-            get
-            {
-                return carModel.gearbox_type;
-            }
-        }
-        public string[] Types
-        {
-            get
-            {
-                return carModel.vehicle_type;
-            }
-        }
-        public string[] Brands
-        {
-            get
-            {
-                return carModel.brands;
-            }
-        }
-        private string selected_brand;
-        public string Selected_Brand
-        {
-            get
-            {
-                return selected_brand;
-            }
-            set
-            {
-                selected_brand = value;
-                MessageBox.Show("elo");
-                Update_models_list(selected_brand);
-                onPropertyChanged(nameof(Selected_Brand));
-            }
-        }
-        private ObservableCollection<string> models = new ObservableCollection<string>();
-        public ObservableCollection<string> Models
-        {
-            get
-            {
-                return models;
-            }
-            set
-            {
-                onPropertyChanged(nameof(Models));
-            }
+            //===========================
+            Selected_Type = "";
+            Selected_Gear = "";
+            Selected_Fuel = "";
+            Selected_Brand = "";
+            Selected_Model = "";
+            Selected_Damage = "";
         }
         private void Update_models_list(string brand)
         {
-
-            models.Clear();
+            if (models.Count != 0)
+            {
+                models.Clear();
+            }
             switch (brand)
             {
                 case "Ford":
@@ -312,6 +398,49 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             }
 
         }
+        private ICommand add_car_control = null;
+
+        public ICommand Add_car_control
+        {
+            get
+            {
+                if (add_car_control == null)
+                {
+                    add_car_control = new RelayCommand(
+                        arg =>
+                        {
+                            try
+                            {
+                                int price = Int32.Parse(this.price);
+                                int power = Int32.Parse(this.power);
+                                int mileage = Int32.Parse(this.mileage);
+                                int age = Int32.Parse(this.age);
+                                var Car_num = new Car_Numerical(price, power, mileage, age);
+                                var Car_lin = new Car_Linguistic(Selected_Type, Selected_Gear, Selected_Fuel, Selected_Brand, Selected_Model, Selected_Damage);
+                                if (carModel.Add_car(Car_num, Car_lin))
+                                {
+                                    //Dodac metode czyszczaca formularz
+                                    Clear_Form();
+                                    MessageBox.Show("Dodano auto do bazy");
+                                }
+                                else
+                                {
+                                    MessageBox.Show("Nie udało się dodać auta do bazy");
+                                }
+                            }
+                            catch (FormatException)
+                            {
+                                MessageBox.Show("Nie udało się dodać auta do bazy");
+                            }
+                        }
+                        ,//Dodac metode sprawdzajaca?
+                        arg => (Price != "") && (Power != "") && (Mileage != "") && (Age != "")
+                        );
+                }
+                return add_car_control;
+            }
+        }
+
         #endregion
     }
 }

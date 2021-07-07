@@ -68,7 +68,7 @@
                                 RelativeSource={RelativeSource 
                                 Mode=FindAncestor,
                                 AncestorType={x:Type UserControl}}}"
-                  SelectedItem="{Binding Brand, Mode=TwoWay,
+                  SelectedItem="{Binding Brand,
                                 UpdateSourceTrigger=PropertyChanged,
                                 RelativeSource={RelativeSource Mode=FindAncestor,
                                 AncestorType={x:Type UserControl}}}"/>
@@ -203,7 +203,8 @@
         <Button x:Name="ButtonAddCar"
                 Content="DODAJ"
                 Grid.Column="1"
-                Grid.Row="12"/>
+                Grid.Row="12"
+                Command="{Binding carsVM.Add_car_control}"/>
 
         <Button x:Name="ButtonClear"
                 Content="WYCZYŚĆ"

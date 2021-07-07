@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows;
 using System.Windows.Controls;
@@ -58,16 +59,16 @@ namespace Asystent_wyboru_aut_uzywanych.View
                 typeof(string),
                 typeof(AddCarViewControl));
         //-------------------------------------------------------------------------
-        public string[] AvailableModels
+        public ObservableCollection<string> AvailableModels
         {
-            get { return (string[])GetValue(AvailableModelsProperty); }
+            get { return (ObservableCollection<string>)GetValue(AvailableModelsProperty); }
             set { SetValue(AvailableModelsProperty, value); }
         }
 
         public static readonly DependencyProperty AvailableModelsProperty =
             DependencyProperty.Register(
                 nameof(AvailableModels),
-                typeof(string[]),
+                typeof(ObservableCollection<string>),
                 typeof(AddCarViewControl));
         //=========================================================================
         public string Type
