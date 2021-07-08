@@ -66,7 +66,8 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         {
             get
             {
-                return carModel.brands;
+                List<string> brands = new List<string>(carModel.brands.Keys);
+                return brands.ToArray();
             }
         }
         #endregion
@@ -229,34 +230,13 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             {
                 models.Clear();
             }
-            switch (brand)
+            if (selected_brand != null)
             {
-                case "Ford":
-                    foreach (var item in carModel.models_ford)
-                    {
-                        models.Add(item.ToString());
-                    }
-                    break;
-                case "BMW":
-                    foreach (var item in carModel.models_bmw)
-                    {
-                        models.Add(item.ToString());
-                    }
-                    break;
-                case "Audi":
-                    foreach (var item in carModel.models_audi)
-                    {
-                        models.Add(item.ToString());
-                    }
-                    break;
-                case "Citroen":
-                    foreach (var item in carModel.models_citroen)
-                    {
-                        models.Add(item.ToString());
-                    }
-                    break;
+                foreach (var model in carModel.brands[brand])
+                {
+                    models.Add(model);
+                }
             }
-
         }
         private void Clear_Form()
         {
