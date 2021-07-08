@@ -10,7 +10,7 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
     {
         #region Zapytania
         private const string ADD_CAR_LING = "INSERT INTO `cars_linguistic`(`body_type`, `gearbox_type`, `model`, `fuel_type`, `brand`, `repaired`) VALUES";
-        private const string ADD_CAR_NUM = "INSERT INTO `cars_numerical`(`price`, `power`, `mileage`, `age`) VALUES";
+        private const string ADD_CAR_NUM = "INSERT INTO `cars_numerical`(`price`, `power`, `mileage`, `year_of_production`) VALUES";
         private const string ADD_CAR = "INSERT INTO `cars`(`ID_car_lin`, `ID_car_num`) VALUES";
         private const string CHECK_IF_EXIST = "SELECT COUNT(*) FROM `cars_linguistic` WHERE ";
         private const string GET_ID_EXISTING = "SELECT ID_car_lin FROM `cars_linguistic` WHERE ";
