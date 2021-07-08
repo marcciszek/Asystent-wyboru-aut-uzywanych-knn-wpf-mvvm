@@ -66,6 +66,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
         public ObservableCollection<string> AvailableModels
         {
             get { return (ObservableCollection<string>)GetValue(AvailableModelsProperty); }
+
             set { SetValue(AvailableModelsProperty, value); }
         }
 
@@ -86,6 +87,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
                 nameof(Type),
                 typeof(string),
                 typeof(BrowseCarViewControl));
+
         //-------------------------------------------------------------------------
         public string[] AvailableTypes
         {
@@ -174,6 +176,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
         public ObservableCollection<Car> ListViewCarsCollection
         {
             get { return (ObservableCollection<Car>)GetValue(ListViewCarsCollectionProperty); }
+
             set { SetValue(ListViewCarsCollectionProperty, value); }
         }
 

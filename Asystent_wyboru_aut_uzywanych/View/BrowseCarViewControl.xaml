@@ -33,7 +33,7 @@
             <Setter Property="Height" Value="40"/>
         </Style>
     </UserControl.Resources>
-
+   
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -78,7 +78,7 @@
                                 UpdateSourceTrigger=PropertyChanged,
                                 RelativeSource={RelativeSource Mode=FindAncestor,
                                 AncestorType={x:Type UserControl}}}"/>
-
+              
                 <TextBlock Text="SKRZYNIA"/>
                 <ComboBox x:Name="ComboBoxGear"
                           ItemsSource="{Binding AvailableGears,
@@ -120,6 +120,7 @@
                 x:Name="ButtonClear"
                 Content="WYCZYŚĆ"
                 Command="{Binding listVM.Clear_Form_Button}"/>
+
         </DockPanel>
 
         <DockPanel Grid.Column="1"
@@ -130,6 +131,7 @@
                     Content="WCZYTAJ / ODŚWIEŻ" 
                     Margin="15,0,15,10"
                     Command="{Binding listVM.Search_For_Cars}"/>
+
 
             <ListView DockPanel.Dock="Bottom"
                       x:Name="ListViewCars"
@@ -273,6 +275,5 @@
                 </ListView.View>
             </ListView>
         </DockPanel>
-        
     </Grid>
 </UserControl>
