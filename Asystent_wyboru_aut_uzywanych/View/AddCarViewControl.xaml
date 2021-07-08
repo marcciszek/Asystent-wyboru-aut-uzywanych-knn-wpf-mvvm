@@ -209,7 +209,7 @@
         <Button x:Name="ButtonClear"
                 Content="WYCZYŚĆ"
                 Grid.Column="2"
-                Grid.Row="12"/>
-
+                Grid.Row="12"
+                Command="{Binding carsVM.Clear_Form_Button}"/>
     </Grid>
 </UserControl>

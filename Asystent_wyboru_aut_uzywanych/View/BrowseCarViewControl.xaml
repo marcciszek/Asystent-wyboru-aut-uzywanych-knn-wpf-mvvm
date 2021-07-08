@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Asystent_wyboru_aut_uzywanych.View"
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
 
@@ -24,15 +25,15 @@
         <Style TargetType="ComboBox">
             <Setter Property="Margin" Value="0"/>
         </Style>
-        <Style TargetType="ListBox">
-            <Setter Property="Margin" Value="20"/>
+        <Style TargetType="ListView">
+            <Setter Property="Margin" Value="15,15,15,10"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="0,0,0,10"/>
             <Setter Property="Height" Value="40"/>
         </Style>
-    </UserControl.Resources> 
-    
+    </UserControl.Resources>
+
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="2*"/>
@@ -40,35 +41,238 @@
         </Grid.ColumnDefinitions>
 
         <DockPanel Grid.Column="0">
-            
+
             <StackPanel DockPanel.Dock="Top">
                 <TextBlock Text="MARKA"/>
-                <ComboBox x:Name="ComboBoxBrand"/>
-            
+                <ComboBox x:Name="ComboBoxBrand"
+                          ItemsSource="{Binding AvailableBrands,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                          SelectedItem="{Binding Brand,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
+
                 <TextBlock Text="MODEL"/>
-                <ComboBox x:Name="ComboBoxModel"/>
-            
+                <ComboBox x:Name="ComboBoxModel"
+                          ItemsSource="{Binding AvailableModels,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                          SelectedItem="{Binding Model,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
+
                 <TextBlock Text="TYP NADWOZIA"/>
-                <ComboBox x:Name="ComboBoxType"/>
-            
+                <ComboBox x:Name="ComboBoxType"
+                          ItemsSource="{Binding AvailableTypes,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                          SelectedItem="{Binding Type,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
+
                 <TextBlock Text="SKRZYNIA"/>
-                <ComboBox x:Name="ComboBoxGear"/>
-            
+                <ComboBox x:Name="ComboBoxGear"
+                          ItemsSource="{Binding AvailableGears,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                          SelectedItem="{Binding Gear,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
+
                 <TextBlock Text="PALIWO"/>
-                <ComboBox x:Name="ComboBoxFuel"/>
-            
+                <ComboBox x:Name="ComboBoxFuel"
+                          ItemsSource="{Binding AvailableFuels,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                          SelectedItem="{Binding Fuel,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
+
                 <TextBlock Text="USZKODZONY"/>
-                <ComboBox x:Name="ComboBoxDamaged"/>
+                <ComboBox x:Name="ComboBoxDamaged"
+                          ItemsSource="{Binding AvailableDamages,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                          SelectedItem="{Binding Damage,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
             </StackPanel>
 
             <Button DockPanel.Dock="Bottom"
                 x:Name="ButtonClear"
-                Content="WYCZYŚĆ"/>
+                Content="WYCZYŚĆ"
+                Command="{Binding listVM.Clear_Form_Button}"/>
         </DockPanel>
 
-        <ListBox x:Name="ListBoxCars"
-                 Grid.Column="1">
-        </ListBox>
+        <DockPanel Grid.Column="1"
+                   LastChildFill="True">
+
+            <Button DockPanel.Dock="Bottom"
+                    x:Name="ButtonLoadCars"
+                    Content="WCZYTAJ / ODŚWIEŻ" 
+                    Margin="15,0,15,10"
+                    Command="{Binding listVM.Search_For_Cars}"/>
+
+            <ListView DockPanel.Dock="Bottom"
+                      x:Name="ListViewCars"
+                      Grid.Column="1"
+                      ItemsSource="{Binding ListViewCarsCollection,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}">
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Width="30" x:Name="column_ID">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding ID}" FontSize="14"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="ID" Width="{Binding ActualWidth, ElementName=column_ID}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseDown">
+                                                        <i:InvokeCommandAction Command="{Binding listVM.Load_Cars}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                    </TextBlock>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_brand">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding brand}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Marka" Width="{Binding ActualWidth, ElementName=column_brand}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_model">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding model}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Model" Width="{Binding ActualWidth, ElementName=column_model}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_type">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding vehicle_type}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Typ nadwozia" Width="{Binding ActualWidth, ElementName=column_type}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_fuel">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding fuel_type}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Typ paliwa" Width="{Binding ActualWidth, ElementName=column_fuel}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_age">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Age}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Rok produkcji" Width="{Binding ActualWidth, ElementName=column_age}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_price">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Price}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Cena" Width="{Binding ActualWidth, ElementName=column_price}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_power">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Power}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Moc silnika" Width="{Binding ActualWidth, ElementName=column_power}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_mileage">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Mileage}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Przebieg" Width="{Binding ActualWidth, ElementName=column_mileage}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_gearbox">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding gearbox_type}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Typ skrzyni biegów" Width="{Binding ActualWidth, ElementName=column_gearbox}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_damage">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding damage}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Uszkodzony" Width="{Binding ActualWidth, ElementName=column_damage}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
         
     </Grid>
 </UserControl>

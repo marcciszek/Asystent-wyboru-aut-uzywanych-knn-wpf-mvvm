@@ -348,20 +348,13 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             Power = "";
             Mileage = "";
             Age = "";
-            //Wyczyscic z starych parametrow
-            Vehicle_type = "";
-            Gearbox_type = "";
-            Fuel_type = "";
-            Brand = "";
-            Model = "";
-            Damage = "";
             //===========================
-            Selected_Type = "";
-            Selected_Gear = "";
-            Selected_Fuel = "";
-            Selected_Brand = "";
-            Selected_Model = "";
-            Selected_Damage = "";
+            Selected_Type = null;
+            Selected_Gear = null;
+            Selected_Fuel = null;
+            Selected_Brand = null;
+            Selected_Model = null;
+            Selected_Damage = null;
         }
         private void Update_models_list(string brand)
         {
@@ -441,6 +434,25 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             }
         }
 
+        private ICommand clear_form_button = null;
+        public ICommand Clear_Form_Button
+        {
+            get
+            {
+                if (clear_form_button == null)
+                {
+                    clear_form_button = new RelayCommand(
+                        arg =>
+                        {
+                            Clear_Form();
+                        }
+                        ,//Dodac metode sprawdzajaca?
+                        arg => true
+                        );
+                }
+                return clear_form_button;
+            }
+        }
         #endregion
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Text;
+using System.Windows;
 
 namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
 {
@@ -36,6 +37,40 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
         public string Select_In_Database()
         {
             return $"body_type LIKE '{vehicle_type}' AND gearbox_type LIKE '{gearbox_type}' AND model LIKE '{model}' AND brand LIKE '{brand}' AND fuel_type LIKE '{fuel_type}' AND repaired LIKE '{damage}'";
+        }
+        public string Select_In_Database_List()
+        {
+            string select_conditions = "";
+            if(this.vehicle_type == null && this.gearbox_type == null && this.fuel_type == null && this.damage == null && this.brand == null && this.model == null)
+            {
+                select_conditions = ";";
+            }
+            if (this.vehicle_type != null)
+            {
+                select_conditions+= $" AND cars_linguistic.body_type LIKE '{vehicle_type}'";
+            }
+            if (this.gearbox_type != null)
+            {
+                select_conditions += $" AND cars_linguistic.gearbox_type='{gearbox_type}'";
+            }
+            if (this.fuel_type != null)
+            {
+                select_conditions += $" AND cars_linguistic.fuel_type LIKE '{fuel_type}'";
+            }
+            if (this.damage != null)
+            {
+                select_conditions += $" AND cars_linguistic.repaired LIKE '{damage}'";
+            }
+            if (this.brand != null)
+            {
+                select_conditions += $" AND cars_linguistic.brand LIKE '{brand}'";
+                if (this.model != null)
+                {
+                    select_conditions += $" AND cars_linguistic.model LIKE '{model}'";
+                }
+            }
+            select_conditions += ";";
+            return select_conditions;
         }
         #endregion
     }

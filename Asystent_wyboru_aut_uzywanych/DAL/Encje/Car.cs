@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
 {
-    class Car
+    public class Car
     {
         public int ID { get; set; }
         public int Price { get; set; }

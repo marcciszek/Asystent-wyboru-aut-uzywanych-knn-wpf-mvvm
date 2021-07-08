@@ -27,9 +27,12 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
         private const string SELECT_FOURTH_LINE = "cars_linguistic.gearbox_type, cars_linguistic.repaired";
         private const string SELECT_CONDITION = "FROM cars_numerical, cars_linguistic, cars WHERE cars.ID_car_lin = cars_linguistic.id_car_lin";
         private const string SELECT_CONDITION_SECOND_LINE = "AND cars.ID_car_num = cars_numerical.ID_car_num;";
+        private const string SELECT_CONDITION_SECOND_LINE_WITHOUT_END = "AND cars.ID_car_num = cars_numerical.ID_car_num";
         #endregion
         //Polaczone zapytanie
         private static string SELECT_ALL_CARS_DATA = $"{SELECT_FIRST_CARS} {SELECT_SECOND_LINE} {SELECT_THIRD_LINE} {SELECT_FOURTH_LINE} {SELECT_CONDITION} {SELECT_CONDITION_SECOND_LINE}";
+        private static string SELECT_CARS_DATA = $"{SELECT_FIRST_CARS} {SELECT_SECOND_LINE} {SELECT_THIRD_LINE} {SELECT_FOURTH_LINE} {SELECT_CONDITION} {SELECT_CONDITION_SECOND_LINE_WITHOUT_END}";
+
         #endregion
 
         public static List<Car> Get_all_cars()
@@ -42,6 +45,29 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
                 {
                     connection.Open();
                     var reader = command_get_all_cars.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        cars.Add(new Car(reader));
+                    };
+                    connection.Close();
+                }
+                catch (Exception)
+                {
+                }
+            }
+            return cars;
+        }
+
+        public static List<Car> Search_For_Cars(Car_Linguistic car_lin)
+        {
+            List<Car> cars = new List<Car>();
+            using(var connection = DBConnection.Instance.Connection)
+            {
+                MySqlCommand command_get_specific_cars = new MySqlCommand($"{SELECT_CARS_DATA} {car_lin.Select_In_Database_List()}", connection);
+                try
+                {
+                    connection.Open();
+                    var reader = command_get_specific_cars.ExecuteReader();
                     while (reader.Read())
                     {
                         cars.Add(new Car(reader));
