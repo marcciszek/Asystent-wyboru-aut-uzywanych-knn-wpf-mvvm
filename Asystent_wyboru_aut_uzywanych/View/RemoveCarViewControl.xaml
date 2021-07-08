@@ -24,8 +24,8 @@
         <Style TargetType="ComboBox">
             <Setter Property="Margin" Value="0"/>
         </Style>
-        <Style TargetType="ListBox">
-            <Setter Property="Margin" Value="20"/>
+        <Style TargetType="ListView">
+            <Setter Property="Margin" Value="15,15,15,10"/>
         </Style>
         <Style TargetType="Button">
             <Setter Property="Margin" Value="0,0,0,10"/>
@@ -43,24 +43,78 @@
 
             <StackPanel DockPanel.Dock="Top">
                 <TextBlock Text="MARKA"/>
-                <ComboBox x:Name="ComboBoxBrand"/>
+                <ComboBox x:Name="ComboBoxBrand"
+                          ItemsSource="{Binding AvailableBrands,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                          SelectedItem="{Binding Brand, Mode=TwoWay,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
 
                 <TextBlock Text="MODEL"/>
-                <ComboBox x:Name="ComboBoxModel"/>
+                <ComboBox x:Name="ComboBoxModel"
+                          ItemsSource="{Binding AvailableModels,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                          SelectedItem="{Binding Model,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
 
                 <TextBlock Text="TYP NADWOZIA"/>
-                <ComboBox x:Name="ComboBoxType"/>
+                <ComboBox x:Name="ComboBoxType"
+                          ItemsSource="{Binding AvailableTypes,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                          SelectedItem="{Binding Type,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
 
                 <TextBlock Text="SKRZYNIA"/>
-                <ComboBox x:Name="ComboBoxGear"/>
+                <ComboBox x:Name="ComboBoxGear"
+                          ItemsSource="{Binding AvailableGears,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                          SelectedItem="{Binding Gear,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
 
                 <TextBlock Text="PALIWO"/>
-                <ComboBox x:Name="ComboBoxFuel"/>
+                <ComboBox x:Name="ComboBoxFuel"
+                          ItemsSource="{Binding AvailableFuels,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                          SelectedItem="{Binding Fuel,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
 
                 <TextBlock Text="USZKODZONY"/>
-                <ComboBox x:Name="ComboBoxDamaged"/>
+                <ComboBox x:Name="ComboBoxDamaged"
+                          ItemsSource="{Binding AvailableDamages,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                          SelectedItem="{Binding Damage,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
             </StackPanel>
-            
+
             <Button DockPanel.Dock="Bottom"
                 x:Name="ButtonClear"
                 Content="WYCZYŚĆ"/>
@@ -71,9 +125,22 @@
 
         </DockPanel>
 
-        <ListBox x:Name="ListBoxCars"
-                 Grid.Column="1">
-        </ListBox>
+        <DockPanel Grid.Column="1"
+                   LastChildFill="True">
 
+            <Button DockPanel.Dock="Bottom"
+                    x:Name="ButtonLoadCars"
+                    Content="WCZYTAJ / ODŚWIEŻ" 
+                    Margin="15,0,15,10"/>
+
+            <ListView DockPanel.Dock="Bottom"
+                      x:Name="ListViewCars"
+                      Grid.Column="1"
+                      ItemsSource="{Binding ListViewCarsCollection,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"/>
+        </DockPanel>
     </Grid>
 </UserControl>
