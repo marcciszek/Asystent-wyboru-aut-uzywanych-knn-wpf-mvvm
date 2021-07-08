@@ -41,7 +41,7 @@
                 <ColumnDefinition Width="1*"/>
                 <ColumnDefinition Width="1*"/>
             </Grid.ColumnDefinitions>
-        
+
             <Grid.RowDefinitions>
                 <RowDefinition Height="1*"/>
                 <RowDefinition Height="3*"/>
@@ -58,10 +58,10 @@
                 <RowDefinition Height="3*"/>
             </Grid.RowDefinitions>
 
-        <TextBlock Text="MARKA"
+            <TextBlock Text="MARKA"
                    Grid.Column="1"
                    Grid.Row="0"/>
-        <ComboBox x:Name="ComboBoxBrand"
+            <ComboBox x:Name="ComboBoxBrand"
                   Grid.Column="1"
                   Grid.Row="1"
                   ItemsSource="{Binding AvailableBrands,
@@ -73,10 +73,10 @@
                                 UpdateSourceTrigger=PropertyChanged,
                                 RelativeSource={RelativeSource Mode=FindAncestor,
                                 AncestorType={x:Type UserControl}}}"/>
-        <TextBlock Text="MODEL"
+            <TextBlock Text="MODEL"
                    Grid.Column="2"
                    Grid.Row="0"/>
-        <ComboBox x:Name="ComboBoxModel"
+            <ComboBox x:Name="ComboBoxModel"
                   Grid.Column="2"
                   Grid.Row="1"
                   ItemsSource="{Binding AvailableModels,
@@ -88,10 +88,10 @@
                                 UpdateSourceTrigger=PropertyChanged,
                                 RelativeSource={RelativeSource Mode=FindAncestor,
                                 AncestorType={x:Type UserControl}}}"/>
-        <TextBlock Text="TYP NADWOZIA"
+            <TextBlock Text="TYP NADWOZIA"
                    Grid.Column="0"
                    Grid.Row="3"/>
-        <ComboBox x:Name="ComboBoxType"
+            <ComboBox x:Name="ComboBoxType"
                   Grid.Column="0"
                   Grid.Row="4"
                   ItemsSource="{Binding AvailableTypes,
@@ -103,10 +103,10 @@
                                 UpdateSourceTrigger=PropertyChanged,
                                 RelativeSource={RelativeSource Mode=FindAncestor,
                                 AncestorType={x:Type UserControl}}}"/>
-        <TextBlock Text="SKRZYNIA"
+            <TextBlock Text="SKRZYNIA"
                    Grid.Column="1"
                    Grid.Row="3"/>
-        <ComboBox x:Name="ComboBoxGear"
+            <ComboBox x:Name="ComboBoxGear"
                   Grid.Column="1"
                   Grid.Row="4"
                   ItemsSource="{Binding AvailableGears,
@@ -118,10 +118,10 @@
                                 UpdateSourceTrigger=PropertyChanged,
                                 RelativeSource={RelativeSource Mode=FindAncestor,
                                 AncestorType={x:Type UserControl}}}"/>
-        <TextBlock Text="PALIWO"
+            <TextBlock Text="PALIWO"
                    Grid.Column="0"
                    Grid.Row="5"/>
-        <ComboBox x:Name="ComboBoxFuel"
+            <ComboBox x:Name="ComboBoxFuel"
                   Grid.Column="0"
                   Grid.Row="6"
                   ItemsSource="{Binding AvailableFuels,
@@ -133,10 +133,10 @@
                                 UpdateSourceTrigger=PropertyChanged,
                                 RelativeSource={RelativeSource Mode=FindAncestor,
                                 AncestorType={x:Type UserControl}}}"/>
-        <TextBlock Text="USZKODZONY"
+            <TextBlock Text="USZKODZONY"
                    Grid.Column="1"
                    Grid.Row="5"/>
-        <ComboBox x:Name="ComboBoxDamaged"
+            <ComboBox x:Name="ComboBoxDamaged"
                   Grid.Column="1"
                   Grid.Row="6"
                   ItemsSource="{Binding AvailableDamages,
@@ -202,17 +202,17 @@
                                     RelativeSource={RelativeSource Mode=FindAncestor,
                                     AncestorType={x:Type UserControl}}}"/>
 
-        <Button x:Name="ButtonAddCar"
+            <Button x:Name="ButtonAddCar"
                 Content="DODAJ"
                 Grid.Column="1"
                 Grid.Row="12"
                 Command="{Binding carsVM.Add_car_control}"/>
 
-        <Button x:Name="ButtonClear"
+            <Button x:Name="ButtonClear"
                 Content="WYCZYŚĆ"
                 Grid.Column="2"
                 Grid.Row="12"
                 Command="{Binding carsVM.Clear_Form_Button}"/>
-
+        </Grid>
     </Grid>
 </UserControl>
