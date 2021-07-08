@@ -6,14 +6,206 @@
         xmlns:local="clr-namespace:Asystent_wyboru_aut_uzywanych"
         xmlns:vm ="clr-namespace:Asystent_wyboru_aut_uzywanych.ViewModel"
         xmlns:view="clr-namespace:Asystent_wyboru_aut_uzywanych.View"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="Asystent wyboru aut używanych" Height="550" Width="1165">
 
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
     </Window.Resources>
     <Grid DataContext="{DynamicResource mainVM}">
         <TabControl>
+            <TabItem x:Name="test_wyswietlanie" Header="Testowe wyswietlanie">
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="3*"/>
+                        <ColumnDefinition Width="8*"/>
+                    </Grid.ColumnDefinitions>
+                    <ListView x:Name="Cars"
+                              ItemsSource="{Binding listVM.Cars}"
+                              Grid.Column="1">
+                        <ListView.View>
+                            <GridView>
+                                <GridView.Columns>
+                                    <GridViewColumn Width="30" x:Name="column_ID">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding ID}" FontSize="14"/>
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="ID" Width="{Binding ActualWidth, ElementName=column_ID}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseDown">
+                                                        <i:InvokeCommandAction Command="{Binding listVM.Load_Cars}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                            </TextBlock>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn x:Name="column_brand">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding brand}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Marka" Width="{Binding ActualWidth, ElementName=column_brand}"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn x:Name="column_model">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding model}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Model" Width="{Binding ActualWidth, ElementName=column_model}"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn x:Name="column_type">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding vehicle_type}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Typ nadwozia" Width="{Binding ActualWidth, ElementName=column_type}"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn x:Name="column_fuel">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding fuel_type}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Typ paliwa" Width="{Binding ActualWidth, ElementName=column_fuel}"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn x:Name="column_age">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Age}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Rok produkcji" Width="{Binding ActualWidth, ElementName=column_age}"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn x:Name="column_price">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Price}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Cena" Width="{Binding ActualWidth, ElementName=column_price}"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn x:Name="column_power">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Power}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Moc silnika" Width="{Binding ActualWidth, ElementName=column_power}"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn x:Name="column_mileage">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding Mileage}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Przebieg" Width="{Binding ActualWidth, ElementName=column_mileage}"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn x:Name="column_gearbox">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding gearbox_type}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Typ skrzyni biegów" Width="{Binding ActualWidth, ElementName=column_gearbox}"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+
+                                    <GridViewColumn x:Name="column_damage">
+                                        <GridViewColumn.CellTemplate>
+                                            <DataTemplate>
+                                                <TextBlock Text="{Binding damage}" />
+                                            </DataTemplate>
+                                        </GridViewColumn.CellTemplate>
+                                        <GridViewColumn.Header>
+                                            <TextBlock Text="Uszkodzony" Width="{Binding ActualWidth, ElementName=column_damage}"/>
+                                        </GridViewColumn.Header>
+                                    </GridViewColumn>
+                                </GridView.Columns>
+                            </GridView>
+                        </ListView.View>
+                    </ListView>
+                    <StackPanel Grid.Column="0">
+                        <TextBlock Text="MARKA"/>
+                        <ComboBox x:Name="ComboBoxBrand"
+                                  ItemsSource="{Binding listVM.Brands}"
+                                  SelectedItem="{Binding Path=listVM.Selected_Brand, Mode=TwoWay}"/>
+                        <TextBlock Text="MODEL"/>
+                        <ComboBox x:Name="ComboBoxModel"
+                                  ItemsSource="{Binding Path=listVM.Models}"
+                                  SelectedItem="{Binding Path=listVM.Selected_Model, Mode=TwoWay}"/>
+
+                        <TextBlock Text="TYP NADWOZIA"/>
+                        <ComboBox x:Name="ComboBoxType"
+                                  ItemsSource="{Binding Path=listVM.Types}"
+                                  SelectedItem="{Binding Path=listVM.Selected_Type, Mode=TwoWay}"/>
+
+                        <TextBlock Text="SKRZYNIA"/>
+                        <ComboBox x:Name="ComboBoxGear"
+                                  ItemsSource="{Binding Path=listVM.Gears}"
+                                  SelectedItem="{Binding Path=listVM.Selected_Gear, Mode=TwoWay}"/>
+
+                        <TextBlock Text="PALIWO"/>
+                        <ComboBox x:Name="ComboBoxFuel"
+                                  ItemsSource="{Binding Path=listVM.Fuels}"
+                                  SelectedItem="{Binding Path=listVM.Selected_Fuel, Mode=TwoWay}"/>
+
+                        <TextBlock Text="USZKODZONY"/>
+                        <ComboBox x:Name="ComboBoxDamaged"
+                                  ItemsSource="{Binding Path=listVM.Damages}"
+                                  SelectedItem="{Binding Path=listVM.Selected_Damage, Mode=TwoWay}" IsDropDownOpen="True"/>
+                        
+                        
+                        <Button x:Name="ButtonSearchForCars"
+                                Content="WYSZUKAJ"
+                                Grid.Column="1"
+                                Grid.Row="12"
+                                Margin="10"
+                                Command="{Binding listVM.Search_For_Cars}"/>
+                        
+                        <Button x:Name="ButtonClearSearch"
+                                Content="WYCZYŚĆ"
+                                Grid.Column="1"
+                                Grid.Row="12"
+                                Margin="10"
+                                Command="{Binding listVM.Clear_Form_Button}"/>
+                        
+                        
+                    </StackPanel>
+                </Grid>
+            </TabItem>
             <TabItem x:Name="testowy" Header="Test">
                 <Grid>
                     <Grid.ColumnDefinitions>
@@ -95,17 +287,39 @@
             </TabItem>
             <TabItem x:Name="Add_car_control" Header="Dodaj Auto">
                 <view:AddCarViewControl x:Name="Add_control"
-                                        Price="{Binding carsVM.Price}"
-                                        Power="{Binding carsVM.Power}"
-                                        Mileage="{Binding carsVM.Mileage}"
-                                        CarYear="{Binding carsVM.Age}"
+                                        Price="{Binding carsVM.Price, Mode=TwoWay}"
+                                        Power="{Binding carsVM.Power, Mode=TwoWay}"
+                                        Mileage="{Binding carsVM.Mileage, Mode=TwoWay}"
+                                        CarYear="{Binding carsVM.Age, Mode=TwoWay}"
                                         AvailableBrands="{Binding carsVM.Brands}"
                                         AvailableDamages="{Binding carsVM.Damages}"
                                         AvailableFuels="{Binding carsVM.Fuels}"
                                         AvailableGears="{Binding carsVM.Gears}"
-                                        AvailableModels="{Binding carsVM.Models}"
+                                        AvailableModels="{Binding carsVM.Models, Mode=TwoWay}"
                                         AvailableTypes="{Binding carsVM.Types}"
-                                        Brand="{Binding carsVM.Selected_Brand}"/>
+                                        Brand="{Binding carsVM.Selected_Brand, Mode=TwoWay}"
+                                        Model="{Binding carsVM.Selected_Model, Mode=TwoWay}"
+                                        Type="{Binding carsVM.Selected_Type, Mode=TwoWay}"
+                                        Gear="{Binding carsVM.Selected_Gear, Mode=TwoWay}"
+                                        Fuel="{Binding carsVM.Selected_Fuel, Mode=TwoWay}"
+                                        Damage="{Binding carsVM.Selected_Damage, Mode=TwoWay}"/>
+            </TabItem>
+            <TabItem x:Name="Browse_cars_control" Header="Wyświetlanie Aut z Bazy">
+                <view:BrowseCarViewControl x:Name="Browse_control"
+                                            AvailableBrands="{Binding listVM.Brands}"
+                                            AvailableDamages="{Binding listVM.Damages}"
+                                            AvailableFuels="{Binding listVM.Fuels}"
+                                            AvailableGears="{Binding listVM.Gears}"
+                                            AvailableModels="{Binding listVM.Models, Mode=TwoWay}"
+                                            AvailableTypes="{Binding listVM.Types}"
+                                            Brand="{Binding listVM.Selected_Brand, Mode=TwoWay}"
+                                            Model="{Binding listVM.Selected_Model, Mode=TwoWay}"
+                                            Type="{Binding listVM.Selected_Type, Mode=TwoWay}"
+                                            Gear="{Binding listVM.Selected_Gear, Mode=TwoWay}"
+                                            Fuel="{Binding listVM.Selected_Fuel, Mode=TwoWay}"
+                                            Damage="{Binding listVM.Selected_Damage, Mode=TwoWay}"
+                                            ListViewCarsCollection="{Binding listVM.Cars}"
+                                           />
             </TabItem>
         </TabControl>
     </Grid>
