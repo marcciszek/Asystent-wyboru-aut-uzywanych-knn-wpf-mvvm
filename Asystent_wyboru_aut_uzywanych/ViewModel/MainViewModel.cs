@@ -15,14 +15,17 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         #region Definicje
         public CarsViewModel carsVM { get; set; }
         public ListViewModel listVM { get; set; }
+        public RemoveViewModel removeVM { get; set; }
         private CarsModel carModel = new CarsModel();
         private ListModel listModel = new ListModel();
+        private RemoveModel removeModel = new RemoveModel();
         #endregion
         #region Konstruktory
         public MainViewModel()
         {
             carsVM = new CarsViewModel(carModel);
             listVM = new ListViewModel(carModel, listModel);
+            removeVM = new RemoveViewModel(carModel, listModel, removeModel);
         }
         #endregion
     }
