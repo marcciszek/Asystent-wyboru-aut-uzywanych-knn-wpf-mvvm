@@ -1,0 +1,192 @@
+﻿<UserControl x:Class="Asystent_wyboru_aut_uzywanych.View.PredictCarResultsViewControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+             xmlns:local="clr-namespace:Asystent_wyboru_aut_uzywanych.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    
+    <UserControl.Resources>
+
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="AliceBlue"/>
+        </Style>
+        <Style TargetType="ListView">
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="10,10,10,10"/>
+            <Setter Property="MinHeight" Value="50"/>
+            <Setter Property="MinWidth" Value="120"/>
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <DockPanel LastChildFill="True"
+                   Margin="10">
+
+            <DockPanel DockPanel.Dock="Bottom"
+                       LastChildFill="False">
+                
+                <Button DockPanel.Dock="Left"
+                        x:Name="ButtonCancel"
+                        Content="ANULUJ"
+                        Command=""/>
+                <Button DockPanel.Dock="Right"
+                        x:Name="ButtonTransaction"
+                        Content="TRANSAKCJA"
+                        Command=""/>
+            </DockPanel>
+
+            <ListView x:Name="ListViewCarResults"
+                      DockPanel.Dock="Bottom"
+                      ItemsSource="{Binding ListViewCarsCollection,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}"
+                      SelectedItem="{Binding ListViewSelectedCar,
+                                UpdateSourceTrigger=PropertyChanged,
+                                RelativeSource={RelativeSource 
+                                Mode=FindAncestor,
+                                AncestorType={x:Type UserControl}}}">
+
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Width="30" x:Name="column_ID">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding ID}" FontSize="14"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="ID" Width="{Binding ActualWidth, ElementName=column_ID}">
+                                                <i:Interaction.Triggers>
+                                                    <i:EventTrigger EventName="MouseDown">
+                                                        <i:InvokeCommandAction Command="{Binding listVM.Load_Cars}"/>
+                                                    </i:EventTrigger>
+                                                </i:Interaction.Triggers>
+                                    </TextBlock>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_brand">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding brand}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Marka" Width="{Binding ActualWidth, ElementName=column_brand}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_model">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding model}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Model" Width="{Binding ActualWidth, ElementName=column_model}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_type">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding vehicle_type}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Typ nadwozia" Width="{Binding ActualWidth, ElementName=column_type}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_fuel">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding fuel_type}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Typ paliwa" Width="{Binding ActualWidth, ElementName=column_fuel}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_age">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Age}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Rok produkcji" Width="{Binding ActualWidth, ElementName=column_age}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_price">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Price}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Cena" Width="{Binding ActualWidth, ElementName=column_price}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_power">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Power}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Moc silnika" Width="{Binding ActualWidth, ElementName=column_power}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_mileage">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Mileage}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Przebieg" Width="{Binding ActualWidth, ElementName=column_mileage}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_gearbox">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding gearbox_type}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Typ skrzyni biegów" Width="{Binding ActualWidth, ElementName=column_gearbox}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn x:Name="column_damage">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding damage}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Uszkodzony" Width="{Binding ActualWidth, ElementName=column_damage}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
+            </ListView>
+        </DockPanel>
+    </Grid>
+    
+</UserControl>
