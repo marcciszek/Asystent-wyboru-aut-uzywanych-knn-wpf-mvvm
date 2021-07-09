@@ -208,7 +208,7 @@
                                 Grid.Column="1"
                                 Grid.Row="12"
                                 Margin="10"
-                                Command="{Binding removeVM.Remove_Selected_Car}"/>
+                                Command="{Binding Login_Button}"/>
 
                     </StackPanel>
                 </Grid>
@@ -515,6 +515,24 @@
                                             Fuel="{Binding listVM.Selected_Fuel, Mode=TwoWay}"
                                             Damage="{Binding listVM.Selected_Damage, Mode=TwoWay}"
                                             ListViewCarsCollection="{Binding listVM.Cars}"
+                                           />
+            </TabItem>
+            <TabItem x:Name="Remove_cars_control" Header="Usuwanie Aut z Bazy">
+                <view:RemoveCarViewControl x:Name="Remove_control"
+                                            AvailableBrands="{Binding removeVM.Brands}"
+                                            AvailableDamages="{Binding removeVM.Damages}"
+                                            AvailableFuels="{Binding removeVM.Fuels}"
+                                            AvailableGears="{Binding removeVM.Gears}"
+                                            AvailableModels="{Binding removeVM.Models, Mode=TwoWay}"
+                                            AvailableTypes="{Binding removeVM.Types}"
+                                            Brand="{Binding removeVM.Selected_Brand, Mode=TwoWay}"
+                                            Model="{Binding removeVM.Selected_Model, Mode=TwoWay}"
+                                            Type="{Binding removeVM.Selected_Type, Mode=TwoWay}"
+                                            Gear="{Binding removeVM.Selected_Gear, Mode=TwoWay}"
+                                            Fuel="{Binding removeVM.Selected_Fuel, Mode=TwoWay}"
+                                            Damage="{Binding removeVM.Selected_Damage, Mode=TwoWay}"
+                                            ListViewCarsCollection="{Binding removeVM.Cars}"
+                                            ListViewSelectedCar ="{Binding removeVM.Selected_Car, Mode=TwoWay}"
                                            />
             </TabItem>
         </TabControl>

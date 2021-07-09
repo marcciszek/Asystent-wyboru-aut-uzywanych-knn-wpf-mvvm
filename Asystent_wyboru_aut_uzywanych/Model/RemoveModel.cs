@@ -10,10 +10,24 @@ namespace Asystent_wyboru_aut_uzywanych.Model
     using DAL.Repozytoria;
     class RemoveModel
     {
-        internal bool Remove_Car(Car selected_car)
+        internal bool Remove_Car(Car selected_car, string password, string login)
         {
             bool stan;
-            stan = CarRepository.Remove_Car(selected_car);
+            if(login == null)
+            {
+                if (password == null)
+                {
+                    stan = CarRepository.Remove_Car(selected_car);
+                }
+                else
+                {
+                    stan = CarRepository.Remove_Car(selected_car, password);
+                }
+            }
+            else
+            {
+                stan = CarRepository.Remove_Car(selected_car, password, login);
+            }
             return stan;
         }
     }

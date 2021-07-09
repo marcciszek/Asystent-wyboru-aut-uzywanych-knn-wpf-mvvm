@@ -16,12 +16,13 @@ namespace Asystent_wyboru_aut_uzywanych.Model
         ///Nastepnie tworzymy pozycje w slowniku wedlug schematu <string, string[]>
         ///                          gdzie odpowiednio:      nazwa marki, tablica modeli
         /// </summary>
-        public static string[] models_alfa = new string[] { "147", "156", "159", "4C", "Brera", "Gulia", "Giulietta", "GT", "MiTo", "Stelvio"};
-        public static string[] models_audi = new string[] { "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "R8", "Q2", "Q3", "Q5", "Q7", "Q8", "TT"};
-        public static string[] models_bmw = new string[] { "Seria 1", "Seria 2", "Seria 3", "Seria 4", "Seria 5", "Seria 6", "Seria 7", "Seria 8", "X1", "X2", "X3", "X4", "X5", "X6", "X7", "Z3", "Z4", "i3", "i8"};
+        public static string[] models_alfa = new string[] { "147", "156", "159", "4C", "Brera", "Gulia", "Giulietta", "GT", "MiTo", "Stelvio" };
+        public static string[] models_audi = new string[] { "A1", "A2", "A3", "A4", "A5", "A6", "A7", "A8", "R8", "Q2", "Q3", "Q5", "Q7", "Q8", "TT" };
+        public static string[] models_bmw = new string[] { "Seria 1", "Seria 2", "Seria 3", "Seria 4", "Seria 5", "Seria 6", "Seria 7", "Seria 8", "X1", "X2", "X3", "X4", "X5", "X6", "X7", "Z3", "Z4", "i3", "i8" };
         public static string[] models_chevrolet = new string[] { "Aveo", "Camaro", "Captiva", "Corvette", "Lacetti", "Malibu", "Spark", "Volt" };
-        public static string[] models_citroen = new string[] {"C-Elysee", "C1", "C2", "C3", "C4", "C5", "C6", "C8", "DS3", "DS4", "DS5"};
+        public static string[] models_citroen = new string[] { "C-Elysee", "C1", "C2", "C3", "C4", "C5", "C6", "C8", "DS3", "DS4", "DS5" };
         public static string[] models_dacia = new string[] { "Duster", "Sandero", "Lodgy", "Logan" };
+        public static string[] models_ferrari = new string[] { "488 Italia", "Enzo", "F40", "F50" };
         public static string[] models_fiat = new string[] { "500", "500L", "500XL", "Brava", "Bravo", "Doblo", "Grande Punto", "Linea", "Punto", "Stilo", "Siena", "Tipo" };
         public static string[] models_ford = new string[] { "B-MAX", "C-MAX", "S-MAX", "Cougar", "Escort", "Fiesta", "Focus", "GT", "Kuga", "Mondeo", "Mustang", "Puma", "Sierra", "Transit"};
         public static string[] models_honda = new string[] { "Accord", "City", "Civic", "CR-V", "CRX", "HR-V", "Integra", "Jazz", "Legend", "NSX", "Prelude", "S2000" };
@@ -53,6 +54,7 @@ namespace Asystent_wyboru_aut_uzywanych.Model
             {"Chevrolet", models_chevrolet },
             {"Citroen", models_citroen },
             {"Dacia", models_dacia },
+            {"Ferrari", models_ferrari },
             {"Fiat", models_fiat},
             {"Ford", models_ford },
             {"Honda", models_honda },

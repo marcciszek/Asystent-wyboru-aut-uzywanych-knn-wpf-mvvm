@@ -2,14 +2,15 @@
 using System.Collections.Generic;
 using System.Text;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
+using System.Windows;
 
 namespace Asystent_wyboru_aut_uzywanych.ViewModel
 {
     using Model;
     using DAL.Encje;
     using BaseClass;
-    using System.Windows.Input;
-    using System.Windows;
+    using View;
 
     class RemoveViewModel : ViewModelBase
     {
@@ -249,7 +250,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                     remove_selected_car = new RelayCommand(
                         arg =>
                         {
-                            if (removeModel.Remove_Car(selected_car))
+                            if (removeModel.Remove_Car(selected_car, user_password, user_login))
                             {
                                 //Dodac metode czyszczaca formularz
                                 Clear_Form();
@@ -261,6 +262,8 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                             {
                                 MessageBox.Show("Nie udało się usunąć auta z bazy");
                             }
+                            User_Login = null;
+                            User_Password = null;
                             //metoda remove car(id_auta)
                         },
                         arg => true
@@ -292,6 +295,36 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             Selected_Model = null;
             Selected_Damage = null;
         }
+        
+        #endregion
+        #region Logowanie uzytkownika do usuwania
+        
+        private string user_password;
+        public string User_Password
+        {
+            get 
+            { 
+                return user_password;
+            }
+            set
+            {
+                user_password = value;
+                onPropertyChanged(nameof(User_Password));
+            }
+        }
+        private string user_login;
+        public string User_Login
+        {
+            get
+            {
+                return user_login;
+            }
+            set
+            {
+                user_login = value;
+                onPropertyChanged(nameof(User_Login));
+            }
+        }
         #endregion
         #region konstruktory
         public RemoveViewModel(CarsModel carModel, ListModel listModel, RemoveModel removeModel)
@@ -299,6 +332,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             this.carModel = carModel;
             this.listModel = listModel;
             this.removeModel = removeModel;
+            this.User_Login = Properties.Settings.Default.user_default;
         }
         #endregion
     }

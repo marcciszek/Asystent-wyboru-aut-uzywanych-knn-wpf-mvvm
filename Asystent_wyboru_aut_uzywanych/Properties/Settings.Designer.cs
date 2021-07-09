@@ -82,5 +82,17 @@ namespace Asystent_wyboru_aut_uzywanych.Properties {
                 this["paswd"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("userCars")]
+        public string user_default {
+            get {
+                return ((string)(this["user_default"]));
+            }
+            set {
+                this["user_default"] = value;
+            }
+        }
     }
 }
