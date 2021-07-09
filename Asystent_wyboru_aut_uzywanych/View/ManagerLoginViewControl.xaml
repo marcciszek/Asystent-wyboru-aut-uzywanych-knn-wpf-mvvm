@@ -61,8 +61,6 @@
                                HorizontalAlignment="Left"/>
 
                     <TextBox x:Name="TextBoxUserLogin" 
-                             PreviewTextInput="NumberValidationTextBox" 
-                             PreviewKeyDown="SpacePreventTextBox"
                              Text="{Binding UserLogin,
                                     UpdateSourceTrigger=PropertyChanged,
                                     RelativeSource={RelativeSource Mode=FindAncestor,
