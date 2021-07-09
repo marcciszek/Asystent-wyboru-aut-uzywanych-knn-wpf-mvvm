@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace Asystent_wyboru_aut_uzywanych.View
 {
+    using DAL.Encje;
     /// <summary>
     /// Logika interakcji dla klasy RemoveCarViewControl.xaml
     /// </summary>
@@ -36,7 +37,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
             DependencyProperty.Register(
                 nameof(Brand),
                 typeof(string),
-                typeof(AddCarViewControl));
+                typeof(RemoveCarViewControl));
         //------------------------------------------------------------------------
         public string[] AvailableBrands
         {
@@ -48,7 +49,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
             DependencyProperty.Register(
                 nameof(AvailableBrands),
                 typeof(string[]),
-                typeof(AddCarViewControl));
+                typeof(RemoveCarViewControl));
         //=========================================================================
         public string Model
         {
@@ -60,19 +61,19 @@ namespace Asystent_wyboru_aut_uzywanych.View
             DependencyProperty.Register(
                 nameof(Model),
                 typeof(string),
-                typeof(AddCarViewControl));
+                typeof(RemoveCarViewControl));
         //-------------------------------------------------------------------------
-        public string[] AvailableModels
+        public ObservableCollection<string> AvailableModels
         {
-            get { return (string[])GetValue(AvailableModelsProperty); }
+            get { return (ObservableCollection<string>)GetValue(AvailableModelsProperty); }
             set { SetValue(AvailableModelsProperty, value); }
         }
 
         public static readonly DependencyProperty AvailableModelsProperty =
             DependencyProperty.Register(
                 nameof(AvailableModels),
-                typeof(string[]),
-                typeof(AddCarViewControl));
+                typeof(ObservableCollection<string>),
+                typeof(RemoveCarViewControl));
         //=========================================================================
         public string Type
         {
@@ -84,7 +85,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
             DependencyProperty.Register(
                 nameof(Type),
                 typeof(string),
-                typeof(AddCarViewControl));
+                typeof(RemoveCarViewControl));
         //-------------------------------------------------------------------------
         public string[] AvailableTypes
         {
@@ -96,7 +97,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
             DependencyProperty.Register(
                 nameof(AvailableTypes),
                 typeof(string[]),
-                typeof(AddCarViewControl));
+                typeof(RemoveCarViewControl));
         //=========================================================================
         public string Gear
         {
@@ -108,7 +109,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
             DependencyProperty.Register(
                 nameof(Gear),
                 typeof(string),
-                typeof(AddCarViewControl));
+                typeof(RemoveCarViewControl));
         //-------------------------------------------------------------------------
         public string[] AvailableGears
         {
@@ -120,7 +121,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
             DependencyProperty.Register(
                 nameof(AvailableGears),
                 typeof(string[]),
-                typeof(AddCarViewControl));
+                typeof(RemoveCarViewControl));
         //=========================================================================
         public string Fuel
         {
@@ -132,7 +133,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
             DependencyProperty.Register(
                 nameof(Fuel),
                 typeof(string),
-                typeof(AddCarViewControl));
+                typeof(RemoveCarViewControl));
         //-------------------------------------------------------------------------
         public string[] AvailableFuels
         {
@@ -144,7 +145,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
             DependencyProperty.Register(
                 nameof(AvailableFuels),
                 typeof(string[]),
-                typeof(AddCarViewControl));
+                typeof(RemoveCarViewControl));
         //=========================================================================
         public string Damage
         {
@@ -156,7 +157,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
             DependencyProperty.Register(
                 nameof(Damage),
                 typeof(string),
-                typeof(AddCarViewControl));
+                typeof(RemoveCarViewControl));
         //-------------------------------------------------------------------------
         public string[] AvailableDamages
         {
@@ -168,22 +169,33 @@ namespace Asystent_wyboru_aut_uzywanych.View
             DependencyProperty.Register(
                 nameof(AvailableDamages),
                 typeof(string[]),
-                typeof(AddCarViewControl));
+                typeof(RemoveCarViewControl));
         //=========================================================================
-        public ObservableCollection<Object> ListViewCarsCollection
+        public ObservableCollection<Car> ListViewCarsCollection
         {
-            get { return (ObservableCollection<Object>)GetValue(ListViewCarsCollectionProperty); }
+            get { return (ObservableCollection<Car>)GetValue(ListViewCarsCollectionProperty); }
+
             set { SetValue(ListViewCarsCollectionProperty, value); }
         }
 
         public static readonly DependencyProperty ListViewCarsCollectionProperty =
             DependencyProperty.Register(
                 nameof(ListViewCarsCollection),
-                typeof(ObservableCollection<Object>),
-                typeof(AddCarViewControl));
+                typeof(ObservableCollection<Car>),
+                typeof(RemoveCarViewControl));
         //=========================================================================
+        public Car ListViewSelectedCar
+        {
+            get { return (Car)GetValue(ListViewSelectedCarProperty); }
 
+            set { SetValue(ListViewSelectedCarProperty, value); }
+        }
 
+        public static readonly DependencyProperty ListViewSelectedCarProperty =
+            DependencyProperty.Register(
+                nameof(ListViewSelectedCar),
+                typeof(Car),
+                typeof(RemoveCarViewControl));
         #endregion
     }
 }

@@ -17,5 +17,8 @@
     <Setting Name="paswd" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
     </Setting>
+    <Setting Name="user_default" Type="System.String" Scope="User">
+      <Value Profile="(Default)">userCars</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

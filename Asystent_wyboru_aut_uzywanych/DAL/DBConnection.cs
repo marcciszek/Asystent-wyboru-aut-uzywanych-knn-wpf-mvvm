@@ -20,8 +20,20 @@ namespace Asystent_wyboru_aut_uzywanych.DAL
                 return instance;
             }
         }
-
         public MySqlConnection Connection => new MySqlConnection(stringBuilder.ToString());
+
+        public MySqlConnection Connection_pwd(string password)
+        {
+            stringBuilder.Password = password;
+            return new MySqlConnection(stringBuilder.ToString());
+        }
+
+        public MySqlConnection Connection_login(string password, string login)
+        {
+            stringBuilder.Password = password;
+            stringBuilder.UserID = login;
+            return new MySqlConnection(stringBuilder.ToString());
+        }
 
         private DBConnection()
         {
@@ -30,6 +42,14 @@ namespace Asystent_wyboru_aut_uzywanych.DAL
             stringBuilder.Database = Properties.Settings.Default.database;
             stringBuilder.Port = Properties.Settings.Default.port;
             stringBuilder.Password = Properties.Settings.Default.paswd;
+        }
+        public void change_pwd(string passwd)
+        {
+            stringBuilder.Password = passwd;
+        }
+        public void change_login(string login)
+        {
+            stringBuilder.Password = login;
         }
     }
 }
