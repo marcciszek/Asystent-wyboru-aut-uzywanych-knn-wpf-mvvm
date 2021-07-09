@@ -18,9 +18,9 @@ namespace Asystent_wyboru_aut_uzywanych.View
     /// </summary>
     public partial class LoginPage : Window
     {
-        internal LoginPage(RemoveViewModel removeVM)
+        internal LoginPage(MainViewModel mainVM)
         {
-            this.DataContext = removeVM;
+            this.DataContext = mainVM;
             InitializeComponent();
         }
     }

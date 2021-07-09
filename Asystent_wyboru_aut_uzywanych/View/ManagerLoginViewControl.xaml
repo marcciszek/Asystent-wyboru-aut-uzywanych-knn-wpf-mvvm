@@ -61,8 +61,6 @@
                                HorizontalAlignment="Left"/>
 
                     <TextBox x:Name="TextBoxUserLogin" 
-                             PreviewTextInput="NumberValidationTextBox" 
-                             PreviewKeyDown="SpacePreventTextBox"
                              Text="{Binding UserLogin,
                                     UpdateSourceTrigger=PropertyChanged,
                                     RelativeSource={RelativeSource Mode=FindAncestor,
@@ -89,7 +87,7 @@
                             Grid.Column="0"
                             DockPanel.Dock="Left"
                             Content="POTWIERDŹ"
-                            Command=""/>
+                            Command="{Binding Remove_Button}"/>
                     
                 </StackPanel>
 
@@ -99,7 +97,7 @@
                             Grid.Column="1"
                             DockPanel.Dock="Right"
                             Content="ANULUJ"
-                            Command=""/>
+                            Command="{Binding Close_Button}"/>
                 </StackPanel>
             </Grid>
         </DockPanel>

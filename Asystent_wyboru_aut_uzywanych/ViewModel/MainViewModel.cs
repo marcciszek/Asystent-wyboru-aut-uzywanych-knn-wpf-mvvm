@@ -12,6 +12,8 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
     using BaseClass;
     using Asystent_wyboru_aut_uzywanych.Model;
     using View;
+    using System.Security;
+    using System.Windows;
 
     class MainViewModel : ViewModelBase
     {
@@ -22,6 +24,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         private CarsModel carModel = new CarsModel();
         private ListModel listModel = new ListModel();
         private RemoveModel removeModel = new RemoveModel();
+        LoginPage newLoginPage;
         #endregion
 
         #region Login Window
@@ -45,8 +48,53 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         }
         private void Login_Method()
         {
-            LoginPage newLoginPage = new LoginPage(removeVM);
+            newLoginPage = new LoginPage(this);
             newLoginPage.Show();
+        }
+        private ICommand close_button = null;
+        public ICommand Close_Button
+        {
+            get
+            {
+                if(close_button == null)
+                {
+                    close_button = new RelayCommand(
+                        arg =>
+                        {
+                            newLoginPage.Close();
+                        },
+                        arg => true
+                        );
+                }
+                return close_button;
+            }
+        }
+        private ICommand remove_button;
+        public ICommand Remove_Button
+        {
+            get
+            {
+                if (remove_button == null)
+                {
+                    remove_button = new RelayCommand(
+                        arg =>
+                        {
+                            bool deleted = removeVM.Remove_Selected_Car();
+                            newLoginPage.Close();
+                            if (deleted)
+                            {
+                                MessageBox.Show("Usunięto auto z bazy");
+                            }
+                            else
+                            {
+                                MessageBox.Show("Nie udało się usunąć auta z bazy");
+                            }
+                        },
+                        arg => true
+                        );
+                }
+                return remove_button;
+            }
         }
         #endregion
         #region Konstruktory

@@ -37,7 +37,7 @@ namespace Asystent_wyboru_aut_uzywanych.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("root")]
+        [global::System.Configuration.DefaultSettingValueAttribute("userCars")]
         public string userID {
             get {
                 return ((string)(this["userID"]));
@@ -73,7 +73,7 @@ namespace Asystent_wyboru_aut_uzywanych.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("cars1234")]
         public string paswd {
             get {
                 return ((string)(this["paswd"]));
@@ -85,7 +85,7 @@ namespace Asystent_wyboru_aut_uzywanych.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("userCars")]
+        [global::System.Configuration.DefaultSettingValueAttribute("managerCars")]
         public string user_default {
             get {
                 return ((string)(this["user_default"]));

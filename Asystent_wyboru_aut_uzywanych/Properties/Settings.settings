@@ -6,7 +6,7 @@
       <Value Profile="(Default)">localhost</Value>
     </Setting>
     <Setting Name="userID" Type="System.String" Scope="User">
-      <Value Profile="(Default)">root</Value>
+      <Value Profile="(Default)">userCars</Value>
     </Setting>
     <Setting Name="database" Type="System.String" Scope="User">
       <Value Profile="(Default)">auta</Value>
@@ -15,10 +15,10 @@
       <Value Profile="(Default)">3306</Value>
     </Setting>
     <Setting Name="paswd" Type="System.String" Scope="User">
-      <Value Profile="(Default)" />
+      <Value Profile="(Default)">cars1234</Value>
     </Setting>
     <Setting Name="user_default" Type="System.String" Scope="User">
-      <Value Profile="(Default)">userCars</Value>
+      <Value Profile="(Default)">managerCars</Value>
     </Setting>
   </Settings>
 </SettingsFile>

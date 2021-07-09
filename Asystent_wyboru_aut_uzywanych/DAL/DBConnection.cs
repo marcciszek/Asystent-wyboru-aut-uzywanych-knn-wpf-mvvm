@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Security;
 using System.Text;
 using MySql.Data.MySqlClient;
+using System.Net;
 
 namespace Asystent_wyboru_aut_uzywanych.DAL
 {
@@ -22,19 +24,23 @@ namespace Asystent_wyboru_aut_uzywanych.DAL
         }
         public MySqlConnection Connection => new MySqlConnection(stringBuilder.ToString());
 
-        public MySqlConnection Connection_pwd(string password)
+
+        public MySqlConnection Connection_pwd(SecureString password)
         {
-            stringBuilder.Password = password;
+            string passwd = new NetworkCredential("", password).Password;
+            stringBuilder.Password = passwd;
             return new MySqlConnection(stringBuilder.ToString());
         }
 
-        public MySqlConnection Connection_login(string password, string login)
+        public MySqlConnection Connection_login(SecureString password, string login)
         {
-            stringBuilder.Password = password;
+            string passwd = new NetworkCredential("", password).Password;
+            stringBuilder.Password = passwd;
             stringBuilder.UserID = login;
             return new MySqlConnection(stringBuilder.ToString());
         }
 
+        
         private DBConnection()
         {
             stringBuilder.UserID = Properties.Settings.Default.userID;
