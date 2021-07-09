@@ -8,9 +8,11 @@ namespace Asystent_wyboru_aut_uzywanych.Model
 {
     using DAL.Encje;
     using DAL.Repozytoria;
+    using System.Security;
+
     class RemoveModel
     {
-        internal bool Remove_Car(Car selected_car, string password, string login)
+        internal bool Remove_Car(Car selected_car, SecureString password, string login)
         {
             bool stan;
             if(login == null)

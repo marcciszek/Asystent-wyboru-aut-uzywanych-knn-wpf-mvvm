@@ -6,6 +6,7 @@ using MySql.Data.MySqlClient;
 namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
 {
     using DAL.Encje;
+    using System.Security;
     using System.Windows;
 
     //Repozytorium dla laczenych rekordow Car_Ling i Car_Num
@@ -158,7 +159,7 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
             }
             return true;
         }
-        public static bool Remove_Car(Car car, string password)
+        public static bool Remove_Car(Car car, SecureString password)
         {
             int id_car_ling = 0, id_car_num = 0, number_of_lin_records = 0;
                 using (var connection = DBConnection.Instance.Connection_pwd(password))
@@ -231,7 +232,7 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
                 }
                 return true;
         }
-        public static bool Remove_Car(Car car, string password, string login)
+        public static bool Remove_Car(Car car, SecureString password, string login)
         {
             int id_car_ling = 0, id_car_num = 0, number_of_lin_records = 0;
             using (var connection = DBConnection.Instance.Connection_login(password, login))

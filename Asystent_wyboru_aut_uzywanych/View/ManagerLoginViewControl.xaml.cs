@@ -37,24 +37,24 @@ namespace Asystent_wyboru_aut_uzywanych.View
                 typeof(string),
                 typeof(ManagerLoginViewControl));
         //=========================================================================
-        public SecureString UserPassword
-        {
-            get { return (SecureString)GetValue(UserPasswordProperty); }
-            set { SetValue(UserPasswordProperty, value); }
-        }
+        //public SecureString UserPassword
+        //{
+        //    get { return (SecureString)GetValue(UserPasswordProperty); }
+        //    set { SetValue(UserPasswordProperty, value); }
+        //}
 
-        public static readonly DependencyProperty UserPasswordProperty =
-            DependencyProperty.Register(
-                nameof(UserLogin),
-                typeof(SecureString),
-                typeof(ManagerLoginViewControl));
-        //=========================================================================
+        //public static readonly DependencyProperty UserPasswordProperty =
+        //    DependencyProperty.Register(
+        //        nameof(UserLogin),
+        //        typeof(SecureString),
+        //        typeof(ManagerLoginViewControl));
+        ////=========================================================================
 
 
         private void PasswordBox_PasswordChanged(object sender, RoutedEventArgs e)
         {
             if (this.DataContext != null)
-            { ((dynamic)this.DataContext).SecurePassword = ((PasswordBox)sender).SecurePassword; }
+            { ((dynamic)this.DataContext).removeVM.SecurePassword = ((PasswordBox)sender).SecurePassword; }
         }
     }
 }

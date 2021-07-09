@@ -3,16 +3,12 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:Asystent_wyboru_aut_uzywanych.View"
+        xmlns:view="clr-namespace:Asystent_wyboru_aut_uzywanych.View"
         mc:Ignorable="d"
         Title="LoginPage" Height="450" Width="800">
     <Grid>
-        <StackPanel>
-            <TextBlock Text="Nazwa użytkownika:"/>
-            <TextBox Text="{Binding User_Login}"/>
-            <TextBlock Text="Hasło:"/>
-            <TextBox Text="{Binding User_Password}"/>
-            <Button Content="Zaloguj" Command="{Binding Remove_Selected_Car}"></Button>
-        </StackPanel>
+        <view:ManagerLoginViewControl x:Name="Login_window"
+                                      UserLogin ="{Binding removeVM.User_Login, Mode=TwoWay}"
+                                      />
     </Grid>
 </Window>
