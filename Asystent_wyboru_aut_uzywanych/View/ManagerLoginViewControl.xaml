@@ -1,0 +1,107 @@
+﻿<UserControl x:Class="Asystent_wyboru_aut_uzywanych.View.ManagerLoginViewControl"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Asystent_wyboru_aut_uzywanych.View"
+             mc:Ignorable="d" 
+             d:DesignHeight="400" d:DesignWidth="600">
+    <UserControl.Resources>
+        
+        <Style TargetType="Grid">
+            <Setter Property="Background" Value="AliceBlue"/>
+        </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="MaxWidth" Value="300"/>
+        </Style>
+        
+        <Style TargetType="PasswordBox">
+            <Setter Property="Margin" Value="10"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="MaxWidth" Value="300"/>
+        </Style>
+
+        <Style TargetType="Button">
+            <Setter Property="Margin" Value="20"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="MinHeight" Value="50"/>
+        </Style>
+        
+        <Style TargetType="TextBlock">
+            <Setter Property="Margin" Value="10,10,10,0"/>
+            <Setter Property="FontSize" Value="18"/>
+
+        </Style>
+    </UserControl.Resources>
+
+    <Grid>
+        <DockPanel >
+            <TextBlock DockPanel.Dock="Top"
+                       Text="POTRZEBNA AUTORYZACJA"
+                       FontSize="30"
+                       FontWeight="ExtraBlack"
+                       HorizontalAlignment="Center"
+                       Margin="10"
+                       Padding="10"/>
+
+            <Grid DockPanel.Dock="Top">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="1">
+
+                    <TextBlock Text="LOGIN KONTA KIEROWNIKA"
+                               HorizontalAlignment="Left"/>
+
+                    <TextBox x:Name="TextBoxUserLogin" 
+                             PreviewTextInput="NumberValidationTextBox" 
+                             PreviewKeyDown="SpacePreventTextBox"
+                             Text="{Binding UserLogin,
+                                    UpdateSourceTrigger=PropertyChanged,
+                                    RelativeSource={RelativeSource Mode=FindAncestor,
+                                    AncestorType={x:Type UserControl}}}"/>
+
+                    <TextBlock Text="HASŁO"
+                               HorizontalAlignment="Left"/>
+
+                    <PasswordBox x:Name="TextBoxUserPassword"
+                                 PasswordChanged="PasswordBox_PasswordChanged"/>
+
+                </StackPanel>
+            </Grid>
+
+            <Grid Margin="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+
+                <StackPanel Grid.Column="0"
+                            VerticalAlignment="Bottom">
+                    <Button x:Name="ButtonAccept"
+                            Grid.Column="0"
+                            DockPanel.Dock="Left"
+                            Content="POTWIERDŹ"
+                            Command=""/>
+                    
+                </StackPanel>
+
+                <StackPanel Grid.Column="1"
+                            VerticalAlignment="Bottom">
+                    <Button x:Name="ButtonDecline"
+                            Grid.Column="1"
+                            DockPanel.Dock="Right"
+                            Content="ANULUJ"
+                            Command=""/>
+                </StackPanel>
+            </Grid>
+        </DockPanel>
+    </Grid>
+</UserControl>
