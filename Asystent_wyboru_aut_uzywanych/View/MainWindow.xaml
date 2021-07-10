@@ -23,7 +23,8 @@
 
             <StatusBarItem>
                 <view1:ProgramStatusViewControl x:Name="StatusBar"
-                                                Status="{Binding StatusString}"/>
+                                                StatusText="{Binding StatusString, Mode=TwoWay}"
+                                                StatusLevel="{Binding StatusLevel, Mode=TwoWay}"/>
             </StatusBarItem>
         </StatusBar>
         

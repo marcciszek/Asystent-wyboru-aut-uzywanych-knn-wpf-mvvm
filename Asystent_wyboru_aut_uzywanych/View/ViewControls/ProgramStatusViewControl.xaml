@@ -13,16 +13,25 @@
             <Ellipse VerticalAlignment="Center"
                      Width="20"
                      Height="20"
-                     Fill="Green"
+                     Fill="{Binding EllipseColor,
+                              UpdateSourceTrigger=PropertyChanged,
+                              RelativeSource={RelativeSource Mode=FindAncestor,
+                              AncestorType={x:Type UserControl}}}"
                      Margin="10,0,10,0"/>
+
+            <Button Content="+1"
+                    Width="40"
+                    Command="{Binding Test_add}"/>
 
             <TextBlock VerticalAlignment="Center"
                        FontSize="15"
                        Margin="10,0,10,0"
-                       Text="{Binding Status,
+                       Text="{Binding StatusText,
                               UpdateSourceTrigger=PropertyChanged,
+                              NotifyOnTargetUpdated=True,
                               RelativeSource={RelativeSource Mode=FindAncestor,
-                              AncestorType={x:Type UserControl}}}"/>
+                              AncestorType={x:Type UserControl}}}"
+                       TargetUpdated="TextBlock_TargetUpdated"/>
         </DockPanel>
     </Grid>
 </UserControl>

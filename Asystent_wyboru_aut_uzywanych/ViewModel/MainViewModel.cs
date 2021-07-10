@@ -38,6 +38,19 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 onPropertyChanged(nameof(StatusString));
             }
         }
+        private uint statusLevel;
+        public uint StatusLevel
+        {
+            get
+            {
+                return statusLevel;
+            }
+            set
+            {
+                statusLevel = value;
+                onPropertyChanged(nameof(statusLevel));
+            }
+        }
         #endregion
 
         #region Login Window
@@ -110,6 +123,27 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             }
         }
         #endregion
+
+        private ICommand test_add = null;
+        public ICommand Test_add
+        {
+            get
+            {
+                if (test_add == null)
+                {
+                    test_add = new RelayCommand(
+                        arg =>
+                        {
+                            StatusLevel += 1;
+                            StatusString += "1";
+                        },
+                        arg => true
+                        );
+                }
+                return test_add;
+            }
+        }
+
         #region Konstruktory
         public MainViewModel()
         {
