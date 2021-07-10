@@ -1,0 +1,14 @@
+﻿<Window x:Class="Asystent_wyboru_aut_uzywanych.View.PredictResultPage"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Asystent_wyboru_aut_uzywanych.View"
+        xmlns:view="clr-namespace:Asystent_wyboru_aut_uzywanych.View"
+        mc:Ignorable="d"
+        Title="Wyniki predykcji" Height="450" Width="800">
+    <Grid>
+        <view:PredictCarResultsViewControl x:Name="Predict_Result_Window"
+                                           ListViewCarsCollection ="{Binding predictVM.Cars}"/>
+    </Grid>
+</Window>

@@ -29,9 +29,11 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
         private const string SELECT_CONDITION = "FROM cars_numerical, cars_linguistic, cars WHERE cars.ID_car_lin = cars_linguistic.id_car_lin";
         private const string SELECT_CONDITION_SECOND_LINE = "AND cars.ID_car_num = cars_numerical.ID_car_num;";
         private const string SELECT_CONDITION_SECOND_LINE_WITHOUT_END = "AND cars.ID_car_num = cars_numerical.ID_car_num";
+        private const string SELECT_CONDITION_ID = "FROM cars_numerical, cars_linguistic, cars WHERE cars.ID_car = ";
         //Polaczone zapytanie
         private static string SELECT_ALL_CARS_DATA = $"{SELECT_FIRST_CARS} {SELECT_SECOND_LINE} {SELECT_THIRD_LINE} {SELECT_FOURTH_LINE} {SELECT_CONDITION} {SELECT_CONDITION_SECOND_LINE}";
         private static string SELECT_CARS_DATA = $"{SELECT_FIRST_CARS} {SELECT_SECOND_LINE} {SELECT_THIRD_LINE} {SELECT_FOURTH_LINE} {SELECT_CONDITION} {SELECT_CONDITION_SECOND_LINE_WITHOUT_END}";
+        private static string SELECT_BY_ID = $"{SELECT_FIRST_CARS} {SELECT_SECOND_LINE} {SELECT_THIRD_LINE} {SELECT_FOURTH_LINE} {SELECT_CONDITION_ID}";
         #endregion
         #region ZAPYTANIA DO DELETE
         private static string SELECT_ID_NUM = "SELECT cars.ID_car_num FROM cars WHERE cars.ID_car = ";
@@ -73,6 +75,53 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
             using(var connection = DBConnection.Instance.Connection)
             {
                 MySqlCommand command_get_specific_cars = new MySqlCommand($"{SELECT_CARS_DATA} {car_lin.Select_In_Database_List()}", connection);
+                try
+                {
+                    connection.Open();
+                    var reader = command_get_specific_cars.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        cars.Add(new Car(reader));
+                    };
+                    connection.Close();
+                }
+                catch (Exception)
+                {
+                }
+            }
+            return cars;
+        }
+
+        public static List<Car> Search_For_Cars_Prediction(Car_Linguistic car_lin, int price_min, int price_max)
+        {
+            List<Car> cars = new List<Car>();
+            string SELECT_BUDGET = "";
+            if (car_lin.Select_In_Database_List() != "")
+            {
+                if(price_max != 0)
+                {
+                    SELECT_BUDGET = $"AND cars_numerical.Price > {price_min} AND cars_numerical.Price < {price_max};";
+                }
+                else
+                {
+                    SELECT_BUDGET = $"AND cars_numerical.Price > {price_min};";
+                }
+            }
+            else
+            {
+                if (price_max != 0)
+                {
+                    SELECT_BUDGET = $"WHERE cars_numerical.Price > {price_min} AND cars_numerical.Price < {price_max};";
+                }
+                else
+                {
+                    SELECT_BUDGET = $"WHERE cars_numerical.Price > {price_min};";
+                }
+            }
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                string command = $"{SELECT_CARS_DATA} {car_lin.Select_In_Database_List_By_Id()} {SELECT_BUDGET}";
+                MySqlCommand command_get_specific_cars = new MySqlCommand(command, connection);
                 try
                 {
                     connection.Open();
