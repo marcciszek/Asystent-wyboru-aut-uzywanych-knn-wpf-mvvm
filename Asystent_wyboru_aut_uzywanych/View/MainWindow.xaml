@@ -6,40 +6,28 @@
         xmlns:local="clr-namespace:Asystent_wyboru_aut_uzywanych"
         xmlns:vm ="clr-namespace:Asystent_wyboru_aut_uzywanych.ViewModel"
         xmlns:view="clr-namespace:Asystent_wyboru_aut_uzywanych.View"
-        xmlns:i="http://schemas.microsoft.com/xaml/behaviors"
+        xmlns:view1="clr-namespace:Asystent_wyboru_aut_uzywanych.View.ViewControls"
+        xmlns:i="http://schemas.microsoft.com/xaml/behaviors" 
         mc:Ignorable="d"
-        Title="Asystent wyboru aut używanych" Height="550" Width="1165">
+        Title="Asystent wyboru aut używanych" Height="600" Width="1200">
 
     <Window.Resources>
         <vm:MainViewModel x:Key="mainVM"/>
     </Window.Resources>
 
-    <DockPanel LastChildFill="True">
+    <DockPanel LastChildFill="True"
+               DataContext="{DynamicResource mainVM}">
 
         <StatusBar DockPanel.Dock="Bottom"
                    Height="40">
-            
-            <StatusBarItem>
-
-                <Ellipse Width="20"
-                            Height="20"
-                            Fill="Green"
-                            Margin="10,0,10,0"/>
-
-            </StatusBarItem>
 
             <StatusBarItem>
-
-                <TextBlock Text="Brak problemów"
-                           FontSize="15"
-                           Margin="10,0,20,0"
-                           MinWidth="300"/>
-
+                <view1:ProgramStatusViewControl x:Name="StatusBar"
+                                                Status="{Binding StatusString}"/>
             </StatusBarItem>
         </StatusBar>
         
-        <Grid DataContext="{DynamicResource mainVM}"
-              DockPanel.Dock="Bottom">
+        <Grid DockPanel.Dock="Bottom">
             
             <TabControl>
                 <TabItem x:Name="test_usuwanie" Header="Testowe usuwanie">

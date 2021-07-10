@@ -25,6 +25,19 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         private ListModel listModel = new ListModel();
         private RemoveModel removeModel = new RemoveModel();
         LoginPage newLoginPage;
+        private string statusString;
+        public string StatusString
+        {
+            get
+            {
+                return statusString; 
+            }
+            set
+            {
+                statusString = value;
+                onPropertyChanged(nameof(StatusString));
+            }
+        }
         #endregion
 
         #region Login Window
