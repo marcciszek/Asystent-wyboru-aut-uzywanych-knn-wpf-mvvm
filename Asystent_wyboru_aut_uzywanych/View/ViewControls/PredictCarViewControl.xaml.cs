@@ -25,54 +25,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
         }
         #region DependencyProperty 
         //=========================================================================
-        public string Brand
-        {
-            get { return (string)GetValue(BrandProperty); }
-            set { SetValue(BrandProperty, value); }
-        }
 
-        public static readonly DependencyProperty BrandProperty =
-            DependencyProperty.Register(
-                nameof(Brand),
-                typeof(string),
-                typeof(PredictCarViewControl));
-        //------------------------------------------------------------------------
-        public string[] AvailableBrands
-        {
-            get { return (string[])GetValue(AvailableBrandsProperty); }
-            set { SetValue(AvailableBrandsProperty, value); }
-        }
-
-        public static readonly DependencyProperty AvailableBrandsProperty =
-            DependencyProperty.Register(
-                nameof(AvailableBrands),
-                typeof(string[]),
-                typeof(PredictCarViewControl));
-        //=========================================================================
-        public string Model
-        {
-            get { return (string)GetValue(ModelProperty); }
-            set { SetValue(ModelProperty, value); }
-        }
-
-        public static readonly DependencyProperty ModelProperty =
-            DependencyProperty.Register(
-                nameof(Model),
-                typeof(string),
-                typeof(PredictCarViewControl));
-        //-------------------------------------------------------------------------
-        public ObservableCollection<string> AvailableModels
-        {
-            get { return (ObservableCollection<string>)GetValue(AvailableModelsProperty); }
-            set { SetValue(AvailableModelsProperty, value); }
-        }
-
-        public static readonly DependencyProperty AvailableModelsProperty =
-            DependencyProperty.Register(
-                nameof(AvailableModels),
-                typeof(ObservableCollection<string>),
-                typeof(PredictCarViewControl));
-        //=========================================================================
         public string Type
         {
             get { return (string)GetValue(TypeProperty); }
@@ -169,15 +122,27 @@ namespace Asystent_wyboru_aut_uzywanych.View
                 typeof(string[]),
                 typeof(PredictCarViewControl));
         //=========================================================================
-        public string Price
+        public string PriceMin
         {
-            get { return (string)GetValue(PriceProperty); }
-            set { SetValue(PriceProperty, value); }
+            get { return (string)GetValue(PriceMinProperty); }
+            set { SetValue(PriceMinProperty, value); }
         }
 
-        public static readonly DependencyProperty PriceProperty =
+        public static readonly DependencyProperty PriceMinProperty =
             DependencyProperty.Register(
-                nameof(Price),
+                nameof(PriceMin),
+                typeof(string),
+                typeof(PredictCarViewControl));
+        //=========================================================================
+        public string PriceMax
+        {
+            get { return (string)GetValue(PriceMaxProperty); }
+            set { SetValue(PriceMaxProperty, value); }
+        }
+
+        public static readonly DependencyProperty PriceMaxProperty =
+            DependencyProperty.Register(
+                nameof(PriceMax),
                 typeof(string),
                 typeof(PredictCarViewControl));
         //=========================================================================
