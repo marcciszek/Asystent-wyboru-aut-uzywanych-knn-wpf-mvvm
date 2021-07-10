@@ -21,6 +21,7 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
         private const string SELECT_CONDITIONS = "FROM cars, cars_numerical, cars_linguistic ";
         //Wybranie poprzez ID z car
         private const string SELECT_BY_ID = "FROM cars, cars_numerical WHERE cars.ID_car = ";
+        private const string SELECT_CARS_NUM = "SELECT * FROM cars_numerical";
         #endregion
         #region Metody
         public static bool Add_car(Car_Numerical car_num, Car_Linguistic car_lin)
@@ -168,6 +169,29 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
                     while (reader.Read())
                     {
                         cars = new Car_Numerical(reader);
+                    };
+                    connection.Close();
+                }
+                catch (Exception)
+                {
+                }
+            }
+            return cars;
+        }
+        public static List<Car_Numerical> Get_All_Cars(Car_Linguistic car)
+        {
+            List<Car_Numerical> cars = new List<Car_Numerical>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                string command = $"{SELECT_CARS_NUM}";
+                MySqlCommand command_get_all_cars = new MySqlCommand(command, connection);
+                try
+                {
+                    connection.Open();
+                    var reader = command_get_all_cars.ExecuteReader();
+                    while (reader.Read())
+                    {
+                        cars.Add(new Car_Numerical(reader));
                     };
                     connection.Close();
                 }

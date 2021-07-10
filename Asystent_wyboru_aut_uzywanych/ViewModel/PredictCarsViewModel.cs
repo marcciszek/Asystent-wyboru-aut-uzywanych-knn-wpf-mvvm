@@ -38,7 +38,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             }
         }
         #region liczbowe
-    private string price_min;
+    private string price_min = "";
         public string Price_Min
         {
             get
@@ -52,7 +52,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
 
             }
         }
-        private string price_max;
+        private string price_max = "";
         public string Price_Max
         {
             get
@@ -66,7 +66,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
 
             }
         }
-        private string power;
+        private string power = "";
         public string Power
         {
             get
@@ -80,7 +80,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
 
             }
         }
-        private string mileage;
+        private string mileage = "";
         public string Mileage
         {
             get
@@ -93,7 +93,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 onPropertyChanged(nameof(Mileage));
             }
         }
-        private string age;
+        private string age = "";
         public string Age
         {
             get
@@ -237,7 +237,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 Cars = predictModel.Search_For_Cars(car_lin, price_min, price_max);
                 Cars = predictModel.Predict(Cars);
             }
-            catch (FormatException)
+            catch (Exception)
             {
                 MessageBox.Show("Bledna wartosc");
             }

@@ -27,9 +27,13 @@ namespace Asystent_wyboru_aut_uzywanych.Model
 
         public ObservableCollection<Car> Predict(ObservableCollection<Car> cars)
         {
+            //cars - wszystkie pasujace auta
             List<Car_Numerical> cars_numerical;
+            //Pobiera wszystkie wartosci aut numerycznych
+            List<Car_Numerical> cars_db = CarsRepository.Get_All_Cars(new Car_Linguistic(null, null, null, null, null, null));
+            //cars_numerical - wartosci liczbowe dla wszystkich pasujacych
             cars_numerical = Get_Numerical_Cars(cars);
-            KNN_Prediction.Test();
+            cars_numerical = KNN_Prediction.KNN(cars_numerical, cars_db);
             return cars;
         }
 
