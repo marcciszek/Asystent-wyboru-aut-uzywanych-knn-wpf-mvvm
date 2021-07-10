@@ -4,6 +4,7 @@ using System.Text;
 using System.Collections.ObjectModel;
 using System.Windows.Input;
 using System.Windows;
+using System.Security;
 
 namespace Asystent_wyboru_aut_uzywanych.ViewModel
 {
@@ -11,6 +12,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
     using DAL.Encje;
     using BaseClass;
     using View;
+    
 
     class RemoveViewModel : ViewModelBase
     {
@@ -19,6 +21,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         private ListModel listModel = null;
         private RemoveModel removeModel = null;
         private ObservableCollection<Car> cars = null;
+        private LoginPage newLoginPage = null;
         #endregion
         #region skladowe publiczne
         public ObservableCollection<Car> Cars
@@ -240,37 +243,25 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 return clear_form_button;
             }
         }
-        private ICommand remove_selected_car = null;
-        public ICommand Remove_Selected_Car
+        public bool Remove_Selected_Car()
         {
-            get
+            if (removeModel.Remove_Car(selected_car, SecurePassword, user_login))
             {
-                if(remove_selected_car == null)
-                {
-                    remove_selected_car = new RelayCommand(
-                        arg =>
-                        {
-                            if (removeModel.Remove_Car(selected_car, user_password, user_login))
-                            {
-                                //Dodac metode czyszczaca formularz
-                                Clear_Form();
-                                var Car_lin = new Car_Linguistic(null, null, null, null, null, null);
-                                Cars = listModel.Search_For_Cars(Car_lin);
-                                MessageBox.Show("Usunięto auto z bazy");
-                            }
-                            else
-                            {
-                                MessageBox.Show("Nie udało się usunąć auta z bazy");
-                            }
-                            User_Login = null;
-                            User_Password = null;
-                            //metoda remove car(id_auta)
-                        },
-                        arg => true
-                        );
-                }
-                return remove_selected_car;
+                //Dodac metode czyszczaca formularz
+                Clear_Form();
+                var Car_lin = new Car_Linguistic(null, null, null, null, null, null);
+                Cars = listModel.Search_For_Cars(Car_lin);
+                User_Login = null;
+                SecurePassword = null;
+                return true;
             }
+            else
+            {
+                User_Login = null;
+                SecurePassword = null;
+                return false;
+            }
+            //metoda remove car(id_auta)
         }
         private void Update_models_list(string brand)
         {
@@ -299,6 +290,8 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         #endregion
         #region Logowanie uzytkownika do usuwania
         
+        public SecureString SecurePassword { private get; set; }
+
         private string user_password;
         public string User_Password
         {
