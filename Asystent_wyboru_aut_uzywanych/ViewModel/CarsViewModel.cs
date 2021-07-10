@@ -25,7 +25,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         #endregion
 
         #region parametry publiczne liczbowe
-        private string price;
+        private string price = "";
         public string Price
         {
             get
@@ -39,7 +39,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
 
             }
         }
-        private string power;
+        private string power = "";
         public string Power
         {
             get
@@ -53,7 +53,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
 
             }
         }
-        private string mileage;
+        private string mileage = "";
         public string Mileage
         {
             get
@@ -66,7 +66,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 onPropertyChanged(nameof(Mileage));
             }
         }
-        private string age;
+        private string age = "";
         public string Age
         {
             get
@@ -202,7 +202,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         }
         #endregion
         #region Wybrane elementy
-        private string selected_brand;
+        private string selected_brand = null;
         public string Selected_Brand
         {
             get
@@ -216,7 +216,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 onPropertyChanged(nameof(Selected_Brand));
             }
         }
-        private string selected_model;
+        private string selected_model = null;
         public string Selected_Model
         {
             get
@@ -229,7 +229,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 onPropertyChanged(nameof(Selected_Model));
             }
         }
-        private string selected_type;
+        private string selected_type = null;
         public string Selected_Type
         {
             get
@@ -242,7 +242,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 onPropertyChanged(nameof(Selected_Type));
             }
         }
-        private string selected_gear;
+        private string selected_gear = null;
         public string Selected_Gear
         {
             get
@@ -255,7 +255,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 onPropertyChanged(nameof(Selected_Gear));
             }
         }
-        private string selected_fuel;
+        private string selected_fuel = null;
         public string Selected_Fuel
         {
             get
@@ -268,7 +268,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 onPropertyChanged(nameof(Selected_Fuel));
             }
         }
-        private string selected_damage;
+        private string selected_damage = null;
         public string Selected_Damage
         {
             get
@@ -335,7 +335,16 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                             }
                         }
                         ,//Dodac metode sprawdzajaca?
-                        arg => (Price != "") && (Power != "") && (Mileage != "") && (Age != "")
+                        arg => (Price != "")
+                               && (Power != "")
+                               && (Mileage != "")
+                               && (Age != "")
+                               && (Selected_Brand != null)
+                               && (Selected_Damage != null)
+                               && (Selected_Fuel != null)
+                               && (Selected_Gear != null)
+                               && (Selected_Model != null)
+                               && (Selected_Type != null)
                         );
                 }
                 return add_car;
@@ -409,7 +418,16 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                             }
                         }
                         ,//Dodac metode sprawdzajaca?
-                        arg => (Price != "") && (Power != "") && (Mileage != "") && (Age != "")
+                        arg => (Price != "")
+                               && (Power != "")
+                               && (Mileage != "")
+                               && (Age != "")
+                               && (Selected_Brand != null)
+                               && (Selected_Damage != null)
+                               && (Selected_Fuel != null)
+                               && (Selected_Gear != null)
+                               && (Selected_Model != null)
+                               && (Selected_Type != null)
                         );
                 }
                 return add_car_control;

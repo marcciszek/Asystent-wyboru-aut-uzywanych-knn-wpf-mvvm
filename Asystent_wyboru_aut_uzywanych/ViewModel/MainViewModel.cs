@@ -28,7 +28,34 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         private PredictModel predictModel = new PredictModel();
         LoginPage newLoginPage;
         PredictResultPage newPredictResultPage;
-
+        
+        private string statusString;
+        public string StatusString
+        {
+            get
+            {
+                return statusString; 
+            }
+            set
+            {
+                statusString = value;
+                onPropertyChanged(nameof(StatusString));
+            }
+        }
+        
+        private uint statusLevel;
+        public uint StatusLevel
+        {
+            get
+            {
+                return statusLevel;
+            }
+            set
+            {
+                statusLevel = value;
+                onPropertyChanged(nameof(statusLevel));
+            }
+        }
         #endregion
 
         #region Login Window
@@ -101,9 +128,9 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             }
         }
         #endregion
+        
         #region Predict Window
         private ICommand predict_button = null;
-
         public ICommand Predict_Button
         {
             get
@@ -119,9 +146,29 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                         arg => true
                         );
                 }
-                return predict_button;
+              return predict_button;
             }
         }
+        private ICommand test_add = null;
+        public ICommand Test_add
+        {
+            get
+            {
+                if (test_add == null)
+                {
+                    test_add = new RelayCommand(
+                        arg =>
+                        {
+                            StatusLevel += 1;
+                            StatusString += "1";
+                        },
+                        arg => true
+                        );
+                }
+                return test_add;
+            }
+        }
+
         private void Predict_Window()
         {
             newPredictResultPage = new PredictResultPage(this);
