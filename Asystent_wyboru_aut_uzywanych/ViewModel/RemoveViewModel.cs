@@ -21,7 +21,6 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         private ListModel listModel = null;
         private RemoveModel removeModel = null;
         private ObservableCollection<Car> cars = null;
-        private LoginPage newLoginPage = null;
         #endregion
         #region skladowe publiczne
         public ObservableCollection<Car> Cars

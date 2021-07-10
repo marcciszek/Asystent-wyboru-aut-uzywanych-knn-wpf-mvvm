@@ -1,0 +1,48 @@
+﻿using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace Asystent_wyboru_aut_uzywanych.Model
+{
+    using DAL.Encje;
+    using DAL.Repozytoria;
+    using System.Collections.ObjectModel;
+    using ViewModel;
+    using Asystent_wyboru_aut_uzywanych.Model.Prediction;
+
+    class PredictModel
+    {
+        private Algorythm KNN_Prediction = new Algorythm();
+        ObservableCollection<Car> Cars { get; set; } = new ObservableCollection<Car>();
+        public ObservableCollection<Car> Search_For_Cars(Car_Linguistic car_lin, int price_min, int price_max)
+        {
+            var cars = CarRepository.Search_For_Cars_Prediction(car_lin, price_min, price_max);
+            ObservableCollection<Car> cars_collection = new ObservableCollection<Car>();
+            foreach (var car in cars)
+            {
+                cars_collection.Add(car);
+            }
+            return cars_collection;
+        }
+
+        public ObservableCollection<Car> Predict(ObservableCollection<Car> cars)
+        {
+            List<Car_Numerical> cars_numerical;
+            cars_numerical = Get_Numerical_Cars(cars);
+            KNN_Prediction.Test();
+            return cars;
+        }
+
+        private List<Car_Numerical> Get_Numerical_Cars(ObservableCollection<Car> cars)
+        {
+            List<Car_Numerical> cars_numerical = new List<Car_Numerical>();
+            foreach(var car in cars)
+            {
+                cars_numerical.Add(CarsRepository.Get_Numerical_By_Id(car.ID));
+            }
+            
+            return cars_numerical;
+        }
+
+    }
+}

@@ -535,6 +535,22 @@
                                             ListViewSelectedCar ="{Binding removeVM.Selected_Car, Mode=TwoWay}"
                                            />
             </TabItem>
+            <TabItem x:Name="Predict_cars_control" Header="Asysten wyboru auta">
+                <view:PredictCarViewControl x:Name="Predict_control"
+                                        PriceMax="{Binding predictVM.Price_Max, Mode=TwoWay}"
+                                        PriceMin="{Binding predictVM.Price_Min, Mode=TwoWay}"
+                                        Power="{Binding predictVM.Power, Mode=TwoWay}"
+                                        Mileage="{Binding predictVM.Mileage, Mode=TwoWay}"
+                                        CarYear="{Binding predictVM.Age, Mode=TwoWay}"
+                                        AvailableDamages="{Binding predictVM.Damages}"
+                                        AvailableFuels="{Binding predictVM.Fuels}"
+                                        AvailableGears="{Binding predictVM.Gears}"
+                                        AvailableTypes="{Binding predictVM.Types}"
+                                        Type="{Binding predictVM.Selected_Type, Mode=TwoWay}"
+                                        Gear="{Binding predictVM.Selected_Gear, Mode=TwoWay}"
+                                        Fuel="{Binding predictVM.Selected_Fuel, Mode=TwoWay}"
+                                        Damage="{Binding predictVM.Selected_Damage, Mode=TwoWay}"/>
+            </TabItem>
         </TabControl>
     </Grid>
 </Window>

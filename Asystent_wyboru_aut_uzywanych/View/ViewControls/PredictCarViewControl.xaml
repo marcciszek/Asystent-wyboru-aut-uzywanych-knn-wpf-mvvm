@@ -190,13 +190,13 @@
                 Content="PREDYKCJA"
                 Grid.Column="1"
                 Grid.Row="12"
-                Command=""/>
+                Command="{Binding Predict_Button}"/>
 
             <Button x:Name="ButtonClear"
                 Content="WYCZYŚĆ"
                 Grid.Column="2"
                 Grid.Row="12"
-                Command=""/>
+                Command="{Binding predictVM.Clear_Form_Button}"/>
         </Grid>
     </Grid>
 </UserControl>

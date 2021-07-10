@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySql.Data.MySqlClient;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -7,6 +8,7 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
     class Car_Numerical
     {
         #region Parametry
+        public int ID { get; set; }
         public int Price { get; set; }
         public int Power { get; set; }
         public int Mileage { get; set; }
@@ -20,6 +22,14 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
             this.Power = Power;
             this.Mileage = Mileage;
             this.Age = Age;
+        }
+        public Car_Numerical(MySqlDataReader reader)
+        {
+            this.ID = int.Parse(reader[0].ToString());
+            this.Price = int.Parse(reader[1].ToString());
+            this.Power = int.Parse(reader[2].ToString());
+            this.Mileage = int.Parse(reader[3].ToString());
+            this.Age = int.Parse(reader[4].ToString());
         }
         #endregion
 

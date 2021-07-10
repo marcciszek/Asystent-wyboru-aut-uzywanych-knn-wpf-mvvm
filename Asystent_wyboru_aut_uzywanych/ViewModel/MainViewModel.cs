@@ -21,10 +21,14 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         public CarsViewModel carsVM { get; set; }
         public ListViewModel listVM { get; set; }
         public RemoveViewModel removeVM { get; set; }
+        public PredictCarsViewModel predictVM { get; set; }
         private CarsModel carModel = new CarsModel();
         private ListModel listModel = new ListModel();
         private RemoveModel removeModel = new RemoveModel();
+        private PredictModel predictModel = new PredictModel();
         LoginPage newLoginPage;
+        PredictResultPage newPredictResultPage;
+
         #endregion
 
         #region Login Window
@@ -69,7 +73,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 return close_button;
             }
         }
-        private ICommand remove_button;
+        private ICommand remove_button = null;
         public ICommand Remove_Button
         {
             get
@@ -97,11 +101,40 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             }
         }
         #endregion
+        #region Predict Window
+        private ICommand predict_button = null;
+
+        public ICommand Predict_Button
+        {
+            get
+            {
+                if (predict_button == null)
+                {
+                    predict_button = new RelayCommand(
+                        arg =>
+                        {
+                            predictVM.predict_start();
+                            Predict_Window();
+                        },
+                        arg => true
+                        );
+                }
+                return predict_button;
+            }
+        }
+        private void Predict_Window()
+        {
+            newPredictResultPage = new PredictResultPage(this);
+            newPredictResultPage.Show();
+        }
+        #endregion
+        
         #region Konstruktory
         public MainViewModel()
         {
             carsVM = new CarsViewModel(carModel);
             listVM = new ListViewModel(carModel, listModel);
+            predictVM = new PredictCarsViewModel(carModel, listModel, predictModel);
             removeVM = new RemoveViewModel(carModel, listModel, removeModel);
         }
         #endregion
