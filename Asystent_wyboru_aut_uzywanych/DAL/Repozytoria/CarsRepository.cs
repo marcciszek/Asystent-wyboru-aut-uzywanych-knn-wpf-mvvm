@@ -20,7 +20,7 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
         private const string SELECT_CARS = "SELECT cars.ID_car, cars_numerical.price, cars_numerical.power, cars_numerical.mileage, cars_numerical.year_of_production ";
         private const string SELECT_CONDITIONS = "FROM cars, cars_numerical, cars_linguistic ";
         //Wybranie poprzez ID z car
-        private const string SELECT_BY_ID = "FROM cars, cars_numerical WHERE cars.ID_car = ";
+        private const string SELECT_BY_ID = "FROM cars, cars_numerical WHERE cars.ID_car_num=cars_numerical.ID_car_num AND cars.ID_car = ";
         private const string SELECT_CARS_NUM = "SELECT * FROM cars_numerical";
         #endregion
         #region Metody

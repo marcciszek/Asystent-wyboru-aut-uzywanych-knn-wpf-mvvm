@@ -230,12 +230,17 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         public void predict_start()
         {
             Car_Linguistic car_lin = new Car_Linguistic(selected_type, selected_gear, selected_fuel, null, null, selected_damage);
+            
             try
             {
                 int price_min = Int32.Parse(this.price_min);
                 int price_max = Int32.Parse(this.price_max);
+                int power = Int32.Parse(this.power);
+                int mileage = Int32.Parse(this.mileage);
+                int age = Int32.Parse(this.age);
+                Car_Numerical sample = new Car_Numerical(price_min, power, mileage, age);
                 Cars = predictModel.Search_For_Cars(car_lin, price_min, price_max);
-                Cars = predictModel.Predict(Cars);
+                Cars = predictModel.Predict(Cars, sample);
             }
             catch (Exception)
             {

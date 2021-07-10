@@ -8,10 +8,13 @@ namespace Asystent_wyboru_aut_uzywanych.Model.Prediction
     using DAL.Repozytoria;
     class Sample
     {
-        public static Dictionary<string, int> Create_Sample(Car_Numerical car)
+        public static Dictionary<string, double> Create_Sample(Car_Numerical car)
         {
-            Dictionary<string, int> sample = new Dictionary<string, int>();
-
+            Dictionary<string, double> sample = new Dictionary<string, double>();
+            sample.Add("Price", Convert.ToDouble(car.Price));
+            sample.Add("Power", Convert.ToDouble(car.Power));
+            sample.Add("Mileage", Convert.ToDouble(car.Mileage));
+            sample.Add("Age", Convert.ToDouble(car.Age));
             return sample;
         }
     }
