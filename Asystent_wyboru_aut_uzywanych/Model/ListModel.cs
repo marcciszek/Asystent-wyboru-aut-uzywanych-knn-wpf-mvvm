@@ -12,16 +12,8 @@ namespace Asystent_wyboru_aut_uzywanych.Model
     {
         public ObservableCollection<Car> Cars { get; set; } = new ObservableCollection<Car>();
 
-        #region konstruktory
-        public ListModel()
-        {
-            var cars = CarRepository.Get_all_cars();
-            foreach(var car in cars)
-            {
-                Cars.Add(car);
-            }
-        }
 
+        #region Metody
         public ObservableCollection<Car> Search_For_Cars(Car_Linguistic car_lin)
         {
             var cars = CarRepository.Search_For_Cars(car_lin);
@@ -31,6 +23,16 @@ namespace Asystent_wyboru_aut_uzywanych.Model
                 cars_collection.Add(car);
             }
             return cars_collection;
+        }
+        #endregion
+        #region konstruktory
+        public ListModel()
+        {
+            var cars = CarRepository.Get_all_cars();
+            foreach (var car in cars)
+            {
+                Cars.Add(car);
+            }
         }
         #endregion
     }

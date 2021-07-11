@@ -43,7 +43,7 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
             string select_conditions = "";
             if(this.vehicle_type == null && this.gearbox_type == null && this.fuel_type == null && this.damage == null && this.brand == null && this.model == null)
             {
-                select_conditions = ";";
+                select_conditions += ";";
             }
             if (this.vehicle_type != null)
             {
@@ -51,7 +51,7 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
             }
             if (this.gearbox_type != null)
             {
-                select_conditions += $" AND cars_linguistic.gearbox_type='{gearbox_type}'";
+                select_conditions += $" AND cars_linguistic.gearbox_type LIKE'{gearbox_type}'";
             }
             if (this.fuel_type != null)
             {
@@ -71,7 +71,7 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
             }
             if(this.vehicle_type != null || this.gearbox_type != null || this.fuel_type != null || this.damage != null || this.brand != null || this.model != null)
             {
-                select_conditions = ";";
+                select_conditions += ";";
             }
             return select_conditions;
         }

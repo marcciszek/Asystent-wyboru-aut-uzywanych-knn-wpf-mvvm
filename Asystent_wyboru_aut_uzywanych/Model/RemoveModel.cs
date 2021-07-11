@@ -12,10 +12,11 @@ namespace Asystent_wyboru_aut_uzywanych.Model
 
     class RemoveModel
     {
+        #region metody
         internal bool Remove_Car(Car selected_car, SecureString password, string login)
         {
             bool stan;
-            if(login == null)
+            if (login == null)
             {
                 if (password == null)
                 {
@@ -32,5 +33,6 @@ namespace Asystent_wyboru_aut_uzywanych.Model
             }
             return stan;
         }
+        #endregion
     }
 }

@@ -38,7 +38,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             }
         }
         #region liczbowe
-    private string price_min = "";
+        private string price_min = "";
         public string Price_Min
         {
             get
@@ -203,7 +203,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                     clear_form_button = new RelayCommand(
                         arg =>
                         {
-                            Clear_Form();
+                            Clear_Form_PredictVM();
                         }
                         ,//Dodac metode sprawdzajaca?
                         arg => true
@@ -212,7 +212,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 return clear_form_button;
             }
         }
-        private void Clear_Form()
+        private void Clear_Form_PredictVM()
         {
 
             Price_Min = "";

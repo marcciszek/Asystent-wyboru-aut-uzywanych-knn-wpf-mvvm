@@ -23,6 +23,14 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
             this.Mileage = Mileage;
             this.Age = Age;
         }
+        public Car_Numerical(int ID, int Price, int Power, int Mileage, int Age)
+        {
+            this.ID = ID;
+            this.Price = Price;
+            this.Power = Power;
+            this.Mileage = Mileage;
+            this.Age = Age;
+        }
         public Car_Numerical(MySqlDataReader reader)
         {
             this.ID = int.Parse(reader[0].ToString());

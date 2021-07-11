@@ -14,6 +14,7 @@ namespace Asystent_wyboru_aut_uzywanych.Model
     {
         private Algorythm KNN_Prediction = new Algorythm();
         ObservableCollection<Car> Cars { get; set; } = new ObservableCollection<Car>();
+        #region metody
         public ObservableCollection<Car> Search_For_Cars(Car_Linguistic car_lin, int price_min, int price_max)
         {
             var cars = CarRepository.Search_For_Cars_Prediction(car_lin, price_min, price_max);
@@ -29,11 +30,12 @@ namespace Asystent_wyboru_aut_uzywanych.Model
         {
             //cars - wszystkie pasujace auta
             List<Car_Numerical> cars_numerical;
-            //Pobiera wszystkie wartosci aut numerycznych
+            //Pobiera wszystkie wartosci aut numerycznych dla wszystkich wartosci lingwistycznych
             List<Car_Numerical> cars_db = CarsRepository.Get_All_Cars(new Car_Linguistic(null, null, null, null, null, null));
             //cars_numerical - wartosci liczbowe dla wszystkich pasujacych
             cars_numerical = Get_Numerical_Cars(cars);
             cars_numerical = KNN_Prediction.KNN(cars_numerical, cars_db, sample);
+            cars = KNNRepository.Get_Cars_By_ID(cars_numerical);
             return cars;
         }
 
@@ -47,6 +49,6 @@ namespace Asystent_wyboru_aut_uzywanych.Model
             
             return cars_numerical;
         }
-
+        #endregion
     }
 }

@@ -10,6 +10,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
     using DAL.Repozytoria;
     using DAL.Encje;
     using ViewModel.BaseClass;
+    using ViewModel.SharedMethods;
     using System.Collections.ObjectModel;
 
     class CarsViewModel : ViewModelBase
@@ -80,88 +81,6 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             }
         }
         #endregion
-        //Usunac parametry lingwistyczne
-        #region parametry publiczne lingwistycznie
-        private string vehicle_type;
-        public string Vehicle_type
-        {
-            get
-            {
-                return vehicle_type;
-            }
-            set
-            {
-                vehicle_type = value;
-                onPropertyChanged(nameof(Vehicle_type));
-            }
-        }
-        private string gearbox_type;
-        public string Gearbox_type
-        {
-            get
-            {
-                return gearbox_type;
-            }
-            set
-            {
-                gearbox_type = value;
-                onPropertyChanged(nameof(Gearbox_type));
-            }
-        }
-        private string fuel_type;
-        public string Fuel_type
-        {
-            get
-            {
-                return fuel_type;
-            }
-            set
-            {
-                fuel_type = value;
-                onPropertyChanged(nameof(Fuel_type));
-            }
-        }
-        private string brand;
-        public string Brand
-        {
-            get
-            {
-                return brand;
-            }
-            set
-            {
-                brand = value;
-                onPropertyChanged(nameof(Brand));
-            }
-        }
-        private string model;
-        public string Model
-        {
-            get
-            {
-                return model;
-            }
-            set
-            {
-                model = value;
-                onPropertyChanged(nameof(Model));
-            }
-        }
-        private string damage;
-        public string Damage
-        {
-            get
-            {
-                return damage;
-            }
-            set
-            {
-                damage = value;
-                onPropertyChanged(nameof(Damage));
-            }
-        }
-        #endregion
-        //===========================
         #region parametry usercontrol
         #region Elementy W Listach
         public string[] Damages
@@ -212,7 +131,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             set
             {
                 selected_brand = value;
-                Update_models_list(selected_brand);
+                models = ViewModelSharedMethods.Update_models_list(selected_brand, models);
                 onPropertyChanged(nameof(Selected_Brand));
             }
         }
@@ -297,61 +216,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         #endregion
         #region Metody
 
-        //Usunac stara metode dodajaca auta do bazy
-        private ICommand add_car = null;
-
-        public ICommand Add_car
-        {
-            get
-            {
-                if (add_car == null)
-                {
-                    add_car = new RelayCommand(
-                        arg =>
-                        {
-                            // Usunac sprawdzanie intow jak beda suwaki w UI
-                            try
-                            {
-                                int price = Int32.Parse(this.price);
-                                int power = Int32.Parse(this.power);
-                                int mileage = Int32.Parse(this.mileage);
-                                int age = Int32.Parse(this.age);
-                                var Car_num = new Car_Numerical(price, power, mileage, age);
-                                var Car_lin = new Car_Linguistic(vehicle_type, gearbox_type, fuel_type, brand, model, damage);
-                                if (carModel.Add_car(Car_num, Car_lin))
-                                {
-                                    //Dodac metode czyszczaca formularz
-                                    Clear_Form();
-                                    MessageBox.Show("Dodano auto do bazy");
-                                }
-                                else
-                                {
-                                    MessageBox.Show("Nie udało się dodać auta do bazy");
-                                }
-                            }
-                            catch (FormatException)
-                            {
-                                MessageBox.Show("Nie udało się dodać auta do bazy");
-                            }
-                        }
-                        ,//Dodac metode sprawdzajaca?
-                        arg => (Price != "")
-                               && (Power != "")
-                               && (Mileage != "")
-                               && (Age != "")
-                               && (Selected_Brand != null)
-                               && (Selected_Damage != null)
-                               && (Selected_Fuel != null)
-                               && (Selected_Gear != null)
-                               && (Selected_Model != null)
-                               && (Selected_Type != null)
-                        );
-                }
-                return add_car;
-            }
-        }
-        //================================
-        private void Clear_Form()
+        private void Clear_Form_CarsVM()
         {
             
             Price = "";
@@ -365,22 +230,6 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             Selected_Brand = null;
             Selected_Model = null;
             Selected_Damage = null;
-        }
-        private void Update_models_list(string brand)
-        {
-            if (models.Count != 0)
-            {
-                models.Clear();
-            }
-            if (selected_brand != null)
-            {
-                foreach (var model in carModel.brands[brand])
-                {
-                    models.Add(model);
-                }
-            }
-            
-
         }
         private ICommand add_car_control = null;
 
@@ -404,7 +253,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                                 if (carModel.Add_car(Car_num, Car_lin))
                                 {
                                     //Dodac metode czyszczaca formularz
-                                    Clear_Form();
+                                    Clear_Form_CarsVM();
                                     MessageBox.Show("Dodano auto do bazy");
                                 }
                                 else
@@ -444,7 +293,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                     clear_form_button = new RelayCommand(
                         arg =>
                         {
-                            Clear_Form();
+                            Clear_Form_CarsVM();
                         }
                         ,//Dodac metode sprawdzajaca?
                         arg => true

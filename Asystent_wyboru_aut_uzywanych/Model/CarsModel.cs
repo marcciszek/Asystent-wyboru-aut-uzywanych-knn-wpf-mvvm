@@ -86,11 +86,13 @@ namespace Asystent_wyboru_aut_uzywanych.Model
         public string[] damage = new string[] { "yes", "no" };
 
         #endregion
+        #region metody
         public bool Add_car(Car_Numerical car_num, Car_Linguistic car_lin)
         {
             bool stan;
             stan = CarsRepository.Add_car(car_num, car_lin);
             return stan;
         }
+        #endregion
     }
 }
