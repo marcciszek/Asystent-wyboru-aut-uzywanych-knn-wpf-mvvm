@@ -14,189 +14,213 @@
 
         <Style TargetType="TextBlock">
             <Setter Property="FontWeight" Value="Bold"/>
-            <Setter Property="HorizontalAlignment" Value="Center"/>
+            <Setter Property="Margin" Value="20,15,0,0"/>
             <Setter Property="VerticalAlignment" Value="Bottom"/>
+            <Setter Property="FontSize" Value="14"/>
         </Style>
 
         <Style TargetType="ComboBox">
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="5"/>
         </Style>
 
         <Style TargetType="TextBox">
-            <Setter Property="Margin" Value="10"/>
+            <Setter Property="Margin" Value="5"/>
+            <Setter Property="FontSize" Value="14"/>
+            <Setter Property="Padding" Value="5"/>
+            <Setter Property="VerticalContentAlignment" Value="Center"/>
         </Style>
 
         <Style TargetType="Button">
             <Setter Property="Margin" Value="10"/>
+            <Setter Property="Height" Value="40"/>
+        </Style>
+
+        <Style TargetType="StackPanel">
+            <Setter Property="Margin" Value="10,0,10,0"/>
+            <Setter Property="VerticalAlignment" Value="Center"/>
         </Style>
 
     </UserControl.Resources>
 
     <Grid Margin="0">
-        <Grid Margin="20">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
 
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="2*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="3*"/>
-                <RowDefinition Height="1*"/>
-                <RowDefinition Height="3*"/>
-            </Grid.RowDefinitions>
-            
-            <TextBlock Text="TYP NADWOZIA"
-                   Grid.Column="0"
-                   Grid.Row="3"/>
-            <ComboBox x:Name="ComboBoxType"
-                  Grid.Column="0"
-                  Grid.Row="4"
-                  ItemsSource="{Binding AvailableTypes,
-                                UpdateSourceTrigger=PropertyChanged,
-                                RelativeSource={RelativeSource 
-                                Mode=FindAncestor,
-                                AncestorType={x:Type UserControl}}}"
-                  SelectedItem="{Binding Type,
-                                UpdateSourceTrigger=PropertyChanged,
-                                RelativeSource={RelativeSource Mode=FindAncestor,
-                                AncestorType={x:Type UserControl}}}"/>
-            
-            <TextBlock Text="SKRZYNIA"
-                   Grid.Column="1"
-                   Grid.Row="3"/>
-            <ComboBox x:Name="ComboBoxGear"
-                  Grid.Column="1"
-                  Grid.Row="4"
-                  ItemsSource="{Binding AvailableGears,
-                                UpdateSourceTrigger=PropertyChanged,
-                                RelativeSource={RelativeSource 
-                                Mode=FindAncestor,
-                                AncestorType={x:Type UserControl}}}"
-                  SelectedItem="{Binding Gear,
-                                UpdateSourceTrigger=PropertyChanged,
-                                RelativeSource={RelativeSource Mode=FindAncestor,
-                                AncestorType={x:Type UserControl}}}"/>
-            
-            <TextBlock Text="PALIWO"
-                   Grid.Column="0"
-                   Grid.Row="5"/>
-            <ComboBox x:Name="ComboBoxFuel"
-                  Grid.Column="0"
-                  Grid.Row="6"
-                  ItemsSource="{Binding AvailableFuels,
-                                UpdateSourceTrigger=PropertyChanged,
-                                RelativeSource={RelativeSource 
-                                Mode=FindAncestor,
-                                AncestorType={x:Type UserControl}}}"
-                  SelectedItem="{Binding Fuel,
-                                UpdateSourceTrigger=PropertyChanged,
-                                RelativeSource={RelativeSource Mode=FindAncestor,
-                                AncestorType={x:Type UserControl}}}"/>
-            
-            <TextBlock Text="USZKODZONY"
-                   Grid.Column="1"
-                   Grid.Row="5"/>
-            <ComboBox x:Name="ComboBoxDamaged"
-                  Grid.Column="1"
-                  Grid.Row="6"
-                  ItemsSource="{Binding AvailableDamages,
-                                UpdateSourceTrigger=PropertyChanged,
-                                RelativeSource={RelativeSource 
-                                Mode=FindAncestor,
-                                AncestorType={x:Type UserControl}}}"
-                  SelectedItem="{Binding Damage,
-                                UpdateSourceTrigger=PropertyChanged,
-                                RelativeSource={RelativeSource Mode=FindAncestor,
-                                AncestorType={x:Type UserControl}}}"/>
+        <DockPanel LastChildFill="True">
 
-            <TextBlock Text="CENA MINIMALNA"
-                       Grid.Column="1"
-                       Grid.Row="7"/>
-            <TextBox x:Name="TextBoxMinPrice"
-                     Grid.Column="1"
-                     Grid.Row="8"
-                     PreviewTextInput="NumberValidationTextBox"
-                     PreviewKeyDown="SpacePreventTextBox"
-                     Text="{Binding PriceMin,
-                                    UpdateSourceTrigger=PropertyChanged,
-                                    RelativeSource={RelativeSource Mode=FindAncestor,
-                                    AncestorType={x:Type UserControl}}}"/>
+            <Grid DockPanel.Dock="Bottom"
+                  Margin="10,10,10,20">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
 
-            <TextBlock Text="CENA MAKSYMALNA"
-                       Grid.Column="2"
-                       Grid.Row="7"/>
-            <TextBox x:Name="TextBoxMaxPrice"
-                     Grid.Column="2"
-                     Grid.Row="8"
-                     PreviewTextInput="NumberValidationTextBox"
-                     PreviewKeyDown="SpacePreventTextBox"
-                     Text="{Binding PriceMax,
-                                    UpdateSourceTrigger=PropertyChanged,
-                                    RelativeSource={RelativeSource Mode=FindAncestor,
-                                    AncestorType={x:Type UserControl}}}"/>
+                <Button x:Name="ButtonPredictCar"
+                        Content="PREDYKCJA"
+                        Grid.Column="1"
+                        Command="{Binding Predict_Button}"/>
 
-            <TextBlock Text="MOC"
-                       Grid.Column="3"
-                       Grid.Row="3"/>
-            <TextBox x:Name="TextBoxPower"
-                     Grid.Column="3"
-                     Grid.Row="4"
-                     PreviewTextInput="NumberValidationTextBox"
-                     PreviewKeyDown="SpacePreventTextBox"
-                     Text="{Binding Power,
-                                    UpdateSourceTrigger=PropertyChanged,
-                                    RelativeSource={RelativeSource Mode=FindAncestor,
-                                    AncestorType={x:Type UserControl}}}"/>
+                <Button x:Name="ButtonClear"
+                        Content="WYCZYŚĆ"
+                        Grid.Column="2"
+                        Command="{Binding predictVM.Clear_Form_Button}"/>
+            </Grid>
 
-            <TextBlock Text="PRZEBIEG"
-                       Grid.Column="2"
-                       Grid.Row="3"/>
-            <TextBox x:Name="TextBoxMileage"
-                     Grid.Column="2"
-                     Grid.Row="4"
-                     PreviewTextInput="NumberValidationTextBox"
-                     PreviewKeyDown="SpacePreventTextBox"
-                     Text="{Binding Mileage,
-                                    UpdateSourceTrigger=PropertyChanged,
-                                    RelativeSource={RelativeSource Mode=FindAncestor,
-                                    AncestorType={x:Type UserControl}}}"/>
+            <Grid Margin="20"
+                  DockPanel.Dock="Bottom">
+                
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
 
-            <TextBlock Text="ROK PRODUKCJI"
-                       Grid.Column="3"
-                       Grid.Row="5"/>
-            <TextBox x:Name="TextBoxCarYear"
-                     Grid.Column="3"
-                     Grid.Row="6"
-                     PreviewTextInput="NumberValidationTextBox"
-                     PreviewKeyDown="SpacePreventTextBox"
-                     Text="{Binding CarYear,
-                                    UpdateSourceTrigger=PropertyChanged,
-                                    RelativeSource={RelativeSource Mode=FindAncestor,
-                                    AncestorType={x:Type UserControl}}}"/>
+                <StackPanel Grid.Column="0">
 
-            <Button x:Name="ButtonPredictCar"
-                Content="PREDYKCJA"
-                Grid.Column="1"
-                Grid.Row="12"
-                Command="{Binding Predict_Button}"/>
+                    <TextBlock Text="TYP NADWOZIA"
+                               Grid.Column="0"
+                               Grid.Row="1"/>
+                    <ComboBox x:Name="ComboBoxType"
+                              Grid.Column="0"
+                              Grid.Row="2"
+                              ItemsSource="{Binding AvailableTypes,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            RelativeSource={RelativeSource 
+                                            Mode=FindAncestor,
+                                            AncestorType={x:Type UserControl}}}"
+                              SelectedItem="{Binding Type,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            RelativeSource={RelativeSource Mode=FindAncestor,
+                                            AncestorType={x:Type UserControl}}}"/>
 
-            <Button x:Name="ButtonClear"
-                Content="WYCZYŚĆ"
-                Grid.Column="2"
-                Grid.Row="12"
-                Command="{Binding predictVM.Clear_Form_Button}"/>
-        </Grid>
+                    <TextBlock Text="SKRZYNIA"
+                               Grid.Column="0"
+                               Grid.Row="3"/>
+                    <ComboBox x:Name="ComboBoxGear"
+                              Grid.Column="0"
+                              Grid.Row="4"
+                              ItemsSource="{Binding AvailableGears,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            RelativeSource={RelativeSource 
+                                            Mode=FindAncestor,
+                                            AncestorType={x:Type UserControl}}}"
+                              SelectedItem="{Binding Gear,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            RelativeSource={RelativeSource Mode=FindAncestor,
+                                            AncestorType={x:Type UserControl}}}"/>
+
+                    <TextBlock Text="PALIWO"
+                               Grid.Column="0"
+                               Grid.Row="5"/>
+                    <ComboBox x:Name="ComboBoxFuel"
+                              Grid.Column="0"
+                              Grid.Row="6"
+                              ItemsSource="{Binding AvailableFuels,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            RelativeSource={RelativeSource 
+                                            Mode=FindAncestor,
+                                            AncestorType={x:Type UserControl}}}"
+                              SelectedItem="{Binding Fuel,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            RelativeSource={RelativeSource Mode=FindAncestor,
+                                            AncestorType={x:Type UserControl}}}"/>
+
+                    <TextBlock Text="USZKODZONY"
+                               Grid.Column="0"
+                               Grid.Row="7"/>
+                    <ComboBox x:Name="ComboBoxDamaged"
+                              Grid.Column="0"
+                              Grid.Row="8"
+                              ItemsSource="{Binding AvailableDamages,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            RelativeSource={RelativeSource 
+                                            Mode=FindAncestor,
+                                            AncestorType={x:Type UserControl}}}"
+                              SelectedItem="{Binding Damage,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            RelativeSource={RelativeSource Mode=FindAncestor,
+                                            AncestorType={x:Type UserControl}}}"/>
+
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="1">
+
+                    <TextBlock Text="MOC"
+                               Grid.Column="1"
+                               Grid.Row="1"/>
+                    <TextBox x:Name="TextBoxPower"
+                             Grid.Column="1"
+                             Grid.Row="2"
+                             PreviewTextInput="NumberValidationTextBox"
+                             PreviewKeyDown="SpacePreventTextBox"
+                             Text="{Binding Power,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            RelativeSource={RelativeSource Mode=FindAncestor,
+                                            AncestorType={x:Type UserControl}}}"/>
+
+                    <TextBlock Text="PRZEBIEG"
+                               Grid.Column="1"
+                               Grid.Row="3"/>
+                    <TextBox x:Name="TextBoxMileage"
+                             Grid.Column="1"
+                             Grid.Row="4"
+                             PreviewTextInput="NumberValidationTextBox"
+                             PreviewKeyDown="SpacePreventTextBox"
+                             Text="{Binding Mileage,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            RelativeSource={RelativeSource Mode=FindAncestor,
+                                            AncestorType={x:Type UserControl}}}"/>
+
+                    <TextBlock Text="ROK PRODUKCJI"
+                               Grid.Column="1"
+                               Grid.Row="5"/>
+                    <TextBox x:Name="TextBoxCarYear"
+                             Grid.Column="1"
+                             Grid.Row="6"
+                             PreviewTextInput="NumberValidationTextBox"
+                             PreviewKeyDown="SpacePreventTextBox"
+                             Text="{Binding CarYear,
+                                            UpdateSourceTrigger=PropertyChanged,
+                                            RelativeSource={RelativeSource Mode=FindAncestor,
+                                            AncestorType={x:Type UserControl}}}"/>
+
+                </StackPanel>
+
+                <StackPanel Grid.Column="2">
+
+                    <TextBlock Text="CENA MINIMALNA"
+                                   Grid.Column="2"
+                                   Grid.Row="3"/>
+                    <TextBox x:Name="TextBoxMinPrice"
+                                 Grid.Column="2"
+                                 Grid.Row="4"
+                                 PreviewTextInput="NumberValidationTextBox"
+                                 PreviewKeyDown="SpacePreventTextBox"
+                                 Text="{Binding PriceMin,
+                                                UpdateSourceTrigger=PropertyChanged,
+                                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                                AncestorType={x:Type UserControl}}}"/>
+
+                    <TextBlock Text="CENA MAKSYMALNA"
+                                   Grid.Column="2"
+                                   Grid.Row="5"/>
+                    <TextBox x:Name="TextBoxMaxPrice"
+                                 Grid.Column="2"
+                                 Grid.Row="6"
+                                 PreviewTextInput="NumberValidationTextBox"
+                                 PreviewKeyDown="SpacePreventTextBox"
+                                 Text="{Binding PriceMax,
+                                                UpdateSourceTrigger=PropertyChanged,
+                                                RelativeSource={RelativeSource Mode=FindAncestor,
+                                                AncestorType={x:Type UserControl}}}"/>
+
+                </StackPanel>
+                
+            </Grid>
+        </DockPanel>
     </Grid>
 </UserControl>

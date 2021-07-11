@@ -188,6 +188,12 @@ namespace Asystent_wyboru_aut_uzywanych.View
         {
             System.Text.RegularExpressions.Regex regex = new System.Text.RegularExpressions.Regex("[^0-9]+");
             e.Handled = regex.IsMatch(e.Text);
+
+            string text = ((TextBox)sender).Text;
+            if (text == "0")
+            {
+                e.Handled = true;
+            }
         }
         private void SpacePreventTextBox(object sender, KeyEventArgs e)
         {
