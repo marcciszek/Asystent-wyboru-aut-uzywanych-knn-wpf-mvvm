@@ -34,6 +34,7 @@ namespace Asystent_wyboru_aut_uzywanych.Model
             //cars_numerical - wartosci liczbowe dla wszystkich pasujacych
             cars_numerical = Get_Numerical_Cars(cars);
             cars_numerical = KNN_Prediction.KNN(cars_numerical, cars_db, sample);
+            cars = KNNRepository.Get_Cars_By_ID(cars_numerical);
             return cars;
         }
 

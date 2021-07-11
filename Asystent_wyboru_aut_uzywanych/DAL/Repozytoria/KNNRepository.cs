@@ -6,6 +6,7 @@ using MySql.Data.MySqlClient;
 namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
 {
     using DAL.Encje;
+    using System.Collections.ObjectModel;
     using System.Windows;
 
     class KNNRepository
@@ -20,6 +21,16 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
         private const string SELECT_MIN_POWER = "Select Min(Power) FROM Cars_numerical";
         private const string SELECT_MIN_MILEAGE = "Select Min(Mileage) FROM Cars_numerical";
         private const string SELECT_MIN_YEAR = "Select Min(year_of_production) FROM Cars_numerical";
+
+        private const string SELECT_FIRST_CARS = "SELECT cars.ID_car, cars_linguistic.brand, cars_linguistic.model,";
+        private const string SELECT_SECOND_LINE = "cars_linguistic.body_type, cars_linguistic.fuel_type, cars_numerical.year_of_production,";
+        private const string SELECT_THIRD_LINE = "cars_numerical.price, cars_numerical.power, cars_numerical.mileage,";
+        private const string SELECT_FOURTH_LINE = "cars_linguistic.gearbox_type, cars_linguistic.repaired";
+        private const string SELECT_CONDITION = "FROM cars_numerical, cars_linguistic, cars WHERE cars.ID_car_lin = cars_linguistic.id_car_lin";
+        private const string SELECT_CONDITION_SECOND_LINE = "AND cars.ID_car_num = cars_numerical.ID_car_num";
+        private const string SELECT_CONDITION_LAST_LINE = "AND cars.ID_car_num = ";
+
+        private static string SELECT_CARS_BY_ID = $"{SELECT_FIRST_CARS} {SELECT_SECOND_LINE} {SELECT_THIRD_LINE} {SELECT_FOURTH_LINE} {SELECT_CONDITION} {SELECT_CONDITION_SECOND_LINE} {SELECT_CONDITION_LAST_LINE}";
         #endregion
         #region METODY
         internal static Car_Numerical Find_Max_Values()
@@ -52,7 +63,6 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
             }
             return car;
         }
-
         internal static Car_Numerical Find_Min_Values()
         {
             Car_Numerical car = new Car_Numerical(0, 0, 0, 0);
@@ -82,6 +92,32 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
                 }
             }
             return car;
+        }
+        internal static ObservableCollection<Car> Get_Cars_By_ID(List<Car_Numerical> cars_numerical)
+        {
+            ObservableCollection<Car> cars = new ObservableCollection<Car>();
+            using (var connection = DBConnection.Instance.Connection)
+            {
+                foreach (var car in cars_numerical)
+                {
+                    MySqlCommand command_get_by_id = new MySqlCommand($"{SELECT_CARS_BY_ID} {car.ID}", connection);
+                    try
+                    {
+                        connection.Open();
+                        var reader = command_get_by_id.ExecuteReader();
+                        while (reader.Read())
+                        {
+                            cars.Add(new Car(reader));
+                        };
+                        connection.Close();
+                    }
+                    catch (Exception)
+                    {
+                        MessageBox.Show("error connecting to db");
+                    }
+                }
+            }
+            return cars;
         }
         #endregion
     }

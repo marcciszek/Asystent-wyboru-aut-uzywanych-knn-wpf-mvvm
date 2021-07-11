@@ -72,7 +72,7 @@ namespace Asystent_wyboru_aut_uzywanych.Model.Prediction
 
             foreach (var car in cars)
             {
-                cars_unnorm.Add(new Car_Numerical(Convert.ToInt32(car.Price), Convert.ToInt32(car.Power),
+                cars_unnorm.Add(new Car_Numerical(car.ID, Convert.ToInt32(car.Price), Convert.ToInt32(car.Power),
                                                  Convert.ToInt32(car.Mileage), Convert.ToInt32(car.Age)));
             }
             return cars_unnorm;

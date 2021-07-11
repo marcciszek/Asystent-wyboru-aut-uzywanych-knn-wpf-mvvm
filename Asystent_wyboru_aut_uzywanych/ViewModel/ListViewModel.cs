@@ -194,6 +194,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                     search_for_cars = new RelayCommand(
                         arg =>
                         {
+                            System.Windows.MessageBox.Show(":");
                             var Car_lin = new Car_Linguistic(Selected_Type, Selected_Gear, Selected_Fuel, Selected_Brand, Selected_Model, Selected_Damage);
                             Cars = listModel.Search_For_Cars(Car_lin);
                         },
