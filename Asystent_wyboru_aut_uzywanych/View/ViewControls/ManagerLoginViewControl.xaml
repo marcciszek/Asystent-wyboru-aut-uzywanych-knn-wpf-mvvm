@@ -97,7 +97,7 @@
                             Grid.Column="1"
                             DockPanel.Dock="Right"
                             Content="ANULUJ"
-                            Command="{Binding Close_Button}"/>
+                            Command="{Binding Close_Button_login}"/>
                 </StackPanel>
             </Grid>
         </DockPanel>

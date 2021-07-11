@@ -18,16 +18,25 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
     class MainViewModel : ViewModelBase
     {
         #region Definicje
+        #region ViewModel
         public CarsViewModel carsVM { get; set; }
         public ListViewModel listVM { get; set; }
         public RemoveViewModel removeVM { get; set; }
         public PredictCarsViewModel predictVM { get; set; }
+        public PredictHistoryViewModel historyVM { get; set; }
+        #endregion
+        #region Model
         private CarsModel carModel = new CarsModel();
         private ListModel listModel = new ListModel();
         private RemoveModel removeModel = new RemoveModel();
         private PredictModel predictModel = new PredictModel();
+        private HistoryModel historyModel = new HistoryModel();
+        #endregion
+        #region Okna pochodne
         LoginPage newLoginPage;
         PredictResultPage newPredictResultPage;
+        PredictHistoryDetailsPage newPredictHistoryDetailsPage;
+        #endregion
         #endregion
 
         #region Statusbar
@@ -104,14 +113,14 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             newLoginPage = new LoginPage(this);
             newLoginPage.Show();
         }
-        private ICommand close_button = null;
-        public ICommand Close_Button
+        private ICommand close_button_login = null;
+        public ICommand Close_Button_login
         {
             get
             {
-                if(close_button == null)
+                if(close_button_login == null)
                 {
-                    close_button = new RelayCommand(
+                    close_button_login = new RelayCommand(
                         arg =>
                         {
                             newLoginPage.Close();
@@ -119,7 +128,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                         arg => true
                         );
                 }
-                return close_button;
+                return close_button_login;
             }
         }
         private ICommand remove_button = null;
@@ -171,7 +180,25 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
               return predict_button;
             }
         }
-        
+
+        private ICommand close_button_predict = null;
+        public ICommand Close_Button_predict
+        {
+            get
+            {
+                if (close_button_predict == null)
+                {
+                    close_button_predict = new RelayCommand(
+                        arg =>
+                        {
+                            newPredictResultPage.Close();
+                        },
+                        arg => true
+                        );
+                }
+                return close_button_predict;
+            }
+        }
 
         private void Predict_Window()
         {
@@ -179,7 +206,51 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             newPredictResultPage.Show();
         }
         #endregion
-        
+
+        #region History Details Window
+        private ICommand details_button = null;
+        public ICommand Details_Button
+        {
+            get
+            {
+                if(details_button == null)
+                {
+                    details_button = new RelayCommand(
+                        arg =>
+                        {
+                            Details_Window();
+                        },
+                        arg => (historyVM.Selected_Result != null) ? true : false
+                        );
+                }
+                return details_button;
+            }
+        }
+        private ICommand close_button_details = null;
+        public ICommand Close_Button_details
+        {
+            get
+            {
+                if (close_button_details == null)
+                {
+                    close_button_details = new RelayCommand(
+                        arg =>
+                        {
+                            newPredictHistoryDetailsPage.Close();
+                        },
+                        arg => true
+                        );
+                }
+                return close_button_details;
+            }
+        }
+        private void Details_Window()
+        {
+            newPredictHistoryDetailsPage = new PredictHistoryDetailsPage(this);
+            newPredictHistoryDetailsPage.Show();
+        }
+        #endregion
+
         #region Konstruktory
         public MainViewModel()
         {
@@ -187,6 +258,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             listVM = new ListViewModel(carModel, listModel);
             predictVM = new PredictCarsViewModel(carModel, listModel, predictModel);
             removeVM = new RemoveViewModel(carModel, listModel, removeModel);
+            historyVM = new PredictHistoryViewModel(carModel, listModel, predictModel, historyModel);
         }
         #endregion
     }
