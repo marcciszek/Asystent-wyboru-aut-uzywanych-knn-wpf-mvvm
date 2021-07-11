@@ -48,7 +48,34 @@
                                 RelativeSource={RelativeSource 
                                 Mode=FindAncestor,
                                 AncestorType={x:Type UserControl}}}">
-                
+                <ListView.View>
+                    <GridView>
+                        <GridView.Columns>
+                            <GridViewColumn Width="150" x:Name="column_ID">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding ID}" FontSize="14"/>
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Data wyszukiwania" Width="{Binding ActualWidth, ElementName=column_ID}">
+                                    </TextBlock>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+
+                            <GridViewColumn Width="500" x:Name="column_brand">
+                                <GridViewColumn.CellTemplate>
+                                    <DataTemplate>
+                                        <TextBlock Text="{Binding Car}" />
+                                    </DataTemplate>
+                                </GridViewColumn.CellTemplate>
+                                <GridViewColumn.Header>
+                                    <TextBlock Text="Próbka" Width="{Binding ActualWidth, ElementName=column_sample}"/>
+                                </GridViewColumn.Header>
+                            </GridViewColumn>
+                        </GridView.Columns>
+                    </GridView>
+                </ListView.View>
             </ListView>
 
         </DockPanel>

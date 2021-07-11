@@ -80,6 +80,20 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Encje
             this.damage = lin.damage;
         }
 
+        public Car(int ID, int Price, int Price_max, int Power, int Mileage, int Age, string vehicle_type, string gearbox_type, string fuel_type, string damage)
+        {
+            this.Price = Price;
+            this.Price_Max = Price_max;
+            this.Power = Power;
+            this.Mileage = Mileage;
+            this.Age = Age;
+            this.vehicle_type = vehicle_type;
+            this.gearbox_type = gearbox_type;
+            this.fuel_type = fuel_type;
+            this.brand = brand;
+            this.model = model;
+            this.damage = damage;
+        }
         public string ToWrite()
         {
             return $"( {this.vehicle_type}, {this.fuel_type}, {this.Age}, {this.Price}, {this.Price_Max}, {this.Power}, {this.Mileage}, {this.gearbox_type}, {this.damage} )";

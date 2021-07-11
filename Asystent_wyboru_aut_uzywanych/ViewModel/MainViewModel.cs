@@ -22,10 +22,14 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         public ListViewModel listVM { get; set; }
         public RemoveViewModel removeVM { get; set; }
         public PredictCarsViewModel predictVM { get; set; }
+        public PredictHistoryViewModel historyVM { get; set; }
+
         private CarsModel carModel = new CarsModel();
         private ListModel listModel = new ListModel();
         private RemoveModel removeModel = new RemoveModel();
         private PredictModel predictModel = new PredictModel();
+        private HistoryModel historyModel = new HistoryModel();
+
         LoginPage newLoginPage;
         PredictResultPage newPredictResultPage;
         #endregion
@@ -187,6 +191,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             listVM = new ListViewModel(carModel, listModel);
             predictVM = new PredictCarsViewModel(carModel, listModel, predictModel);
             removeVM = new RemoveViewModel(carModel, listModel, removeModel);
+            historyVM = new PredictHistoryViewModel(carModel, listModel, predictModel, historyModel);
         }
         #endregion
     }

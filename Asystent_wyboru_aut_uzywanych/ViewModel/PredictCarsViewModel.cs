@@ -13,6 +13,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
     using System.Collections.ObjectModel;
     using System.Xml.Serialization;
     using System.IO;
+    using Model.History;
 
     class PredictCarsViewModel : ViewModelBase
     {
@@ -242,40 +243,8 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 Car_Numerical sample = new Car_Numerical(price_min, power, mileage, age);
                 Cars = predictModel.Search_For_Cars(car_lin, price_min, price_max);
                 Cars = predictModel.Predict(Cars, sample);
-
-                //OSOBNA KLASA DO OBSLUGI PLIKOW?
-                //NP. Model/FileHandling
-                //Zapis wyniku
-                string date = DateTime.Now.ToString(@"dd\-MM\-yyyy H\.mm");
-                MessageBox.Show(date);
-                XmlSerializer results_history = new XmlSerializer(typeof(ObservableCollection<Car>));
-                try
-                {
-                    using (StreamWriter writer = new StreamWriter($"results/xmls/result_{date}.xml"))
-                    {
-                        results_history.Serialize(writer, Cars);
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Błąd zapisu do pliku");
-                }
-                try
-                {
-                    Car car_sample = new Car(car_lin, sample, price_max);
-                    using (FileStream fs = new FileStream("results/results_history.txt", FileMode.Append, FileAccess.Write))
-                    {
-                        using(StreamWriter writer = new StreamWriter(fs))
-                        {
-                            writer.WriteLine($"{date} {car_sample.ToWrite()}");
-                        }
-                    }
-                }
-                catch (Exception)
-                {
-                    MessageBox.Show("Błąd zapisu do pliku");
-                }
-
+                Car car_sample = new Car(car_lin, sample, price_max);
+                FileHandling.Write_History_Files(Cars, car_sample);
             }
             catch (Exception)
             {

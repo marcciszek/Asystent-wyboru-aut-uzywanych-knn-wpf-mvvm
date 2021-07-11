@@ -14,6 +14,7 @@ using System.Windows.Shapes;
 
 namespace Asystent_wyboru_aut_uzywanych.View
 {
+    using Model.History;
     /// <summary>
     /// Logika interakcji dla klasy PredictCarHistoryViewControl.xaml
     /// </summary>
@@ -25,9 +26,9 @@ namespace Asystent_wyboru_aut_uzywanych.View
         }
 
         //=========================================================================
-        public ObservableCollection<Object> ListViewCarsHistoryCollection
+        internal ObservableCollection<Sample> ListViewCarsHistoryCollection
         {
-            get { return (ObservableCollection<Object>)GetValue(ListViewCarsHistoryCollectionProperty); }
+            get { return (ObservableCollection<Sample>)GetValue(ListViewCarsHistoryCollectionProperty); }
 
             set { SetValue(ListViewCarsHistoryCollectionProperty, value); }
         }
@@ -35,12 +36,12 @@ namespace Asystent_wyboru_aut_uzywanych.View
         public static readonly DependencyProperty ListViewCarsHistoryCollectionProperty =
             DependencyProperty.Register(
                 nameof(ListViewCarsHistoryCollection),
-                typeof(ObservableCollection<Object>),
+                typeof(ObservableCollection<Sample>),
                 typeof(PredictCarHistoryViewControl));
         //=========================================================================
-        public Object ListViewSelectedHistoryItem
+        internal Sample ListViewSelectedHistoryItem
         {
-            get { return (Object)GetValue(ListViewSelectedHistoryItemProperty); }
+            get { return (Sample)GetValue(ListViewSelectedHistoryItemProperty); }
 
             set { SetValue(ListViewSelectedHistoryItemProperty, value); }
         }
@@ -48,7 +49,7 @@ namespace Asystent_wyboru_aut_uzywanych.View
         public static readonly DependencyProperty ListViewSelectedHistoryItemProperty =
             DependencyProperty.Register(
                 nameof(ListViewSelectedHistoryItem),
-                typeof(Object),
+                typeof(Sample),
                 typeof(PredictCarHistoryViewControl));
         //=========================================================================
     }
