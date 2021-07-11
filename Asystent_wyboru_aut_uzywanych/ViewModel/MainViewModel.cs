@@ -28,7 +28,9 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         private PredictModel predictModel = new PredictModel();
         LoginPage newLoginPage;
         PredictResultPage newPredictResultPage;
-        
+        #endregion
+
+        #region Statusbar
         private string statusString;
         public string StatusString
         {
@@ -56,9 +58,29 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 onPropertyChanged(nameof(statusLevel));
             }
         }
+        //Do usuniecia (?)
+        private ICommand test_add = null;
+        public ICommand Test_add
+        {
+            get
+            {
+                if (test_add == null)
+                {
+                    test_add = new RelayCommand(
+                        arg =>
+                        {
+                            StatusLevel += 1;
+                            StatusString += "1";
+                        },
+                        arg => true
+                        );
+                }
+                return test_add;
+            }
+        }
         #endregion
 
-        #region Login Window
+        #region Login Child Window
         private ICommand login_button = null;
         public ICommand Login_Button
         {
@@ -129,7 +151,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         }
         #endregion
         
-        #region Predict Window
+        #region Predict Child Window
         private ICommand predict_button = null;
         public ICommand Predict_Button
         {
@@ -149,25 +171,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
               return predict_button;
             }
         }
-        private ICommand test_add = null;
-        public ICommand Test_add
-        {
-            get
-            {
-                if (test_add == null)
-                {
-                    test_add = new RelayCommand(
-                        arg =>
-                        {
-                            StatusLevel += 1;
-                            StatusString += "1";
-                        },
-                        arg => true
-                        );
-                }
-                return test_add;
-            }
-        }
+        
 
         private void Predict_Window()
         {

@@ -9,6 +9,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
     using DAL.Encje;
     using BaseClass;
     using System.Windows.Input;
+    using ViewModel.SharedMethods;
 
     class ListViewModel: ViewModelBase
     {
@@ -82,7 +83,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             set
             {
                 selected_brand = value;
-                Update_models_list(selected_brand);
+                models = ViewModelSharedMethods.Update_models_list(selected_brand, models);
                 onPropertyChanged(nameof(Selected_Brand));
             }
         }
@@ -166,24 +167,6 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         }
         #endregion
         #region metody
-        private ICommand load_cars = null;
-        public ICommand Load_Cars
-        {
-            get
-            {
-                if(load_cars == null)
-                {
-                    load_cars = new RelayCommand(
-                        arg =>
-                        {
-                            Cars = listModel.Cars;
-                        },
-                        arg => true
-                        );
-                }
-                return load_cars;
-            }
-        }
         private ICommand search_for_cars = null;
         public ICommand Search_For_Cars
         {
@@ -194,7 +177,6 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                     search_for_cars = new RelayCommand(
                         arg =>
                         {
-                            System.Windows.MessageBox.Show(":");
                             var Car_lin = new Car_Linguistic(Selected_Type, Selected_Gear, Selected_Fuel, Selected_Brand, Selected_Model, Selected_Damage);
                             Cars = listModel.Search_For_Cars(Car_lin);
                         },
@@ -214,7 +196,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                     clear_form_button = new RelayCommand(
                         arg =>
                         {
-                            Clear_Form();
+                            Clear_Form_ListVM();
                             var Car_lin = new Car_Linguistic(Selected_Type, Selected_Gear, Selected_Fuel, Selected_Brand, Selected_Model, Selected_Damage);
                             Cars = listModel.Search_For_Cars(Car_lin);
                         }
@@ -225,21 +207,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 return clear_form_button;
             }
         }
-        private void Update_models_list(string brand)
-        {
-            if (models.Count != 0)
-            {
-                models.Clear();
-            }
-            if (selected_brand != null)
-            {
-                foreach (var model in carModel.brands[brand])
-                {
-                    models.Add(model);
-                }
-            }
-        }
-        private void Clear_Form()
+        private void Clear_Form_ListVM()
         {
             Selected_Type = null;
             Selected_Gear = null;
