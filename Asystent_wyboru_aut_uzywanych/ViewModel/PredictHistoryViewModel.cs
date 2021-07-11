@@ -32,7 +32,34 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 onPropertyChanged(nameof(Search_History));
             }
         }
+        private ObservableCollection<Car> result_details = new ObservableCollection<Car>();
+        public ObservableCollection<Car> Result_Details
+        {
+            get
+            {
+                return result_details;
+            }
+            set
+            {
+                result_details = value;
+                onPropertyChanged(nameof(Result_Details));
+            }
+        }
+        private Sample selected_result = null;
 
+        public Sample Selected_Result
+        {
+            get
+            {
+                return selected_result;
+            }
+            set
+            {
+                selected_result = value;
+                result_details = FileHandling.Read_Result(selected_result);
+                onPropertyChanged(nameof(Selected_Result));
+            }
+        }
         #endregion
 
         #region metody

@@ -32,7 +32,7 @@
                 <Button DockPanel.Dock="Left"
                         x:Name="ButtonCancel"
                         Content="ANULUJ"
-                        Command=""/>
+                        Command="{Binding Close_Button_details}"/>
                 
             </DockPanel>
 

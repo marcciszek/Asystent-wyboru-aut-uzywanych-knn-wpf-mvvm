@@ -107,7 +107,7 @@
                 <TabItem x:Name="Predict_cars_history_control" Header="Historia wyszukiwań użytkownika">
                     <view:PredictCarHistoryViewControl x:Name="Predict_History_control"
                         ListViewCarsHistoryCollection="{Binding historyVM.Search_History}"
-                        ListViewSelectedHistoryItem="{Binding}"
+                        ListViewSelectedHistoryItem="{Binding historyVM.Selected_Result, Mode=TwoWay}"
                     />
                 </TabItem>
             </TabControl>

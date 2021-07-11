@@ -73,5 +73,15 @@ namespace Asystent_wyboru_aut_uzywanych.Model.History
             }
             return Search_history;
         }
+        public static ObservableCollection<Car> Read_Result(Sample selected_result)
+        {
+            ObservableCollection<Car> cars = new ObservableCollection<Car>();
+            XmlSerializer results_history = new XmlSerializer(typeof(ObservableCollection<Car>));
+            using(StreamReader reader = new StreamReader($"results/xmls/result_{selected_result.ID}.xml"))
+            {
+                cars = results_history.Deserialize(reader) as ObservableCollection<Car>;
+            }
+            return cars;
+        }
     }
 }

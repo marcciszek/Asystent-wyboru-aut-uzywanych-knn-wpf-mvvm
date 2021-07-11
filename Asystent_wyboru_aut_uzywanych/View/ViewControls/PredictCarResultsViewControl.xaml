@@ -33,7 +33,7 @@
                 <Button DockPanel.Dock="Left"
                         x:Name="ButtonCancel"
                         Content="ANULUJ"
-                        Command=""/>
+                        Command="{Binding Close_Button_predict}"/>
                 <Button DockPanel.Dock="Right"
                         x:Name="ButtonTransaction"
                         Content="TRANSAKCJA"

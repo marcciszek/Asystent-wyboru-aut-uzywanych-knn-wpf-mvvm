@@ -33,7 +33,7 @@
                 <Button DockPanel.Dock="Right"
                         x:Name="ButtonDetails"
                         Content="SZCZEGÓŁY"
-                        Command=""/>
+                        Command="{Binding Details_Button}"/>
             </DockPanel>
 
             <ListView x:Name="ListViewCarResults"
