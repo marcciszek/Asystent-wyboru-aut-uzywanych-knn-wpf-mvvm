@@ -1,0 +1,335 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="Asystent_wyboru_aut_uzywanych.Properties.Settings" Collapsed="true">
+    <Position X="23" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAABACAAAIAAAAAAFAAiAAAAAAAAAAAI=</HashCode>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.DAL.Encje.Car" Collapsed="true">
+    <Position X="26.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAMAAAAAAQAAiAAAAMAAAAQAAABAAAABAEAAAAAIAAA=</HashCode>
+      <FileName>DAL\Encje\Car.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.DAL.Encje.Car_Linguistic" Collapsed="true">
+    <Position X="28.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAQAAAAEAAgAAAAIAAAAQAAAAAQAAACEAAAAAIAAA=</HashCode>
+      <FileName>DAL\Encje\Car_Linguistic.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.DAL.Encje.Car_Numerical" Collapsed="true">
+    <Position X="21.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAQAAgAAAAEAAAAAAAAAAQAABCAAAAAAAAAA=</HashCode>
+      <FileName>DAL\Encje\Car_Numerical.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.DAL.Repozytoria.CarRepository" Collapsed="true">
+    <Position X="23" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>BCABAGABABAQFAAAMAAAAABEA0gAAAAAgABEAAAJAAA=</HashCode>
+      <FileName>DAL\Repozytoria\CarRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.DAL.Repozytoria.CarsRepository" Collapsed="true">
+    <Position X="26.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AiYAAAAABIACAhAAIAAAAAAAEAAIAAEAAGAIAIAAAAA=</HashCode>
+      <FileName>DAL\Repozytoria\CarsRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.DAL.Repozytoria.KNNRepository" Collapsed="true">
+    <Position X="21.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAMAAAAgkABAAIAABAAAEAwAAAAAggAIIAAABAYA=</HashCode>
+      <FileName>DAL\Repozytoria\KNNRepository.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.DAL.DBConnection" Collapsed="true">
+    <Position X="28.25" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAACAAAAAAEIAABAAAAAAABAAAAAQAAgAAACAAA=</HashCode>
+      <FileName>DAL\DBConnection.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.Model.History.FileHandling" Collapsed="true">
+    <Position X="19.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAgAABAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAA=</HashCode>
+      <FileName>Model\History\FileHandling.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.Model.History.Sample" Collapsed="true">
+    <Position X="21.25" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAQAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\History\Sample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.Model.Prediction.Prediction_objects.Car_Normalized" Collapsed="true">
+    <Position X="19.5" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAQAAgAAAAEAAAAAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Prediction\Prediction_objects\Car_Normalized.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.Model.Prediction.Algorythm" Collapsed="true">
+    <Position X="21.25" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAgAAACAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Prediction\Algorythm.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.Model.Prediction.Normalization" Collapsed="true">
+    <Position X="19.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAABAAAAAAAAAAAAAAAAAAAAAAAAAUAAAAAAAAA=</HashCode>
+      <FileName>Model\Prediction\Normalization.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.Model.Prediction.Sample" Collapsed="true">
+    <Position X="19.5" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\Prediction\Sample.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.Model.CarsModel" Collapsed="true">
+    <Position X="24.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gCEAACJAAAIAgBAAWoAhAAQAABABAIABAHBEACABhRI=</HashCode>
+      <FileName>Model\CarsModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.Model.ListModel" Collapsed="true">
+    <Position X="23" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\ListModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.Model.PredictModel" Collapsed="true">
+    <Position X="19.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAJAAACAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAAAg=</HashCode>
+      <FileName>Model\PredictModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.Model.RemoveModel" Collapsed="true">
+    <Position X="28.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Model\RemoveModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.View.AddCarViewControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="19.5" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIIAEDAhQQAwAAQAAKAAAEkAACAAABRAxggAAABiSg=</HashCode>
+      <FileName>View\ViewControls\AddCarViewControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.View.BrowseCarViewControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.75" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAIAECAhAAAgAAQAAMAAAAkAAAAAABQAxggAIABiQg=</HashCode>
+      <FileName>View\ViewControls\BrowseCarViewControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.View.ManagerLoginViewControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAQAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\ViewControls\ManagerLoginViewControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.View.PredictCarHistoryViewControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAQAAAAAAAAAAAAAAAAQAAAAAAAAABAAAAAAAAAAA=</HashCode>
+      <FileName>View\ViewControls\PredictCarHistoryViewControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.View.PredictCarResultsViewControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.75" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAACAAAAAAIAAQAA=</HashCode>
+      <FileName>View\ViewControls\PredictCarResultsViewControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.View.PredictCarViewControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.5" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEIAAEDAAAQAwMAAAACAAAEwAACAAABRAxggAAAAiQg=</HashCode>
+      <FileName>View\ViewControls\PredictCarViewControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.View.RemoveCarViewControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.5" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAIAECAhAAAgAAQAAMAAAAkAAAAAADQAxggAIAByQg=</HashCode>
+      <FileName>View\ViewControls\RemoveCarViewControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.View.LoginPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\LoginPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.View.PredictHistoryDetailsPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="28.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PredictHistoryDetailsPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.View.PredictResultPage" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21.25" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>View\PredictResultPage.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.View.ViewControls.PredictCarHistoryDetailsViewControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="21.25" Y="5.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAAAAAIAAAAA=</HashCode>
+      <FileName>View\ViewControls\PredictCarHistoryDetailsViewControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.View.ViewControls.ProgramStatusViewControl" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="23" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAQAAAAAAAAAAACAAAAAAAAAAAQAgAIAAAgAQAAAAA=</HashCode>
+      <FileName>View\ViewControls\ProgramStatusViewControl.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.MainWindow" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="26.5" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAEAAAAAAAAAAAAAAEAAAAA=</HashCode>
+      <FileName>View\MainWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.App" Collapsed="true">
+    <Position X="23" Y="2.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.ViewModel.BaseClass.RelayCommand" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="24.75" Y="6.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAQAAEAEAABAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\BaseClass\RelayCommand.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" Collapsed="true" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.ViewModel.BaseClass.ViewModelBase">
+    <Position X="7.5" Y="3.25" Width="2" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAAAAAAgAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\BaseClass\ViewModelBase.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.ViewModel.SharedMethods.ViewModelSharedMethods" Collapsed="true">
+    <Position X="24.75" Y="7.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModel\SharedMethods\ViewModelSharedMethods.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.ViewModel.CarsViewModel" Collapsed="true">
+    <Position X="3" Y="3.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgYBIAEhAQABRAAgAGECQALIAAEAACIBAAgAAASLAAA=</HashCode>
+      <FileName>ViewModel\CarsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.ViewModel.ListViewModel" Collapsed="true">
+    <Position X="4.75" Y="4.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgQBIAAjABAARgAgACECQADIAAAAACIAAAgAAASJAQA=</HashCode>
+      <FileName>ViewModel\ListViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.ViewModel.MainViewModel" Collapsed="true">
+    <Position X="9" Y="5.25" Width="1.75" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <InheritanceLine Type="Asystent_wyboru_aut_uzywanych.ViewModel.BaseClass.ViewModelBase" FixedToPoint="true">
+      <Path>
+        <Point X="8.5" Y="4.805" />
+        <Point X="8.5" Y="4.95" />
+        <Point X="9.802" Y="4.95" />
+        <Point X="9.802" Y="5.25" />
+      </Path>
+    </InheritanceLine>
+    <TypeIdentifier>
+      <HashCode>YIEwEMAoECAgA0AAoIAAIACAAAABEQAAAGAAkkBRAAA=</HashCode>
+      <FileName>ViewModel\MainViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.ViewModel.PredictCarsViewModel" Collapsed="true">
+    <Position X="6.25" Y="5.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgaAIAAjAAAARgAgAOEAQACIAAFAICBLAAAAAESCAIA=</HashCode>
+      <FileName>ViewModel\PredictCarsViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.ViewModel.PredictHistoryViewModel" Collapsed="true">
+    <Position X="10.75" Y="4.25" Width="2" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAADAAAAAAAAAAEAAAAAAAIAAAAAAAA=</HashCode>
+      <FileName>ViewModel\PredictHistoryViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="Asystent_wyboru_aut_uzywanych.ViewModel.RemoveViewModel" Collapsed="true">
+    <Position X="12.75" Y="3.25" Width="2.25" />
+    <Compartments>
+      <Compartment Name="Fields" Collapsed="true" />
+    </Compartments>
+    <TypeIdentifier>
+      <HashCode>AgQBIAAjAAAARgAgACECQALIAQAAICIAAAgAAgSJAQI=</HashCode>
+      <FileName>ViewModel\RemoveViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="System.ComponentModel.INotifyPropertyChanged">
+    <Position X="7.5" Y="1.75" Width="2" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
