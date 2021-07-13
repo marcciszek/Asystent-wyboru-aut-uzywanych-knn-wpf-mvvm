@@ -44,8 +44,12 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
         private static string DELETE_NUM = "DELETE FROM cars_numerical WHERE ID_car_num = ";
         private static string DELETE_CAR = "DELETE FROM cars WHERE ID_car = ";
         #endregion
-        #endregion
 
+        #region ZAPYTANIA Z DODAWANIEM DO TABELI
+        private static string INSERT_INTO_SOLD_CARS = "INSERT INTO `transactions`(`id_car_sold`, `id_employee`, `pesel`, `date_of_transaction`) VALUES (";
+        private static string INSERT_ENDING = ", 1, 11111122222, Now());";
+        #endregion
+        #endregion
         public static List<Car> Get_all_cars()
         {
             List<Car> cars = new List<Car>();
@@ -72,7 +76,7 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
         public static List<Car> Search_For_Cars(Car_Linguistic car_lin)
         {
             List<Car> cars = new List<Car>();
-            using(var connection = DBConnection.Instance.Connection)
+            using (var connection = DBConnection.Instance.Connection)
             {
                 MySqlCommand command_get_specific_cars = new MySqlCommand($"{SELECT_CARS_DATA} {car_lin.Select_In_Database_List()}", connection);
                 try
@@ -98,7 +102,7 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
             string SELECT_BUDGET = "";
             if (car_lin.Select_In_Database_List() != "")
             {
-                if(price_max != 0)
+                if (price_max != 0)
                 {
                     SELECT_BUDGET = $"AND cars_numerical.Price > {price_min} AND cars_numerical.Price < {price_max};";
                 }
@@ -189,7 +193,7 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
                         return false;
                     }
                 }
-                else if( id_car_num != 0 && id_car_ling != 0 && number_of_lin_records > 1)
+                else if (id_car_num != 0 && id_car_ling != 0 && number_of_lin_records > 1)
                 {
                     MySqlCommand command_delete_car = new MySqlCommand($"{DELETE_CAR} {car.ID}", connection);
                     MySqlCommand command_delete_num = new MySqlCommand($"{DELETE_NUM} {id_car_num}", connection);
@@ -211,16 +215,48 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
         public static bool Remove_Car(Car car, SecureString password)
         {
             int id_car_ling = 0, id_car_num = 0, number_of_lin_records = 0;
-                using (var connection = DBConnection.Instance.Connection_pwd(password))
+            using (var connection = DBConnection.Instance.Connection_pwd(password))
+            {
+                //Pobranie ID numerycznego i lingiwstycznego
+                MySqlCommand command_num = new MySqlCommand($"{SELECT_ID_NUM} {car.ID}", connection);
+                MySqlCommand command_lin = new MySqlCommand($"{SELECT_ID_LIN} {car.ID}", connection);
+                try
                 {
-                    //Pobranie ID numerycznego i lingiwstycznego
-                    MySqlCommand command_num = new MySqlCommand($"{SELECT_ID_NUM} {car.ID}", connection);
-                    MySqlCommand command_lin = new MySqlCommand($"{SELECT_ID_LIN} {car.ID}", connection);
+                    connection.Open();
+                    id_car_ling = Convert.ToInt32(command_lin.ExecuteScalar());
+                    id_car_num = Convert.ToInt32(command_num.ExecuteScalar());
+                    connection.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Bledne haslo");
+                    return false;
+                }
+                //Sprawdzenie ile aut uzywa tej samej wartosci lingwistycznej
+                MySqlCommand command_check_lin = new MySqlCommand($"{SELECT_COUNT_LIN} {id_car_ling}", connection);
+                try
+                {
+                    connection.Open();
+                    number_of_lin_records = Convert.ToInt32(command_check_lin.ExecuteScalar());
+                    connection.Close();
+                }
+                catch (Exception)
+                {
+                    MessageBox.Show("Bledne haslo");
+                    return false;
+                }
+
+                if (id_car_num != 0 && id_car_ling != 0 && number_of_lin_records == 1)
+                {
+                    MySqlCommand command_delete_car = new MySqlCommand($"{DELETE_CAR} {car.ID}", connection);
+                    MySqlCommand command_delete_num = new MySqlCommand($"{DELETE_NUM} {id_car_num}", connection);
+                    MySqlCommand command_delete_lin = new MySqlCommand($"{DELETE_LIN} {id_car_ling}", connection);
                     try
                     {
                         connection.Open();
-                        id_car_ling = Convert.ToInt32(command_lin.ExecuteScalar());
-                        id_car_num = Convert.ToInt32(command_num.ExecuteScalar());
+                        command_delete_car.ExecuteNonQuery();
+                        command_delete_num.ExecuteNonQuery();
+                        command_delete_lin.ExecuteNonQuery();
                         connection.Close();
                     }
                     catch (Exception)
@@ -228,58 +264,26 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
                         MessageBox.Show("Bledne haslo");
                         return false;
                     }
-                    //Sprawdzenie ile aut uzywa tej samej wartosci lingwistycznej
-                    MySqlCommand command_check_lin = new MySqlCommand($"{SELECT_COUNT_LIN} {id_car_ling}", connection);
+                }
+                else if (id_car_num != 0 && id_car_ling != 0 && number_of_lin_records > 1)
+                {
+                    MySqlCommand command_delete_car = new MySqlCommand($"{DELETE_CAR} {car.ID}", connection);
+                    MySqlCommand command_delete_num = new MySqlCommand($"{DELETE_NUM} {id_car_num}", connection);
                     try
                     {
                         connection.Open();
-                        number_of_lin_records = Convert.ToInt32(command_check_lin.ExecuteScalar());
+                        command_delete_car.ExecuteNonQuery();
+                        command_delete_num.ExecuteNonQuery();
                         connection.Close();
                     }
                     catch (Exception)
                     {
-                    MessageBox.Show("Bledne haslo");
-                    return false;
-                    }
-
-                    if (id_car_num != 0 && id_car_ling != 0 && number_of_lin_records == 1)
-                    {
-                        MySqlCommand command_delete_car = new MySqlCommand($"{DELETE_CAR} {car.ID}", connection);
-                        MySqlCommand command_delete_num = new MySqlCommand($"{DELETE_NUM} {id_car_num}", connection);
-                        MySqlCommand command_delete_lin = new MySqlCommand($"{DELETE_LIN} {id_car_ling}", connection);
-                        try
-                        {
-                            connection.Open();
-                            command_delete_car.ExecuteNonQuery();
-                            command_delete_num.ExecuteNonQuery();
-                            command_delete_lin.ExecuteNonQuery();
-                            connection.Close();
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("Bledne haslo");
-                            return false;
-                        }
-                    }
-                    else if (id_car_num != 0 && id_car_ling != 0 && number_of_lin_records > 1)
-                    {
-                        MySqlCommand command_delete_car = new MySqlCommand($"{DELETE_CAR} {car.ID}", connection);
-                        MySqlCommand command_delete_num = new MySqlCommand($"{DELETE_NUM} {id_car_num}", connection);
-                        try
-                        {
-                            connection.Open();
-                            command_delete_car.ExecuteNonQuery();
-                            command_delete_num.ExecuteNonQuery();
-                            connection.Close();
-                        }
-                        catch (Exception)
-                        {
-                            MessageBox.Show("Bledne haslo");
-                            return false;
-                        }
+                        MessageBox.Show("Bledne haslo");
+                        return false;
                     }
                 }
-                return true;
+            }
+            return true;
         }
         public static bool Remove_Car(Car car, SecureString password, string login)
         {
@@ -353,6 +357,29 @@ namespace Asystent_wyboru_aut_uzywanych.DAL.Repozytoria
                 }
             }
             return true;
+        }
+        #endregion
+        #region Transakcje
+        public static bool Insert_Into_Sold(Car car)
+        {
+            bool stan = false;
+            using (var connection = DBConnection.Instance.Connection)
+            {
+
+                MySqlCommand command_insert_into_sold = new MySqlCommand($"{INSERT_INTO_SOLD_CARS} {car.ID} {INSERT_ENDING}", connection);
+                try
+                {
+                    connection.Open();
+                    command_insert_into_sold.ExecuteNonQuery();
+                    stan = true;
+                    connection.Close();
+                }
+                catch (Exception)
+                {
+                    return false;
+                }
+            }
+            return stan;
         }
         #endregion
     }

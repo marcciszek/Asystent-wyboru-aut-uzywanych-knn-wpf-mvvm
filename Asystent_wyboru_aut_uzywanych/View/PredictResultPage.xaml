@@ -9,6 +9,7 @@
         Title="Wyniki predykcji" Height="450" Width="800">
     <Grid>
         <view:PredictCarResultsViewControl x:Name="Predict_Result_Window"
-                                           ListViewCarsCollection ="{Binding predictVM.Cars}"/>
+                                           ListViewCarsCollection ="{Binding predictVM.Cars}"
+                                           ListViewSelectedCar = "{Binding predictVM.Selected_Car, Mode=TwoWay}"/>
     </Grid>
 </Window>

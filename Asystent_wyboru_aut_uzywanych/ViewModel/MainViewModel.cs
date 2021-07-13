@@ -30,7 +30,6 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         private ListModel listModel = new ListModel();
         private RemoveModel removeModel = new RemoveModel();
         private PredictModel predictModel = new PredictModel();
-        private HistoryModel historyModel = new HistoryModel();
         #endregion
         #region Okna pochodne
         LoginPage newLoginPage;
@@ -174,7 +173,11 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                             predictVM.predict_start();
                             Predict_Window();
                         },
-                        arg => true
+                        arg => (predictVM.Price_Max != "") 
+                        && (predictVM.Power != "") 
+                        && (predictVM.Mileage != "") 
+                        && (predictVM.Age != "") 
+                        && (predictVM.Price_Min != "")
                         );
                 }
               return predict_button;
@@ -197,6 +200,26 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                         );
                 }
                 return close_button_predict;
+            }
+        }
+
+        private ICommand transaction_button = null;
+        public ICommand Transaction_Button
+        {
+            get
+            {
+                if (transaction_button == null)
+                {
+                    transaction_button = new RelayCommand(
+                        arg =>
+                        {
+                            predictVM.Transaction();
+                            newPredictResultPage.Close();
+                        },
+                        arg => predictVM.Selected_Car != null
+                        );
+                }
+                return transaction_button;
             }
         }
 
@@ -256,9 +279,9 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         {
             carsVM = new CarsViewModel(carModel);
             listVM = new ListViewModel(carModel, listModel);
-            predictVM = new PredictCarsViewModel(carModel, listModel, predictModel);
+            predictVM = new PredictCarsViewModel(carModel, predictModel);
             removeVM = new RemoveViewModel(carModel, listModel, removeModel);
-            historyVM = new PredictHistoryViewModel(carModel, listModel, predictModel, historyModel);
+            historyVM = new PredictHistoryViewModel(carModel, listModel, predictModel);
         }
         #endregion
     }
