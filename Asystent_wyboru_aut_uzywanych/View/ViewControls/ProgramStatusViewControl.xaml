@@ -19,8 +19,8 @@
                               AncestorType={x:Type UserControl}}}"
                      Margin="10,0,10,0"/>
 
-            <Button Content="+1"
-                    Width="40"
+            <Button Content="Zmień kolor"
+                    Width="80"
                     Command="{Binding Test_add}"/>
 
             <TextBlock VerticalAlignment="Center"

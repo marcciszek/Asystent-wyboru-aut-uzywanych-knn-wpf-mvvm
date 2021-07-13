@@ -77,8 +77,20 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                     test_add = new RelayCommand(
                         arg =>
                         {
-                            StatusLevel += 1;
-                            StatusString += "1";
+                            if (StatusLevel == 4)
+                            {
+                                if (StatusString == " ")
+                                    StatusString = "  ";
+                                else StatusString = " ";
+                                StatusLevel = 0;
+                            }
+                            else
+                            {
+                                if (StatusString == " ")
+                                    StatusString = "  ";
+                                else StatusString = " ";
+                                StatusLevel += 1;
+                            }
                         },
                         arg => true
                         );
