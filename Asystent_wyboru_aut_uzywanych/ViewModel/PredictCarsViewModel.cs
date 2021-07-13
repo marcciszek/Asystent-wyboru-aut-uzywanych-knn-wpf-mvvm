@@ -325,6 +325,14 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         internal void Transaction()
         {
             MessageBox.Show(Selected_Car.ID.ToString());
+            if (CarRepository.Insert_Into_Sold(Selected_Car))
+            {
+                MessageBox.Show("Pomyslnie sprzedano auto!");
+            }
+            else
+            {
+                MessageBox.Show("Nie udalo sie sprzedac auta :(");
+            }
         }
         #endregion
         #region konstruktory
