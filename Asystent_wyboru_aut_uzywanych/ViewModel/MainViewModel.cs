@@ -77,8 +77,20 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                     test_add = new RelayCommand(
                         arg =>
                         {
-                            StatusLevel += 1;
-                            StatusString += "1";
+                            if (StatusLevel == 4)
+                            {
+                                if (StatusString == " ")
+                                    StatusString = "  ";
+                                else StatusString = " ";
+                                StatusLevel = 0;
+                            }
+                            else
+                            {
+                                if (StatusString == " ")
+                                    StatusString = "  ";
+                                else StatusString = " ";
+                                StatusLevel += 1;
+                            }
                         },
                         arg => true
                         );
@@ -281,7 +293,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             listVM = new ListViewModel(carModel, listModel);
             predictVM = new PredictCarsViewModel(carModel, predictModel);
             removeVM = new RemoveViewModel(carModel, listModel, removeModel);
-            historyVM = new PredictHistoryViewModel(carModel, listModel, predictModel);
+            historyVM = new PredictHistoryViewModel();
         }
         #endregion
     }

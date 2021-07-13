@@ -16,7 +16,7 @@ namespace Asystent_wyboru_aut_uzywanych.Model.Prediction
         public List<Car_Numerical> KNN(List<Car_Numerical> cars, List<Car_Numerical> cars_db, Car_Numerical sample_numerical)
         {
             List<Car_Normalized> cars_norm = Normalization.Normalize_database(cars);
-            var sample = Sample.Create_Sample(sample_numerical);
+            var sample = Sample_creation.Create_Sample(sample_numerical);
             sample = Normalization.Normalize_sample(sample, cars_norm);
             List<double> distances = new List<double>();
             foreach(var car in cars_norm)
