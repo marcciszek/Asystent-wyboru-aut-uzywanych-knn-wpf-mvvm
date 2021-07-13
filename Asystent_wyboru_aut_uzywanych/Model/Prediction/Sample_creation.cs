@@ -6,7 +6,7 @@ namespace Asystent_wyboru_aut_uzywanych.Model.Prediction
 {
     using DAL.Encje;
     using DAL.Repozytoria;
-    class Sample
+    class Sample_creation
     {
         public static Dictionary<string, double> Create_Sample(Car_Numerical car)
         {

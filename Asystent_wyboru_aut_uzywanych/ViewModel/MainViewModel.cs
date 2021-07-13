@@ -281,7 +281,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             listVM = new ListViewModel(carModel, listModel);
             predictVM = new PredictCarsViewModel(carModel, predictModel);
             removeVM = new RemoveViewModel(carModel, listModel, removeModel);
-            historyVM = new PredictHistoryViewModel(carModel, listModel, predictModel);
+            historyVM = new PredictHistoryViewModel();
         }
         #endregion
     }

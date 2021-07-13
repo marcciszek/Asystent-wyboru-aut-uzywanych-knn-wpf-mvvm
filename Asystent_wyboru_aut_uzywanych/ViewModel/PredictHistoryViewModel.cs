@@ -66,7 +66,7 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         #endregion
 
         #region konstruktory
-        public PredictHistoryViewModel(CarsModel carModel, ListModel listModel, PredictModel predictModel)
+        public PredictHistoryViewModel()
         {
             search_history = FileHandling.Read_History();
         }

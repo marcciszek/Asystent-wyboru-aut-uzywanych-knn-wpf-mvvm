@@ -13,7 +13,6 @@ namespace Asystent_wyboru_aut_uzywanych.Model
     class PredictModel
     {
         private Algorythm KNN_Prediction = new Algorythm();
-        ObservableCollection<Car> Cars { get; set; } = new ObservableCollection<Car>();
         #region metody
         public ObservableCollection<Car> Search_For_Cars(Car_Linguistic car_lin, int price_min, int price_max)
         {
