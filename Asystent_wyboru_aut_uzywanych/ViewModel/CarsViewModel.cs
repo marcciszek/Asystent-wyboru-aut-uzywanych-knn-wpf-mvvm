@@ -244,10 +244,39 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                         {
                             try
                             {
-                                int price = Int32.Parse(this.price);
-                                int power = Int32.Parse(this.power);
-                                int mileage = Int32.Parse(this.mileage);
-                                int age = Int32.Parse(this.age);
+                                int price, power, mileage, age;
+                                if (Int32.TryParse(this.price, out price))
+                                {
+                                    price = Int32.Parse(this.price);
+                                }
+                                else
+                                {
+                                    price = 0;
+                                }
+                                if (Int32.TryParse(this.power, out power))
+                                {
+                                    power = Int32.Parse(this.power);
+                                }
+                                else
+                                {
+                                    power = 100;
+                                }
+                                if (Int32.TryParse(this.mileage, out mileage))
+                                {
+                                    mileage = Int32.Parse(this.mileage);
+                                }
+                                else
+                                {
+                                    mileage = 0;
+                                }
+                                if (Int32.TryParse(this.age, out age))
+                                {
+                                    age = Int32.Parse(this.age);
+                                }
+                                else
+                                {
+                                    age = 0;
+                                }
                                 var Car_num = new Car_Numerical(price, power, mileage, age);
                                 var Car_lin = new Car_Linguistic(Selected_Type, Selected_Gear, Selected_Fuel, Selected_Brand, Selected_Model, Selected_Damage);
                                 if (carModel.Add_car(Car_num, Car_lin))

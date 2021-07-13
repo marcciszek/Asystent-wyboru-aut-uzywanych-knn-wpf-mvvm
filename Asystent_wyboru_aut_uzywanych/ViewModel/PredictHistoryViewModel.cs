@@ -15,7 +15,6 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
     class PredictHistoryViewModel : ViewModelBase
     {
         #region definicje prywatne
-        private HistoryModel historyModel = null;
         #endregion
 
         #region parametry
@@ -67,9 +66,8 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
         #endregion
 
         #region konstruktory
-        public PredictHistoryViewModel(CarsModel carModel, ListModel listModel, PredictModel predictModel, HistoryModel historyModel)
+        public PredictHistoryViewModel(CarsModel carModel, ListModel listModel, PredictModel predictModel)
         {
-            this.historyModel = historyModel;
             search_history = FileHandling.Read_History();
         }
         #endregion

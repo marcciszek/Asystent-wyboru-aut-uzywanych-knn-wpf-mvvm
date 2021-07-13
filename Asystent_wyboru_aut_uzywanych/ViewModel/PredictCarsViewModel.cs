@@ -19,7 +19,6 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
     {
         #region definicje prywatne
         private CarsModel carModel = null;
-        private ListModel listModel = null;
         private PredictModel predictModel = null;
 
 
@@ -38,6 +37,20 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             {
                 cars = value;
                 onPropertyChanged(nameof(Cars));
+            }
+        }
+        private Car selected_car = null;
+
+        public Car Selected_Car
+        {
+            get
+            {
+                return selected_car;
+            }
+            set
+            {
+                selected_car = value;
+                onPropertyChanged(nameof(Selected_Car));
             }
         }
         #region liczbowe
@@ -235,11 +248,53 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
             Car_Linguistic car_lin = new Car_Linguistic(selected_type, selected_gear, selected_fuel, null, null, selected_damage);
             try
             {
-                int price_min = Int32.Parse(this.price_min);
-                int price_max = Int32.Parse(this.price_max);
-                int power = Int32.Parse(this.power);
-                int mileage = Int32.Parse(this.mileage);
-                int age = Int32.Parse(this.age);
+                int price_min, price_max, power, mileage, age;
+                #region Zmiana string do int
+                if (Int32.TryParse(this.price_min, out price_min))
+                {
+                    price_min = Int32.Parse(this.price_min);
+                }
+                else
+                {
+                    price_min = 0;
+                }
+                if (Int32.TryParse(this.price_max, out price_max))
+                {
+                    price_max = Int32.Parse(this.price_max);
+                }
+                else
+                {
+                    price_max = int.MaxValue;
+                }
+                if (Int32.TryParse(this.power, out power))
+                {
+                    power = Int32.Parse(this.power);
+                }
+                else
+                {
+                    power = 100;
+                }
+                if (Int32.TryParse(this.mileage, out mileage))
+                {
+                    mileage = Int32.Parse(this.mileage);
+                }
+                else
+                {
+                    mileage = 0;
+                }
+                if (Int32.TryParse(this.age, out age))
+                {
+                    age = Int32.Parse(this.age);
+                }
+                else
+                {
+                    age = 0;
+                }
+                if(price_min > price_max)
+                {
+                    price_max = int.MaxValue;
+                }
+                #endregion
                 Car_Numerical sample = new Car_Numerical(price_min, power, mileage, age);
                 Cars = predictModel.Search_For_Cars(car_lin, price_min, price_max);
                 Cars = predictModel.Predict(Cars, sample);
@@ -251,13 +306,33 @@ namespace Asystent_wyboru_aut_uzywanych.ViewModel
                 MessageBox.Show("Bledna wartosc");
             }
         }
+
+        private void Default_Values()
+        {
+            Price_Min = "0";
+            Price_Max = "";
+            Power = "100";
+            Mileage = "0";
+            string year = Convert.ToString(DateTime.Now.Year);
+            Age = year;
+            //===========================
+            Selected_Type = null;
+            Selected_Gear = null;
+            Selected_Fuel = null;
+            Selected_Damage = null;
+        }
+
+        internal void Transaction()
+        {
+            MessageBox.Show(Selected_Car.ID.ToString());
+        }
         #endregion
         #region konstruktory
-        public PredictCarsViewModel(CarsModel carModel, ListModel listModel, PredictModel predictModel)
+        public PredictCarsViewModel(CarsModel carModel, PredictModel predictModel)
         {
             this.carModel = carModel;
-            this.listModel = listModel;
             this.predictModel = predictModel;
+            Default_Values();
         }
         #endregion
     }

@@ -37,7 +37,7 @@
                 <Button DockPanel.Dock="Right"
                         x:Name="ButtonTransaction"
                         Content="TRANSAKCJA"
-                        Command=""/>
+                        Command="{Binding Transaction_Button}"/>
             </DockPanel>
 
             <ListView x:Name="ListViewCarResults"
